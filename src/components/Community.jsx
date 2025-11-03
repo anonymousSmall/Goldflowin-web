@@ -62,7 +62,7 @@ function Community() {
             className="mx-auto rounded-lg bg-gray-800 shadow-lg shadow-gray-800/50"
             src={photo4}
           />
-          <h3 className="text-[1.125rem] font-bold text-[#4D4D4D] my-3">
+          <h3 className="text-[1.5rem] font-bold text-[#4D4D4D] my-3">
             บริการซ่อมเครื่องมือวัด/อุปกรณ์ต่างๆ
           </h3>
           <p>
@@ -79,6 +79,7 @@ function Community() {
 }
 
 export default Community;
+
 
 
 
