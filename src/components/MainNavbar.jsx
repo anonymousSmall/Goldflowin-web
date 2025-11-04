@@ -40,7 +40,7 @@ function MainNavbar() {
           <a href="#">
             <img
               src={logo3}
-              className="h-10 rounded-2xl shadow-slate-100"
+              className="h-20 rounded-2xl shadow-slate-100"
               alt=""
             />
           </a>
@@ -223,4 +223,5 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
