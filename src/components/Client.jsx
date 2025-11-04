@@ -14,7 +14,7 @@ import clientImgLogo12 from "../assets/image/img-logo1.png";
 import clientImgLogo13 from "../assets/image/img-logo2.png";
 import clientImgLogo14 from "../assets/image/img-logo3.png";
 import HomeCarouselBrand from "./carousel/HomeCarouselBrand";
-import BrandSlider from "./carousel/BrandSlider";
+
 const clientsTmgLogo = [
   
   //   clientImgLogo01,
@@ -48,14 +48,15 @@ function Client() {
                 <img src={client} alt="" />
             </li>
         ))} */}
-        {/* <HomeCarouselBrand /> */}
-        <BrandSlider />
+        <HomeCarouselBrand />
+        {/* <BrandSlider /> */}
       </ul>
     </div>
   );
 }
 
 export default Client;
+
 
 
 
