@@ -15,6 +15,8 @@ import clientImgLogo13 from "../assets/image/img-logo2.png";
 import clientImgLogo14 from "../assets/image/img-logo3.png";
 import HomeCarouselBrand from "./carousel/HomeCarouselBrand";
 
+import BrandSlider from "/components/BrandSlider";
+
 const clientsTmgLogo = [
   //   clientImgLogo01,
   //   clientImgLogo02,
@@ -42,15 +44,16 @@ function Client() {
         Our Service
       </p>
       <ul className="flex flex-col items-center my-10 md:flex-row md:justify-between">
-        {/* {clientsTmgLogo.map((client,index)=>(
+        {clientsTmgLogo.map((client,index)=>(
             <li key={index}>
                 <img src={client} alt="" />
             </li>
-        ))} */}
-        <HomeCarouselBrand />
+        ))}
+        {/* <HomeCarouselBrand /> */}
       </ul>
     </div>
   );
 }
 
 export default Client;
+
