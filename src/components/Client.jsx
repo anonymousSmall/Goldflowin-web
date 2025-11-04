@@ -1,5 +1,4 @@
 import React from "react";
-import BrandSlider from "../components/BrandSlider";
 import clientImgLogo01 from "../assets/image/logo/accretech.png";
 import clientImgLogo02 from "../assets/image/logo/accud.png";
 import clientImgLogo03 from "../assets/image/logo/aikoh.png";
@@ -55,6 +54,7 @@ function Client() {
 }
 
 export default Client;
+
 
 
 
