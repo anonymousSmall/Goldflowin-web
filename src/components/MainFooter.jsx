@@ -7,7 +7,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import logo2 from "../assets/image/logo2.jpg";
-import logo3 form "../assets/image/Logo3.png";
+import logo3 from "../assets/image/Logo3.png";
 
 function MainFooter() {
   return (
@@ -139,4 +139,5 @@ function MainFooter() {
 }
 
 export default MainFooter;
+
 
