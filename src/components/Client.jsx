@@ -1,4 +1,5 @@
 import React from "react";
+import BrandSlider from "../components/BrandSlider";
 import clientImgLogo01 from "../assets/image/logo/accretech.png";
 import clientImgLogo02 from "../assets/image/logo/accud.png";
 import clientImgLogo03 from "../assets/image/logo/aikoh.png";
@@ -36,7 +37,7 @@ function Client() {
   return (
     <div className="container mx-auto max-w-[1320px] py-10 text-center">
       <h2 className="text-[2.25rem] font-semibold text-blue-900">
-        แบรนด์ที่จัดจำหน่าย
+        แบรนด์ที่จัดจำหน่าย123
       </h2>
       <p className="text-[#717171] text-[1.4rem] mb-5 inline-block border-b-2 border-[#3936fa]">
         Our Service
@@ -54,5 +55,6 @@ function Client() {
 }
 
 export default Client;
+
 
 
