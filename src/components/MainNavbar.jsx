@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo2 from "../assets/image/logo2.jpg";
+import logo3 from "../assets/image/Logo3.png";
 import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import useEcomStore from "../store/ecom-store";
@@ -38,7 +39,7 @@ function MainNavbar() {
         <div>
           <a href="#">
             <img
-              src={logo2}
+              src={logo3}
               className="h-10 rounded-2xl shadow-slate-100"
               alt=""
             />
@@ -222,3 +223,4 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
