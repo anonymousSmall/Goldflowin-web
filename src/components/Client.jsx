@@ -14,6 +14,7 @@ import clientImgLogo12 from "../assets/image/img-logo1.png";
 import clientImgLogo13 from "../assets/image/img-logo2.png";
 import clientImgLogo14 from "../assets/image/img-logo3.png";
 import HomeCarouselBrand from "./carousel/HomeCarouselBrand";
+import BrandSlider from "BrandSlider";
 
 const clientsTmgLogo = [
   //   clientImgLogo01,
@@ -36,24 +37,26 @@ function Client() {
   return (
     <div className="container mx-auto max-w-[1320px] py-10 text-center">
       <h2 className="text-[2.25rem] font-semibold text-blue-900">
-        แบรนด์ที่จัดจำหน่าย123
+        แบรนด์ที่จัดจำหน่าย
       </h2>
       <p className="text-[#717171] text-[1.4rem] mb-5 inline-block border-b-2 border-[#3936fa]">
         Our Service
       </p>
       <ul className="flex flex-col items-center my-10 md:flex-row md:justify-between">
-        {clientsTmgLogo.map((client,index)=>(
+        {/* {clientsTmgLogo.map((client,index)=>(
             <li key={index}>
                 <img src={client} alt="" />
             </li>
-        ))}
+        ))} */}
         {/* <HomeCarouselBrand /> */}
+        <BrandSlider />
       </ul>
     </div>
   );
 }
 
 export default Client;
+
 
 
 
