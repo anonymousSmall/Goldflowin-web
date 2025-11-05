@@ -1,4 +1,65 @@
-<div className="bg-gray-100 dark:bg-white py-10">
+import React, { useState, useEffect } from "react";
+import {
+  createProduct,
+  readProduct,
+  listProduct,
+  updateProduct,
+  detailProducts,
+} from "../api/product";
+import useEcomStore from "../store/ecom-store";
+import { useNavigate, useParams } from "react-router-dom";
+import Uploadfileview from "../components/admin/Uploadfileview";
+import { Image, ShoppingCart } from "lucide-react";
+import { FaLine } from "react-icons/fa6";
+import { numberFormat } from "../utils/number";
+
+const initialState = {
+  title: "",
+  description: "",
+  price: 0,
+  quantity: 0,
+  categoryId: "",
+  images: [],
+};
+
+const detaillProduct = ({ item }) => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const token = useEcomStore((state) => state.token);
+  const getCategory = useEcomStore((state) => state.getCategory);
+  const categories = useEcomStore((state) => state.categories);
+  const getProduct = useEcomStore((state) => state.getProduct);
+  const products = useEcomStore((state) => state.products);
+  const actionAddtoCart = useEcomStore((state) => state.actionAddtoCart);
+  const [form, setForm] = useState(initialState);
+
+  useEffect(() => {
+    getCategory();
+    fetchProduct(id, form);
+  }, []);
+
+  const fetchProduct = async (id, form) => {
+    try {
+      // Code
+      const res = await detailProducts(id, form);
+      console.log("res from bankend", res);
+      setForm(res.data);
+      console.log(res.data.images[0].url);
+    } catch (err) {
+      console.log("Err fetch data", err);
+    }
+  };
+
+  const handleOnChange = (e) => {
+    console.log(e.target.name, e.target.value);
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <div className="bg-gray-100 dark:bg-white py-10">
   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="flex flex-col md:flex-row gap-8">
       
@@ -132,3 +193,9 @@
     </div>
   </div>
 </div>
+
+  );
+};
+
+export default detaillProduct;
+
