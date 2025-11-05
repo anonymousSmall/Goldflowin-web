@@ -58,6 +58,40 @@ const detaillProduct = ({ item }) => {
     });
   };
 
+  // ตัวอย่างสินค้าแนะนำ (สามารถแทนด้วย API จริงได้)
+const relatedProducts = [
+  {
+    id: 1,
+    title: "กระเป๋าหนังแท้ รุ่นพรีเมียม",
+    price: 1590,
+    image: "../assets/image/photo1.jpg",
+  },
+  {
+    id: 2,
+    title: "รองเท้าหนัง Handmade",
+    price: 2290,
+    image: "../assets/image/photo1.jpg",
+  },
+  {
+    id: 3,
+    title: "เสื้อเชิ้ตลินินผู้ชาย",
+    price: 890,
+    image: "../assets/image/photo1.jpg",
+  },
+  {
+    id: 4,
+    title: "นาฬิกาข้อมือสแตนเลส",
+    price: 2790,
+    image: "../assets/image/photo1.jpg",
+  },
+  {
+    id: 5,
+    title: "หมวกแก๊ปแฟชั่น",
+    price: 490,
+    image: "../assets/image/photo1.jpg",
+  },
+];
+
   return (
          <div className="bg-gray-100 dark:bg-white py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -202,6 +236,7 @@ const detaillProduct = ({ item }) => {
 };
 
 export default detaillProduct;
+
 
 
 
