@@ -59,7 +59,15 @@ const detaillProduct = ({ item }) => {
   };
 
   return (
-          </div>
+         <div className="bg-gray-100 dark:bg-white py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Left: Product Image / Upload */}
+          <div className="md:flex-1">
+            <div className="relative overflow-hidden rounded-xl bg-white dark:bg-gray-200 flex items-center justify-center shadow-md hover:shadow-xl transition-all duration-300 group">
+              <Uploadfileview form={form} setForm={setForm} />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
+            </div>
           </div>
 
           {/* Right: Product Info */}
@@ -93,7 +101,7 @@ const detaillProduct = ({ item }) => {
               />
             </div>
 
-            {/* Rating */}
+            {/* Rating Stars */}
             <div className="flex items-center space-x-1">
               {[...Array(5)].map((_, index) => (
                 <svg
@@ -118,7 +126,7 @@ const detaillProduct = ({ item }) => {
               ))}
             </div>
 
-            {/* Price & Stock */}
+            {/* Price and Stock */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div>
                 <span className="font-semibold text-black">ราคา:</span>
@@ -156,21 +164,18 @@ const detaillProduct = ({ item }) => {
         </div>
 
         {/* ------------------------------ */}
-        {/* Related Products Carousel */}
+        {/* Related Products Section */}
         {/* ------------------------------ */}
         <div className="mt-16">
           <h3 className="text-xl font-bold text-gray-800 mb-6">
             🔥 สินค้าแนะนำ
           </h3>
 
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar py-2"
-          >
-            {[...relatedProducts, ...relatedProducts].map((product, index) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {relatedProducts.map((product) => (
               <div
-                key={index}
-                className="min-w-[180px] sm:min-w-[200px] bg-white dark:bg-gray-200 rounded-xl shadow-sm hover:shadow-lg overflow-hidden transition-all group cursor-pointer flex-shrink-0"
+                key={product.id}
+                className="bg-white dark:bg-gray-200 rounded-xl shadow-sm hover:shadow-lg overflow-hidden transition-all group cursor-pointer"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -179,16 +184,13 @@ const detaillProduct = ({ item }) => {
                     className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-3 flex flex-col gap-1">
+                <div className="p-3">
                   <h4 className="font-semibold text-gray-800 text-sm truncate">
                     {product.title}
                   </h4>
-                  <p className="text-blue-500 font-bold text-sm">
+                  <p className="text-blue-500 font-bold text-sm mt-1">
                     ฿{numberFormat(product.price)}
                   </p>
-                  <button className="mt-2 w-full bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-semibold py-1 rounded-md transition-all">
-                    ดูรายละเอียด
-                  </button>
                 </div>
               </div>
             ))}
@@ -196,10 +198,10 @@ const detaillProduct = ({ item }) => {
         </div>
       </div>
     </div>
-
   );
 };
 
 export default detaillProduct;
+
 
 
