@@ -20,7 +20,6 @@ export default function ContactUs() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ตรวจสอบค่าว่าง
     if (!formData.name || !formData.email || !formData.message) {
       toast.error("⚠️ กรุณากรอกข้อมูลให้ครบถ้วน!", {
         position: "top-right",
@@ -30,7 +29,6 @@ export default function ContactUs() {
       return;
     }
 
-    // ตรวจสอบอีเมล
     if (!validateEmail(formData.email)) {
       toast.error("📧 กรุณากรอกอีเมลให้ถูกต้อง!", {
         position: "top-right",
@@ -40,8 +38,7 @@ export default function ContactUs() {
       return;
     }
 
-    // ถ้าผ่านทั้งหมด
-    toast.success("✅ ส่งข้อความเรียบร้อยแล้ว! ขอบคุณที่ติดต่อเราครับ 🙏", {
+    toast.success("✅ ข้อความของคุณถูกส่งเรียบร้อยแล้ว!", {
       position: "top-right",
       autoClose: 3000,
       theme: "colored",
@@ -60,12 +57,12 @@ export default function ContactUs() {
   const Callto = ({ phone, children }) => <a href={`tel:${phone}`}>{children}</a>;
 
   return (
-    <section className="relative bg-gradient-to-b from-blue-50/70 to-white dark:from-gray-900/90 dark:to-gray-800/90 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Toastify Container */}
       <ToastContainer />
 
-      {/* พื้นหลังโปร่งพร้อม texture */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/snow.png')] opacity-10 pointer-events-none"></div>
+      {/* ลวดลายพื้นหลังโปร่งเบา */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/snow.png')] opacity-20 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* หัวข้อ */}
@@ -75,7 +72,7 @@ export default function ContactUs() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="font-black text-blue-900 dark:text-white text-3xl md:text-4xl uppercase">
+          <h2 className="font-black text-blue-800 dark:text-white text-3xl md:text-4xl uppercase tracking-wide">
             GOAL FLOW INSTRUMENT CO., LTD.
           </h2>
           <p className="text-gray-500 dark:text-gray-300 text-base mt-2">
@@ -106,9 +103,9 @@ export default function ContactUs() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
-            className="bg-white/80 dark:bg-gray-800/70 backdrop-blur-md shadow-xl rounded-2xl p-6 md:p-8"
+            className="bg-white/80 dark:bg-gray-800/70 backdrop-blur-lg shadow-xl rounded-2xl p-6 md:p-8 border border-blue-100 dark:border-gray-700"
           >
-            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-200 mb-3">
+            <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-300 mb-3">
               ติดต่อเรา
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
@@ -117,7 +114,7 @@ export default function ContactUs() {
 
             {/* ช่องทางติดต่อ */}
             <div className="space-y-3 mb-6">
-              <p className="text-gray-600 dark:text-gray-200">
+              <p className="text-gray-700 dark:text-gray-200">
                 Email:{" "}
                 <Mailto
                   email="goalflow4@gmail.com"
@@ -130,7 +127,7 @@ export default function ContactUs() {
                 </Mailto>
               </p>
 
-              <p className="text-gray-600 dark:text-gray-200">
+              <p className="text-gray-700 dark:text-gray-200">
                 Phone:{" "}
                 <Callto phone="+66841594643">
                   <span className="font-semibold text-blue-600 dark:text-blue-400">
