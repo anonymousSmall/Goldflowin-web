@@ -12,10 +12,10 @@ import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 
 const initialState = {
-  title: "Core i7",
-  description: "desc",
-  price: 2000,
-  quantity: 20,
+  title: "",
+  description: "",
+  price: 0,
+  quantity: 0,
   categoryId: "",
   images: [],
 };
@@ -123,3 +123,4 @@ const FormEditProduct = () => {
 };
 
 export default FormEditProduct;
+
