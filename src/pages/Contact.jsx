@@ -58,13 +58,13 @@ export default function ContactUs() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 uppercase drop-shadow-sm">
             GOAL FLOW INSTRUMENT CO., LTD.
           </h2>
-          <p className="text-gray-600 text-lg mt-2 p-10">
+          <p className="text-gray-600 text-lg mt-2">
             บริษัท โกลโฟล อินตรูเมนท์ จำกัด
           </p>
           </motion.dev>
 
           {/* MAIN GRID*/}
-         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
          {/* LEFT : MAP + CONTACT INFO */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -207,5 +207,6 @@ export default function ContactUs() {
      </section>
   );
 }
+
 
 
