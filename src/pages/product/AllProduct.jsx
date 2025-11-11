@@ -14,6 +14,7 @@ const AllProduct = () => {
   const categories = useEcomStore((state) => state.categories);
 
   const [selectedCategory, setSelectedCategory] = useState("ทั้งหมด");
+  const [categorySelected, setCategorySelected] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,6 +25,25 @@ const AllProduct = () => {
     };
     fetchData();
   }, []);
+const handleCheck = (e) => {
+    // console.log(e.target.value)
+    const inCheck = e.target.value; // ค่าที่เรา ติ๊ก
+    const inState = [...categorySelected]; // [1,2,3] arr ว่าง
+    const findCheck = inState.indexOf(inCheck); // ถ้าไม่เจอ จะ return -1
+
+    if (findCheck === -1) {
+      inState.push(inCheck);
+    } else {
+      inState.splice(findCheck, 1);
+    }
+    setCategorySelected(inState);
+
+    if (inState.length > 0) {
+      actionSearchFilters({ category: inState });
+    } else {
+      getProduct();
+    }
+  };
 
   const filteredProducts =
     selectedCategory === "ทั้งหมด"
@@ -94,7 +114,14 @@ const AllProduct = () => {
             <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
               <div className="py-2">
                 <MenuItem>
-                  <SearchCardAllProduct />
+                  {/* <SearchCardAllProduct /> */}
+                  {categories.map((item, index) => (
+                    <button key={index} className="flex p-2 gap-2">
+                      <input onChange={handleCheck} value={item.id} type="checkbox" />
+                      {/* <button onChange={handleCheck} value={item.id} type="checkbox">123</button> */}
+                      <label>{item.name}</label>
+                    </button>
+                  ))}
                   {/* /* {({ active }) => (
                     <button
                       onClick={() => setSelectedCategory("ทั้งหมด")}
@@ -181,6 +208,7 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
 
 
 
