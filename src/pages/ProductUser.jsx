@@ -12,6 +12,7 @@ import Uploadfileview from "../components/admin/Uploadfileview";
 import { Image, ShoppingCart } from "lucide-react";
 import { FaLine } from "react-icons/fa6";
 import { numberFormat } from "../utils/number";
+import SwiperShowProduct from "../../utils/SwiperShowProduct";
 
 const initialState = {
   title: "",
@@ -56,6 +57,22 @@ const detaillProduct = ({ item }) => {
       ...form,
       [e.target.name]: e.target.value,
     });
+  };
+
+  // Fill Product All
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    //Code
+    loadData();
+  }, []);
+  const loadData = () => {
+    listProductBy("sold", "desc", 20)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // ตัวอย่างสินค้าแนะนำ (สามารถแทนด้วย API จริงได้)
@@ -237,7 +254,7 @@ const relatedProducts = [
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {relatedProducts.map((product) => (
+            {/* {relatedProducts.map((product) => (
               <div
                 key={product.id}
                 className="bg-white dark:bg-gray-200 rounded-xl shadow-sm hover:shadow-lg overflow-hidden transition-all group cursor-pointer"
@@ -258,7 +275,14 @@ const relatedProducts = [
                   </p>
                 </div>
               </div>
-            ))}
+            ))} */}
+            <SwiperShowProduct>
+      {data?.map((item, index) => (
+        <SwiperSlide>
+          <ProductCard item={item} key={index} />
+        </SwiperSlide>
+      ))}
+    </SwiperShowProduct>
           </div>
         </div>
       </div>
@@ -267,6 +291,7 @@ const relatedProducts = [
 };
 
 export default detaillProduct;
+
 
 
 
