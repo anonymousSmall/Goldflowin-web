@@ -12,10 +12,6 @@ import Uploadfileview from "../components/admin/Uploadfileview";
 import { Image, ShoppingCart } from "lucide-react";
 import { FaLine } from "react-icons/fa6";
 import { numberFormat } from "../utils/number";
-import SwiperShowProduct from "../../utils/SwiperShowProduct";
-import { listProductBy } from "../../api/product";
-import ProductCard from "../card/ProductCard";
-import { SwiperSlide } from "swiper/react";
 
 const initialState = {
   title: "",
@@ -60,22 +56,6 @@ const detaillProduct = ({ item }) => {
       ...form,
       [e.target.name]: e.target.value,
     });
-  };
-
-  // Fill Product All
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    //Code
-    loadData();
-  }, []);
-  const loadData = () => {
-    listProductBy("sold", "desc", 20)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   // ตัวอย่างสินค้าแนะนำ (สามารถแทนด้วย API จริงได้)
@@ -287,6 +267,7 @@ const relatedProducts = [
 };
 
 export default detaillProduct;
+
 
 
 
