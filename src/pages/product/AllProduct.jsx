@@ -33,7 +33,9 @@ const AllProduct = () => {
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        {/* <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div> */}
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+
         <p className="text-gray-600 text-lg">กำลังโหลดข้อมูลสินค้า...</p>
       </div>
     );
@@ -147,7 +149,7 @@ const AllProduct = () => {
               <motion.div
                 key={index}
                 variants={item}
-                className="w-full bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4"
+                className="w-full rounded-2xl hover:shadow-xl transition-all duration-300 p-4"
               >
                 <ProductCards item={itemData} />
               </motion.div>
@@ -177,3 +179,4 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
