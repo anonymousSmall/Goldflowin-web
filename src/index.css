@@ -131,10 +131,26 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeSlide {
+  animation: fadeSlide 0.8s ease-out forwards;
+}
+
 html{
   font-family: "Inter", serif;
 }
 /* body {
   background-color: #000300;
 } */
+
 
