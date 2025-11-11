@@ -14,7 +14,32 @@ function CatalogProduct() {
       link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
     {
-      title: "CATALOG INDUSTRIAL TOOLS",
+      title: "123123",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "1232134S",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "456546546S",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "C7868678OLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CAasdsadasdOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CAfgdfgdfgdfgTOOLS",
       img: photo1,
       link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
@@ -29,37 +54,12 @@ function CatalogProduct() {
       link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
      {
-      title: "CATALOG INDUSTRIAL TOOLS",
+      title: "22222222222222222222222",
       img: photo1,
       link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
      {
-      title: "CATALOG INDUSTRIAL TOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CATALOG INDUSTRIAL TOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CATALOG INDUSTRIAL TOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CATALOG INDUSTRIAL TOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CATALOG INDUSTRIAL TOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CATALOG INDUSTRIAL TOOLS",
+      title: "C111111111111111",
       img: photo1,
       link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
@@ -138,5 +138,6 @@ function CatalogProduct() {
 }
 
 export default CatalogProduct;
+
 
 
