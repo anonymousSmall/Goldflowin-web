@@ -127,18 +127,18 @@ const handleCheck = (e) => {
                   )}
                 </MenuItem>
                 {categories && categories.length > 0 ? (
-                  categories.map((item, index) => (
-                    <MenuItem key={index.id || index._id}>
+                  categories.map((cat) => (
+                    <MenuItem key={cat.id || cat._id}>
                       {({ active }) => (
                         <button
-                          onClick={() => setCategorySelected(item.name)}
+                          onClick={() => setCategorySelected(cat.name)}
                           className={`${
                             active
                               ? "bg-blue-50 text-blue-600"
                               : "text-gray-700"
                           } block w-full text-left px-4 py-2 text-sm`}
                         >
-                          {item.name}
+                          {cat.name}
                         </button>
                       )}
                     </MenuItem>
@@ -201,6 +201,7 @@ const handleCheck = (e) => {
 };
 
 export default AllProduct;
+
 
 
 
