@@ -19,9 +19,31 @@ export default function ContactUs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the data to an API endpoint
-    alert("Thank you! Your message has been sent.");
-    setFormData({ name: "", email: "", message: "" });
+
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error("⚠️ กรุณากรอกข้อมูลให้ครบถ้วน!", {
+        position: "top-right",
+        autoClose: 2500,
+        theme: "colored",
+      });
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      toast.error("📧 กรุณากรอกอีเมลให้ถูกต้อง!", {
+        position: "top-right",
+        autoClose: 2500,
+        theme: "colored",
+      });
+      return;
+    }
+
+    toast.success("✅ ข้อความของคุณถูกส่งเรียบร้อยแล้ว!", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "colored",
+    });
+      setFormData({ name: "", email: "", message: "" });
   };
 
   const Mailto = ({ email, subject = "", body = "", children }) => {
@@ -120,7 +142,7 @@ export default function ContactUs() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full font-medium hover:bg-green-600 transition"
                   >
-                    <FaLine size={20} /> LINE
+                    <FaLine size={20} /> สอบถามเพิ่มเติม
                   </a>
 
                   <a
@@ -207,6 +229,7 @@ export default function ContactUs() {
      </section>
   );
 }
+
 
 
 
