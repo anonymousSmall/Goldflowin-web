@@ -12,7 +12,6 @@ import Uploadfileview from "../components/admin/Uploadfileview";
 import { Image, ShoppingCart } from "lucide-react";
 import { FaLine } from "react-icons/fa6";
 import { numberFormat } from "../utils/number";
-import NewProduct from "../components/home/Newproduct";
 
 const initialState = {
   title: "",
@@ -212,6 +211,7 @@ const relatedProducts = allProducts
 };
 
 export default detaillProduct;
+
 
 
 
