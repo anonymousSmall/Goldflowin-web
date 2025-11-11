@@ -14,7 +14,6 @@ const AllProduct = () => {
   const categories = useEcomStore((state) => state.categories);
 
   const [selectedCategory, setSelectedCategory] = useState("ทั้งหมด");
-  const [categorySelected, setCategorySelected] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,25 +24,6 @@ const AllProduct = () => {
     };
     fetchData();
   }, []);
-const handleCheck = (e) => {
-    // console.log(e.target.value)
-    const inCheck = e.target.value; // ค่าที่เรา ติ๊ก
-    const inState = [...categorySelected]; // [1,2,3] arr ว่าง
-    const findCheck = inState.indexOf(inCheck); // ถ้าไม่เจอ จะ return -1
-
-    if (findCheck === -1) {
-      inState.push(inCheck);
-    } else {
-      inState.splice(findCheck, 1);
-    }
-    setCategorySelected(inState);
-
-    if (inState.length > 0) {
-      actionSearchFilters({ category: inState });
-    } else {
-      getProduct();
-    }
-  };
 
   const filteredProducts =
     selectedCategory === "ทั้งหมด"
@@ -103,17 +83,55 @@ const handleCheck = (e) => {
           className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10"
         >
           {/* Dropdown Category */}
-<div>
-            {categories.map((item, index) => (
-              <div key={index} className="flex p-2 gap-2">
-                <input onChange={handleCheck} value={item.id} type="checkbox" />
-                {/* <button onChange={handleCheck} value={item.id} type="checkbox">123</button> */}
-                <label>{item.name}</label>
-              </div>
-            ))}
-          </div>
+          <Menu as="div" className="relative inline-block text-left">
+            <div>
+              <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
+                {/* <SearchCardAllProduct /> */}
+                {/* <ChevronDownIcon className="w-5 h-5 text-gray-500" /> */}
+              </MenuButton>
+            </div>
 
-            
+            <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+              <div className="py-2">
+                <MenuItem>
+                  <SearchCardAllProduct />
+                  {/* /* {({ active }) => (
+                    <button
+                      onClick={() => setSelectedCategory("ทั้งหมด")}
+                      className={`${
+                        active ? "bg-blue-50 text-blue-600" : "text-gray-700"
+                      } block w-full text-left px-4 py-2 text-sm`}
+                    >
+                      ทั้งหมด
+                    </button>
+                  )} */ }
+                </MenuItem>
+
+                {categories && categories.length > 0 ? (
+                  categories.map((cat) => (
+                    <MenuItem key={cat.id || cat._id}>
+                      {({ active }) => (
+                        <button
+                          onClick={() => setSelectedCategory(cat.name)}
+                          className={`${
+                            active
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          } block w-full text-left px-4 py-2 text-sm`}
+                        >
+                          {cat.name}
+                        </button>
+                      )}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <div className="px-4 py-2 text-gray-400 text-sm">
+                    ไม่มีหมวดหมู่
+                  </div>
+                )}
+              </div>
+            </MenuItems>
+          </Menu>
 
           {/* Search */}
           <div className="w-full sm:w-auto flex-1 max-w-lg">
@@ -163,8 +181,6 @@ const handleCheck = (e) => {
 };
 
 export default AllProduct;
-
-
 
 
 
