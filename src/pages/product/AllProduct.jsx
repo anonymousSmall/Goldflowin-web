@@ -149,7 +149,7 @@ const AllProduct = () => {
               <motion.div
                 key={index}
                 variants={item}
-                className="w-full rounded-2xl hover:shadow-xl transition-all duration-300 p-4"
+                className="w-full rounded-2xl transition-all duration-300 p-4"
               >
                 <ProductCards item={itemData} />
               </motion.div>
@@ -179,5 +179,6 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
 
 
