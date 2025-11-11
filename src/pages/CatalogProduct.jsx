@@ -1,67 +1,18 @@
 import React, { useState, useEffect } from "react";
-import photo1 from "../assets/catalogproduct/mitutoyo.png";
+import catalogProduct1 from "../assets/catalogproduct/mitutoyo.png";
+import catalogProduct2 from "../assets/catalogproduct/mikrosize.png";
 
 function CatalogProduct() {
   const catalogs = [
     {
       title: "MITUTOYO Catalog No.MAP 17-ST",
-      img: photo1,
+      img: catalogProduct1,
       link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
     {
-      title: "เครื่องมือวัดละเอียด",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-    {
-      title: "123123",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "1232134S",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "456546546S",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "C7868678OLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CAasdsadasdOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CAfgdfgdfgdfgTOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CATALOG INDUSTRIAL TOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "CATALOG INDUSTRIAL TOOLS",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "22222222222222222222222",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
-    },
-     {
-      title: "C111111111111111",
-      img: photo1,
-      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+      title: "mikrosize_2025-2026",
+      img: catalogProduct2,
+      link: "https://online.anyflip.com/ajihg/eysu/mobile/index.html",
     },
   ];
 
@@ -138,6 +89,7 @@ function CatalogProduct() {
 }
 
 export default CatalogProduct;
+
 
 
 
