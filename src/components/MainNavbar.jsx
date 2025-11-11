@@ -41,7 +41,7 @@ function MainNavbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 shadow-md backdrop-blur-md">
+    <nav className="bg-[#3b74f0]">
       <div className="container mx-auto max-w-[1320px] relative h-auto p-10 flex flex-col md:flex-row md:justify-between md:items-center md:h-[80px]">
         <div>
           <a href="#">
@@ -181,3 +181,4 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
