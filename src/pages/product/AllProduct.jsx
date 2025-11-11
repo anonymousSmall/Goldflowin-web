@@ -74,71 +74,6 @@ const AllProduct = () => {
           </p>
         </motion.div>
 
-        {/* Filter + Search */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10"
-        >
-          {/* Dropdown Category */}
-          <Menu as="div" className="relative inline-block text-left">
-            <div>
-              <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
-                
-                {products.map((item,index)=>(
-                <ChevronDownIcon key={index} item={item} className="w-5 h-5 text-gray-500" />
-          ))}
-              </MenuButton>
-            </div>
-
-            <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-              <div className="py-2">
-                <MenuItem>
-                  {({ active }) => (
-                    <button
-                      onClick={() => setSelectedCategory("ทั้งหมด")}
-                      className={`${
-                        active ? "bg-blue-50 text-blue-600" : "text-gray-700"
-                      } block w-full text-left px-4 py-2 text-sm`}
-                    >
-                      ทั้งหมด
-                    </button>
-                  )}
-                </MenuItem>
-
-                {categories && categories.length > 0 ? (
-                  categories.map((cat) => (
-                    <MenuItem key={cat.id || cat._id}>
-                      {({ active }) => (
-                        <button
-                          onClick={() => setSelectedCategory(cat.name)}
-                          className={`${
-                            active
-                              ? "bg-blue-50 text-blue-600"
-                              : "text-gray-700"
-                          } block w-full text-left px-4 py-2 text-sm`}
-                        >
-                          {cat.name}
-                        </button>
-                      )}
-                    </MenuItem>
-                  ))
-                ) : (
-                  <div className="px-4 py-2 text-gray-400 text-sm">
-                    ไม่มีหมวดหมู่
-                  </div>
-                )}
-              </div>
-            </MenuItems>
-          </Menu>
-
-          {/* Search */}
-          <div className="w-full sm:w-auto flex-1 max-w-lg">
-            <SearchCardName />
-          </div>
-        </motion.div>
-
         {/* Product List */}
         {filteredProducts.length > 0 ? (
           <motion.div
@@ -181,6 +116,7 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
 
 
 
