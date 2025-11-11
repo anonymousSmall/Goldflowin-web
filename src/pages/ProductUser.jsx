@@ -81,7 +81,7 @@ const relatedProducts = allProducts
           {/* Right: Product Info */}
           <div className="md:flex-1 space-y-5">
             <div>
-              <label className="block text-lg font-semibold text-gray-800 dark:text-black mb-1">
+              <label className="block text-[0.4rem] font-semibold text-gray-800 dark:text-black mb-1">
                 ชื่อสินค้า :
               </label>
               <input
@@ -211,6 +211,7 @@ const relatedProducts = allProducts
 };
 
 export default detaillProduct;
+
 
 
 
