@@ -127,11 +127,11 @@ const handleCheck = (e) => {
                   )}
                 </MenuItem>
                  {categories.map((item, index) => (
-              <button key={index} className="flex p-2 gap-2">
+              <div key={index} className="flex p-2 gap-2">
                 <input onChange={handleCheck} value={item.id} type="checkbox" />
                 {/* <button onChange={handleCheck} value={item.id} type="checkbox">123</button> */}
                 <label>{item.name}</label>
-              </button>
+              </div>
             ))}
                 
               </div>
@@ -186,6 +186,7 @@ const handleCheck = (e) => {
 };
 
 export default AllProduct;
+
 
 
 
