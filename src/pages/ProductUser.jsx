@@ -257,14 +257,28 @@ const relatedProducts = [
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-
-            <SwiperShowProduct>
-      {data?.map((item, index) => (
-        <SwiperSlide>
-          <ProductCard item={item} key={index} />
-        </SwiperSlide>
-      ))}
-    </SwiperShowProduct>
+            {relatedProducts.map((product) => (
+              <div
+                key={product.id}
+                className="bg-white dark:bg-gray-200 rounded-xl shadow-sm hover:shadow-lg overflow-hidden transition-all group cursor-pointer"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3">
+                  <h4 className="font-semibold text-gray-800 text-sm truncate">
+                    {product.title}
+                  </h4>
+                  <p className="text-blue-500 font-bold text-sm mt-1">
+                    ฿{numberFormat(product.price)}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -273,6 +287,7 @@ const relatedProducts = [
 };
 
 export default detaillProduct;
+
 
 
 
