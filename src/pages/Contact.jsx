@@ -75,7 +75,7 @@ export default function ContactUs() {
           <h2 className="font-black text-blue-800 text-3xl md:text-4xl uppercase tracking-wide">
             GOAL FLOW INSTRUMENT CO., LTD.
           </h2>
-          <p className="text-gray-500 text-xl dark:text-gray-300 text-base mt-2">
+          <p className="text-gray-500 text-xl dark:text-gray-600 text-base mt-2">
             บริษัท โกลโฟล อินตรูเมนท์ จำกัด
           </p>
         </motion.div>
@@ -199,5 +199,6 @@ export default function ContactUs() {
     </section>
   );
 }
+
 
 
