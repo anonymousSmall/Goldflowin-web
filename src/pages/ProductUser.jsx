@@ -12,6 +12,7 @@ import Uploadfileview from "../components/admin/Uploadfileview";
 import { Image, ShoppingCart } from "lucide-react";
 import { FaLine } from "react-icons/fa6";
 import { numberFormat } from "../utils/number";
+import NewProduct from '../components/home/Newproduct';
 
 const initialState = {
   title: "",
@@ -237,7 +238,8 @@ const relatedProducts = [
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {relatedProducts.map((product) => (
+            <NewProduct />
+            /* {relatedProducts.map((product) => (
               <div
                 key={product.id}
                 className="bg-white dark:bg-gray-200 rounded-xl shadow-sm hover:shadow-lg overflow-hidden transition-all group cursor-pointer"
@@ -258,7 +260,7 @@ const relatedProducts = [
                   </p>
                 </div>
               </div>
-            ))}
+            ))} */
           </div>
         </div>
       </div>
@@ -267,6 +269,7 @@ const relatedProducts = [
 };
 
 export default detaillProduct;
+
 
 
 
