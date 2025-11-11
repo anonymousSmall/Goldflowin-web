@@ -1,55 +1,193 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import ProductCards from "../../components/card/ProductCards";
-import SearchCardAllProduct from "../../components/card/SearchCardAllProduct";
 import SearchCardName from "../../components/card/SearchCardName";
 import useEcomStore from "../../store/ecom-store";
-import { Menu, MenuItem, MenuButton, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const AllProduct = () => {
   const getProduct = useEcomStore((state) => state.getProduct);
   const products = useEcomStore((state) => state.products);
+  const getCategory = useEcomStore((state) => state.getCategory);
+  const categories = useEcomStore((state) => state.categories);
+
+  const [selectedCategory, setSelectedCategory] = useState("ทั้งหมด");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProduct();
+    const fetchData = async () => {
+      setLoading(true);
+      await Promise.all([getProduct(), getCategory()]);
+      setLoading(false);
+    };
+    fetchData();
   }, []);
 
+  // Animation Variants
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  // ฟิลเตอร์สินค้า
+  const filteredProducts =
+    selectedCategory === "ทั้งหมด"
+      ? products
+      : products.filter((p) => p.categoryName === selectedCategory);
+
+  // Loading Spinner
+  if (loading) {
+    return (
+      <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50">
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p className="text-gray-600 text-lg">กำลังโหลดข้อมูลสินค้า...</p>
+      </div>
+    );
+  }
+
   return (
-    <section className="bg-gray-50 py-6">
-      <div className="mx-auto max-w-screen-xl px-4">
+    <section className="bg-gradient-to-b from-gray-50 to-gray-100 py-10 min-h-screen">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         {/* หัวข้อ */}
-        <div className="md:flex-row sm:items-center sm:justify-between gap-4">
-          <h2 className="text-3xl text-center md:text-4xl font-bold text-gray-700 border-b-4 border-blue-600 pb-2">
-            สินค้าทั้งหมด
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="flex flex-col items-center text-center mb-10"
+        >
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-wide">
+            🛒 สินค้าทั้งหมด
           </h2>
+          <div className="mt-2 h-1 w-24 bg-blue-600 rounded-full"></div>
+          <p className="mt-3 text-gray-600 text-base md:text-lg">
+            ค้นหาสินค้าคุณภาพจากแบรนด์ชั้นนำที่เราคัดสรรมาเพื่อคุณ
+          </p>
+        </motion.div>
 
+        {/* ตัวกรอง + ช่องค้นหา */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10"
+        >
+          {/* Dropdown หมวดสินค้า */}
+          <Menu as="div" className="relative inline-block text-left">
+            <div>
+              <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
+                {selectedCategory}
+                <ChevronDownIcon className="w-5 h-5 text-gray-500" />
+              </MenuButton>
+            </div>
 
-        </div>
-          {/* เมนูตัวกรอง */}
-          {/* <Menu as="div" className="relative inline-block text-left">
-            <MenuButton className="inline-flex items-center gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300">
-              เครื่องมือวัดละเอียด
-              <ChevronDownIcon className="w-5 h-5 text-gray-500" />
-            </MenuButton>
-            <MenuItems className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
-              <div className="py-1">
+            <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+              <div className="py-2">
                 <MenuItem>
-                  <SearchCardAllProduct />
+                  {({ active }) => (
+                    <button
+                      onClick={() => setSelectedCategory("ทั้งหมด")}
+                      className={`${
+                        active ? "bg-blue-50 text-blue-600" : "text-gray-700"
+                      } block w-full text-left px-4 py-2 text-sm`}
+                    >
+                      ทั้งหมด
+                    </button>
+                  )}
                 </MenuItem>
+
+                {categories && categories.length > 0 ? (
+                  categories.map((cat) => (
+                    <MenuItem key={cat.id || cat._id}>
+                      {({ active }) => (
+                        <button
+                          onClick={() => setSelectedCategory(cat.name)}
+                          className={`${
+                            active
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          } block w-full text-left px-4 py-2 text-sm`}
+                        >
+                          {cat.name}
+                        </button>
+                      )}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <div className="px-4 py-2 text-gray-400 text-sm">
+                    ไม่มีหมวดหมู่
+                  </div>
+                )}
               </div>
             </MenuItems>
-          </Menu> */}
-        {/* ช่องค้นหา */}
-        <div className="mt-5 mb-6">
-          <SearchCardName />
-        </div>
+          </Menu>
+
+          {/* ช่องค้นหา */}
+          <div className="w-full sm:w-auto flex-1 max-w-lg">
+            <SearchCardName />
+          </div>
+        </motion.div>
 
         {/* แสดงสินค้า */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((item, index) => (
-            <ProductCards key={index} item={item} />
-          ))}
-        </div>
+        {filteredProducts.length > 0 ? (
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ delay: 0.3 }}
+            className="
+              grid 
+              grid-cols-1 
+              sm:grid-cols-2 
+              md:grid-cols-3 
+              lg:grid-cols-4 
+              gap-6 
+              place-items-center
+            "
+          >
+            {filteredProducts.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="
+                  w-full 
+                  max-w-sm 
+                  bg-white 
+                  rounded-2xl 
+                  shadow-md 
+                  hover:shadow-xl 
+                  transition-all 
+                  duration-300 
+                  p-4
+                "
+              >
+                <ProductCards item={item} />
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col items-center justify-center py-20 text-center"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4076/4076500.png"
+              alt="No products"
+              className="w-32 h-32 mb-6 opacity-70"
+            />
+            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              ไม่พบสินค้าที่ตรงกับหมวดหมู่ "{selectedCategory}"
+            </h3>
+            <p className="text-gray-500">โปรดลองเลือกหมวดหมู่อื่นหรือลองค้นหาใหม่</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );
