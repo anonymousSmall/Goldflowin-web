@@ -23,7 +23,7 @@ function CatalogProduct() {
             />
           </a>
         </div>
-        {/* <div className="shadow-lg p-10 rounded-lg">
+        <div className="shadow-lg p-10 rounded-lg">
           <a
             href="https://online.anyflip.com/ajihg/phvw/index.html"
             target="_blank"
@@ -46,10 +46,11 @@ function CatalogProduct() {
               alt=""
             />
           </a>
-        </div> */}
+        </div>
       </div>
     </div>
   );
 }
 
 export default CatalogProduct;
+
