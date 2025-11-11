@@ -47,7 +47,7 @@ export default function ContactUs() {
         style={{ y: y2 }}
         className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526401485004-2fda9f4e6f97?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-30 -z-20"
       ></motion.div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         {/* HEADER */}
           <motion.dev
             initial={{ opacity: 0, y: -20 }}
@@ -207,6 +207,7 @@ export default function ContactUs() {
      </section>
   );
 }
+
 
 
 
