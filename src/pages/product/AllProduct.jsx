@@ -114,39 +114,32 @@ const handleCheck = (e) => {
             <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
               <div className="py-2">
                 <MenuItem>
-                  {/* <SearchCardAllProduct /> */}
-                  {categories.map((item, index) => (
-                    <button key={index} className="flex p-2 gap-2">
-                      <input onChange={handleCheck} value={item.id} type="checkbox" />
-                      {/* <button onChange={handleCheck} value={item.id} type="checkbox">123</button> */}
-                      <label>{item.name}</label>
-                    </button>
-                  ))}
-                  {/* /* {({ active }) => (
+
+                  {({ active }) => (
                     <button
-                      onClick={() => setSelectedCategory("ทั้งหมด")}
+                      onClick={() => setCategorySelected("ทั้งหมด")}
                       className={`${
                         active ? "bg-blue-50 text-blue-600" : "text-gray-700"
                       } block w-full text-left px-4 py-2 text-sm`}
                     >
                       ทั้งหมด
                     </button>
-                  )} */ }
+                  )}
                 </MenuItem>
-
+                 
                 {categories && categories.length > 0 ? (
-                  categories.map((cat) => (
-                    <MenuItem key={cat.id || cat._id}>
+                  categories.map((item) => (
+                    <MenuItem key={item.id || item._id}>
                       {({ active }) => (
                         <button
-                          onClick={() => setSelectedCategory(cat.name)}
+                          onClick={() => setCategorySelected(item.name)}
                           className={`${
                             active
                               ? "bg-blue-50 text-blue-600"
                               : "text-gray-700"
                           } block w-full text-left px-4 py-2 text-sm`}
                         >
-                          {cat.name}
+                          {item.name}
                         </button>
                       )}
                     </MenuItem>
