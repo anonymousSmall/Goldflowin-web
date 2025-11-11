@@ -126,13 +126,28 @@ const handleCheck = (e) => {
                     </button>
                   )}
                 </MenuItem>
-                 {categories.map((item, index) => (
-              <div key={index} className="flex p-2 gap-2">
-                <input onChange={handleCheck} value={item.id} type="checkbox" />
-                {/* <button onChange={handleCheck} value={item.id} type="checkbox">123</button> */}
-                <label>{item.name}</label>
-              </div>
-            ))}
+                {categories && categories.length > 0 ? (
+                  categories.map((item, index) => (
+                    <MenuItem key={index.id || index._id}>
+                      {({ active }) => (
+                        <button
+                          onClick={() => setCategorySelected(item.name)}
+                          className={`${
+                            active
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          } block w-full text-left px-4 py-2 text-sm`}
+                        >
+                          {item.name}
+                        </button>
+                      )}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <div className="px-4 py-2 text-gray-400 text-sm">
+                    ไม่มีหมวดหมู่
+                  </div>
+                )}
                 
               </div>
             </MenuItems>
@@ -186,6 +201,7 @@ const handleCheck = (e) => {
 };
 
 export default AllProduct;
+
 
 
 
