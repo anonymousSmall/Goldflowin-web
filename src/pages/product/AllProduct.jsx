@@ -128,8 +128,8 @@ const handleCheck = (e) => {
                 </MenuItem>
                  
                 {categories && categories.length > 0 ? (
-                  categories.map((item) => (
-                    <MenuItem key={item.id || item._id}>
+                  categories.map((item, index) => (
+                    <MenuItem key={index.id || index._id}>
                       {({ active }) => (
                         <button
                           onClick={() => setCategorySelected(item.name)}
