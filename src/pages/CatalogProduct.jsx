@@ -18,6 +18,51 @@ function CatalogProduct() {
       img: photo1,
       link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
+     {
+      title: "CATALOG INDUSTRIAL TOOLS",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
+    },
   ];
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -93,4 +138,5 @@ function CatalogProduct() {
 }
 
 export default CatalogProduct;
+
 
