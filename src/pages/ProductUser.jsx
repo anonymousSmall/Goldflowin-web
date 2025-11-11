@@ -65,69 +65,6 @@ const allProducts = useEcomStore((state) => state.products);
 const relatedProducts = allProducts
   .filter((p) => p._id !== id) // หรือ p.id ถ้าใช้ id ของ API
   .slice(0, 5); // แสดงแค่ 5 ชิ้น (ปรับจำนวนตามต้องการ)
-  // ตัวอย่างสินค้าแนะนำ (สามารถแทนด้วย API จริงได้)
-// const relatedProducts = [
-//   {
-//     id: 1,
-//     title: "เสื้อแจ็คเก็ตยีนส์ผู้ชาย รุ่น Urban Street",
-//     price: 1890,
-//     image: "https://images.unsplash.com/photo-1606813903263-0e6a7d48b16e?w=600",
-//   },
-//   {
-//     id: 2,
-//     title: "รองเท้าผ้าใบหนังแท้ สีขาวมินิมอล",
-//     price: 2590,
-//     image: "https://images.unsplash.com/photo-1585386959984-a41552231685?w=600",
-//   },
-//   {
-//     id: 3,
-//     title: "กระเป๋าสะพายหนังแท้ สีคาเมล",
-//     price: 3290,
-//     image: "https://images.unsplash.com/photo-1571689936042-4e37e6e7b6c3?w=600",
-//   },
-//   {
-//     id: 4,
-//     title: "นาฬิกาข้อมือสแตนเลส รุ่น Classic Silver",
-//     price: 4990,
-//     image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
-//   },
-//   {
-//     id: 5,
-//     title: "หมวกบักเก็ตผ้าฝ้าย สีเทาอ่อน",
-//     price: 590,
-//     image: "https://images.unsplash.com/photo-1618354691701-9ce3a05b6d5c?w=600",
-//   },
-//   {
-//     id: 6,
-//     title: "เข็มขัดหนังแท้ สีดำคลาสสิก",
-//     price: 1290,
-//     image: "https://images.unsplash.com/photo-1592878859122-56f2b69f6a26?w=600",
-//   },
-//   {
-//     id: 7,
-//     title: "กระเป๋าเป้ผ้าแคนวาส ทรงวินเทจ",
-//     price: 1690,
-//     image: "https://images.unsplash.com/photo-1618354895470-32d5b03bfc47?w=600",
-//   },
-//   {
-//     id: 8,
-//     title: "แว่นกันแดดทรง Aviator",
-//     price: 990,
-//     image: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600",
-//   },
-//   {
-//     id: 9,
-//     title: "เสื้อยืด Oversized สีขาวล้วน",
-//     price: 490,
-//     image: "https://images.unsplash.com/photo-1593032465171-cd53c87ad9a3?w=600",
-//   },
-//   {
-//     id: 10,
-//     title: "รองเท้า Loafer หนังกลับ",
-//     price: 2890,
-//     image: "https://images.unsplash.com/photo-1585386959984-4f36aa0c81ad?w=600",
-//   },
-// ];
 
 
   return (
@@ -275,6 +212,7 @@ const relatedProducts = allProducts
 };
 
 export default detaillProduct;
+
 
 
 
