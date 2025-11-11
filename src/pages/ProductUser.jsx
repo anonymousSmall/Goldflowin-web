@@ -99,7 +99,8 @@ const relatedProducts = allProducts
               </label>
               <textarea
                 name="description"
-                rows="40"
+                rows="6"
+                height= "auto"
                 placeholder="กรอกรายละเอียดสินค้า..."
                 value={form.description}
                 onChange={(e) =>
@@ -211,6 +212,7 @@ const relatedProducts = allProducts
 };
 
 export default detaillProduct;
+
 
 
 
