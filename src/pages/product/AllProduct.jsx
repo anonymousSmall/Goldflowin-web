@@ -34,7 +34,7 @@ const AllProduct = () => {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50">
         {/* <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div> */}
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin !important"></div>
 
         <p className="text-gray-600 text-lg">กำลังโหลดข้อมูลสินค้า...</p>
       </div>
@@ -179,4 +179,5 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
 
