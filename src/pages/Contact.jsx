@@ -57,7 +57,7 @@ export default function ContactUs() {
   const Callto = ({ phone, children }) => <a href={`tel:${phone}`}>{children}</a>;
 
   return (
-     <section className="relative overflow-hidden min-h-screen">
+     <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen">
       {/* Toastify Container */}
       <ToastContainer />
 
@@ -199,3 +199,4 @@ export default function ContactUs() {
     </section>
   );
 }
+
