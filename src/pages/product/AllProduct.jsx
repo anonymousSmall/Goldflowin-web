@@ -73,7 +73,19 @@ const AllProduct = () => {
             ค้นหาสินค้าคุณภาพจากแบรนด์ชั้นนำที่เราคัดสรรมาเพื่อคุณ
           </p>
         </motion.div>
-
+        {/* Filter + Search */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10"
+        >
+          {/* Search */}
+          <div className="w-full sm:w-auto flex-1 max-w-lg">
+            <SearchCardName />
+          </div>
+        </motion.div>
+        
         {/* Product List */}
         {filteredProducts.length > 0 ? (
           <motion.div
@@ -116,6 +128,7 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
 
 
 
