@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import ProductCards from "../../components/card/ProductCards";
-import SearchCardAllProduct from "../../components/card/SearchCardAllProduct";
 import SearchCardName from "../../components/card/SearchCardName";
 import useEcomStore from "../../store/ecom-store";
 
@@ -84,17 +83,60 @@ const AllProduct = () => {
         >
           {/* Dropdown Category */}
           <Menu as="div" className="relative inline-block text-left">
+            <div>
+              <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
+                
+                {products.map((item,index)=>(
+                <ChevronDownIcon key={index} item={item} className="w-5 h-5 text-gray-500" />
+          ))}
+              </MenuButton>
+            </div>
+
             <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
               <div className="py-2">
                 <MenuItem>
-                  <SearchCardAllProduct />
+                  {({ active }) => (
+                    <button
+                      onClick={() => setSelectedCategory("ทั้งหมด")}
+                      className={`${
+                        active ? "bg-blue-50 text-blue-600" : "text-gray-700"
+                      } block w-full text-left px-4 py-2 text-sm`}
+                    >
+                      ทั้งหมด
+                    </button>
+                  )}
                 </MenuItem>
+
+                {categories && categories.length > 0 ? (
+                  categories.map((cat) => (
+                    <MenuItem key={cat.id || cat._id}>
+                      {({ active }) => (
+                        <button
+                          onClick={() => setSelectedCategory(cat.name)}
+                          className={`${
+                            active
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          } block w-full text-left px-4 py-2 text-sm`}
+                        >
+                          {cat.name}
+                        </button>
+                      )}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <div className="px-4 py-2 text-gray-400 text-sm">
+                    ไม่มีหมวดหมู่
+                  </div>
+                )}
+              </div>
+            </MenuItems>
           </Menu>
 
           {/* Search */}
-          {/* <div className="w-full sm:w-auto flex-1 max-w-lg">
+          <div className="w-full sm:w-auto flex-1 max-w-lg">
             <SearchCardName />
-          </div> */}
+          </div>
         </motion.div>
 
         {/* Product List */}
@@ -105,7 +147,15 @@ const AllProduct = () => {
             animate="show"
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
-            
+            {filteredProducts.map((itemData, index) => (
+              <motion.div
+                key={index}
+                variants={item}
+                className="w-full rounded-2xl transition-all duration-300 p-4"
+              >
+                <ProductCards item={itemData} />
+              </motion.div>
+            ))}
           </motion.div>
         ) : (
           <motion.div
@@ -131,14 +181,6 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
-
-
-
-
-
-
-
-
 
 
 
