@@ -86,7 +86,6 @@ const AllProduct = () => {
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
-                {/* <SearchCardAllProduct /> */}
                 ค้นหาสินค้าจากหมวดหมู่
                 <ChevronDownIcon className="w-5 h-5 text-gray-500" />
               </MenuButton>
@@ -100,9 +99,9 @@ const AllProduct = () => {
           </Menu>
 
           {/* Search */}
-          <div className="w-full sm:w-auto flex-1 max-w-lg">
+          {/* <div className="w-full sm:w-auto flex-1 max-w-lg">
             <SearchCardName />
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Product List */}
@@ -147,6 +146,7 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
 
 
 
