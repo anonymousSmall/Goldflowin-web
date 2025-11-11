@@ -84,13 +84,6 @@ const AllProduct = () => {
         >
           {/* Dropdown Category */}
           <Menu as="div" className="relative inline-block text-left">
-            {/* <div>
-              <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
-                ค้นหาสินค้าจากหมวดหมู่
-                <ChevronDownIcon className="w-5 h-5 text-gray-500" />
-              </MenuButton>
-            </div> */}
-
             <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
               <div className="py-2">
                 <MenuItem>
@@ -112,15 +105,7 @@ const AllProduct = () => {
             animate="show"
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
-            {filteredProducts.map((itemData, index) => (
-              <motion.div
-                key={index}
-                variants={item}
-                className="w-full rounded-2xl transition-all duration-300 p-4"
-              >
-                <ProductCards item={itemData} />
-              </motion.div>
-            ))}
+            
           </motion.div>
         ) : (
           <motion.div
@@ -146,6 +131,7 @@ const AllProduct = () => {
 };
 
 export default AllProduct;
+
 
 
 
