@@ -10,13 +10,13 @@ function CatalogProduct() {
     },
     {
       title: "เครื่องมือวัดละเอียด",
-      img: "https://online.anyflip.com/ajihg/phvw/files/shot.jpg",
-      link: "https://online.anyflip.com/ajihg/phvw/index.html",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
     {
       title: "CATALOG INDUSTRIAL TOOLS",
-      img: "https://online.anyflip.com/ajihg/phvw/files/shot.jpg",
-      link: "https://online.anyflip.com/ajihg/phvw/index.html",
+      img: photo1,
+      link: "https://online.anyflip.com/yctny/nsao/mobile/index.html",
     },
   ];
 
@@ -93,3 +93,4 @@ function CatalogProduct() {
 }
 
 export default CatalogProduct;
+
