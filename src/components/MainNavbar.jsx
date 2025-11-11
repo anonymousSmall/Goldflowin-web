@@ -34,8 +34,9 @@ function MainNavbar() {
   };
 
   return (
-    <nav className="bg-[#3b74f0]">
+    <nav className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 shadow-md backdrop-blur-md">
       <div className="container mx-auto max-w-[1320px] relative h-auto p-10 flex flex-col md:flex-row md:justify-between md:items-center md:h-[80px]">
+        {/* Logo */}
         <div>
           <a href="#">
             <img
@@ -91,25 +92,6 @@ function MainNavbar() {
           >
             ติดต่อเรา
           </NavLink>
-          {/* <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#717171] text-white px-3 py-2 my-2 md:mx-4 rounded-md text-xl font-medium"
-                : "hover:bg-slate-200 px-3 py-2 my-2 md:mx-4 rounded-md text-xl font-medium"
-            }
-            to={"/123"}
-          >
-            FAQ
-          </NavLink> */}
-          {/* <li className="my-2 md:mx-4">
-            <a href="#">แคตตาล็อกสินค้า</a>
-          </li>
-          <li className="my-2 md:mx-4">
-            <a href="#">รายละเอียดสินค้า</a>
-          </li>
-          <li className="my-2 md:mx-4">
-            <a href="#">FAQ</a>
-          </li> */}
         </ul>
         {/* -----------------Start Profile dropdown---------------------- */}
         <Menu as="div" className="relative ml-3">
@@ -129,12 +111,6 @@ function MainNavbar() {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
               >
                 <MenuItem>
-                  {/* <a
-                    href="#"
-                    className="block px-4 py-2 text-base text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Your Profile
-                  </a> */}
                   <Link
                     to={"/user/history"}
                     className="block px-4 py-2 text-base text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
@@ -142,14 +118,6 @@ function MainNavbar() {
                     History
                   </Link>
                 </MenuItem>
-                {/* <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-base text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Settings
-                  </a>
-                </MenuItem> */}
                 <MenuItem>
                   <Link
                     onClick={() => logout()}
@@ -187,31 +155,6 @@ function MainNavbar() {
             </ul>
           )}
         </Menu>
-        {/* -----------------End Profile dropdown--------------------- */}
-        {/* <ul
-          className={`${
-            !toggle ? "hidden" : "flex"
-          } flex flex-col my-5 md:flex md:flex-row`}
-        >
-          <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#717171] text-white px-3 py-2 my-2 md:mx-4 rounded-md text-base font-medium"
-                : "hover:bg-slate-200 px-3 py-2 my-2 md:mx-4 rounded-md text-base font-medium "
-            }
-            to={"/login"}
-          >
-            Login
-          </NavLink>
-          <li className="my-2 md:mx-4">
-            <a
-              className="inline-flex justify-center items-center py-2 px-4  bg-[#4CAF4F] text-white rounded-md"
-              href="#"
-            >
-              Sign up
-            </a>
-          </li>
-        </ul> */}
         {/* Hamberger Icon */}
         <FaBars
           onClick={updateToggle}
@@ -223,3 +166,4 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
