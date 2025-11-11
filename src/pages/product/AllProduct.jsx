@@ -24,19 +24,12 @@ const AllProduct = () => {
     fetchData();
   }, []);
 
-  // Animation Variants
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
-  // ฟิลเตอร์สินค้า
   const filteredProducts =
     selectedCategory === "ทั้งหมด"
       ? products
       : products.filter((p) => p.categoryName === selectedCategory);
 
-  // Loading Spinner
+  // 🌀 Loading Spinner
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50">
@@ -46,14 +39,28 @@ const AllProduct = () => {
     );
   }
 
+  // ✨ Animation variant (แยก parent / child)
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+
   return (
     <section className="bg-gradient-to-b from-gray-50 to-gray-100 py-10 min-h-screen">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        {/* หัวข้อ */}
+        {/* Title */}
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center mb-10"
         >
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-wide">
@@ -65,15 +72,14 @@ const AllProduct = () => {
           </p>
         </motion.div>
 
-        {/* ตัวกรอง + ช่องค้นหา */}
+        {/* Filter + Search */}
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          transition={{ delay: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10"
         >
-          {/* Dropdown หมวดสินค้า */}
+          {/* Dropdown Category */}
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
@@ -123,58 +129,35 @@ const AllProduct = () => {
             </MenuItems>
           </Menu>
 
-          {/* ช่องค้นหา */}
+          {/* Search */}
           <div className="w-full sm:w-auto flex-1 max-w-lg">
             <SearchCardName />
           </div>
         </motion.div>
 
-        {/* แสดงสินค้า */}
+        {/* Product List */}
         {filteredProducts.length > 0 ? (
           <motion.div
-            variants={fadeUp}
+            variants={container}
             initial="hidden"
             animate="show"
-            transition={{ delay: 0.3 }}
-            className="
-              grid 
-              grid-cols-1 
-              sm:grid-cols-2 
-              md:grid-cols-3 
-              lg:grid-cols-4 
-              gap-6 
-              place-items-center
-            "
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
-            {filteredProducts.map((item, index) => (
+            {filteredProducts.map((itemData, index) => (
               <motion.div
                 key={index}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="
-                  w-full 
-                  max-w-sm 
-                  bg-white 
-                  rounded-2xl 
-                  shadow-md 
-                  hover:shadow-xl 
-                  transition-all 
-                  duration-300 
-                  p-4
-                "
+                variants={item}
+                className="w-full bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-4"
               >
-                <ProductCards item={item} />
+                <ProductCards item={itemData} />
               </motion.div>
             ))}
           </motion.div>
         ) : (
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
             className="flex flex-col items-center justify-center py-20 text-center"
           >
             <img
