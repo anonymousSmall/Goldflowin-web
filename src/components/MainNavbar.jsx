@@ -47,7 +47,7 @@ function MainNavbar() {
           <a href="#">
             <img
               src={logo3}
-              className="h-10 rounded-xl shadow-slate-100"
+              className=" rounded-xl shadow-slate-100"
               alt=""
             />
           </a>
@@ -181,5 +181,6 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
 
