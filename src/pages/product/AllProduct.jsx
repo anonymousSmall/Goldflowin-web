@@ -106,55 +106,58 @@ const handleCheck = (e) => {
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <MenuButton className="inline-flex items-center gap-x-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-100 ring-1 ring-gray-300 transition-all duration-200">
-                {setSelectedCategory}
-                <ChevronDownIcon className="w-5 h-5 text-gray-500" />
+                {/* <SearchCardAllProduct /> */}
+                {/* <ChevronDownIcon className="w-5 h-5 text-gray-500" /> */}
               </MenuButton>
             </div>
 
             <MenuItems className="absolute z-10 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-  <div className="py-2">
-    <MenuItem>
-      {({ active }) => (
-        <button
-          onClick={() => setCategorySelected(["ทั้งหมด"])}  // กำหนดให้เลือกทั้งหมด
-          className={`${
-            active ? "bg-blue-50 text-blue-600" : "text-gray-700"
-          } block w-full text-left px-4 py-2 text-sm`}
-        >
-          ทั้งหมด
-        </button>
-      )}
-    </MenuItem>
-    {categories && categories.length > 0 ? (
-      categories.map((cat) => (
-        <MenuItem key={cat.id || cat._id}>
-          {({ active }) => (
-            <button
-              onClick={() => {
-                // เช็คว่าเมื่อเลือกหมวดหมู่แล้วมันอยู่ในอาร์เรย์ไหม ถ้าอยู่แล้วให้ลบออก
-                setCategorySelected((prev) =>
-                  prev.includes(cat.name)
-                    ? prev.filter((item) => item !== cat.name)
-                    : [...prev, cat.name]
-                );
-              }}
-              className={`${
-                active ? "bg-blue-50 text-blue-600" : "text-gray-700"
-              } block w-full text-left px-4 py-2 text-sm`}
-            >
-              {cat.name}
-            </button>
-          )}
-        </MenuItem>
-      ))
-    ) : (
-      <div className="px-4 py-2 text-gray-400 text-sm">
-        ไม่มีหมวดหมู่
-      </div>
-    )}
-  </div>
-</MenuItems>
+              <div className="py-2">
+                <MenuItem>
+                  {/* <SearchCardAllProduct /> */}
+                  {categories.map((item, index) => (
+                    <button key={index} className="flex p-2 gap-2">
+                      <input onChange={handleCheck} value={item.id} type="checkbox" />
+                      {/* <button onChange={handleCheck} value={item.id} type="checkbox">123</button> */}
+                      <label>{item.name}</label>
+                    </button>
+                  ))}
+                  {/* /* {({ active }) => (
+                    <button
+                      onClick={() => setSelectedCategory("ทั้งหมด")}
+                      className={`${
+                        active ? "bg-blue-50 text-blue-600" : "text-gray-700"
+                      } block w-full text-left px-4 py-2 text-sm`}
+                    >
+                      ทั้งหมด
+                    </button>
+                  )} */ }
+                </MenuItem>
 
+                {categories && categories.length > 0 ? (
+                  categories.map((cat) => (
+                    <MenuItem key={cat.id || cat._id}>
+                      {({ active }) => (
+                        <button
+                          onClick={() => setSelectedCategory(cat.name)}
+                          className={`${
+                            active
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700"
+                          } block w-full text-left px-4 py-2 text-sm`}
+                        >
+                          {cat.name}
+                        </button>
+                      )}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <div className="px-4 py-2 text-gray-400 text-sm">
+                    ไม่มีหมวดหมู่
+                  </div>
+                )}
+              </div>
+            </MenuItems>
           </Menu>
 
           {/* Search */}
@@ -205,16 +208,6 @@ const handleCheck = (e) => {
 };
 
 export default AllProduct;
-
-
-
-
-
-
-
-
-
-
 
 
 
