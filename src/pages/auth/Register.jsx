@@ -62,7 +62,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 px-4">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-10 transition-all">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 md:p-10 transition-all">
         <h1 className="text-4xl font-bold text-center text-blue-700 mb-6">
           Register
         </h1>
@@ -192,4 +192,5 @@ const Register = () => {
 };
 
 export default Register;
+
 
