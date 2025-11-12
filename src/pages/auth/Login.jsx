@@ -37,6 +37,7 @@ const Login = () => {
     }
   };
 
+  
   const roleRedirect = (role) => {
     if (role === "admin") {
       navigate("/admin");
@@ -123,3 +124,4 @@ const Login = () => {
 };
 
 export default Login;
+
