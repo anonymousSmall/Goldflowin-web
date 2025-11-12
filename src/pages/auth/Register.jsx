@@ -71,7 +71,7 @@ const Register = () => {
 
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
         <div className="p-8 md:p-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-6">
             Register
           </h1>
 
@@ -88,7 +88,7 @@ const Register = () => {
                 {...register("email")}
                 type="email"
                 placeholder="example@email.com"
-                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 dark:border-gray-700 dark:text-white ${
+                className={`w-full border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:scale-[1.02] transition-transform duration-200 ${
                   errors.email ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -110,8 +110,8 @@ const Register = () => {
               <input
                 {...register("password")}
                 type="password"
-                placeholder="••••••••"
-                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-purple-400 transition duration-300 dark:border-gray-700 dark:text-white ${
+                placeholder="Enter your password"
+                className={`w-full border border-gray-300 rounded-lg p-3 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:scale-[1.02] transition-transform duration-200 ${
                   errors.password ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -155,7 +155,7 @@ const Register = () => {
                 {...register("confirmPassword")}
                 type="password"
                 placeholder="ยืนยันรหัสผ่านอีกครั้ง"
-                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 dark:border-gray-700 dark:text-white ${
+                className={`w-full flex justify-center items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:scale-[1.03] hover:shadow-lg transition-all duration-300 ${
                   errors.confirmPassword ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -192,5 +192,6 @@ const Register = () => {
 };
 
 export default Register;
+
 
 
