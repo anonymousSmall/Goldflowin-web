@@ -60,22 +60,22 @@ function MainFooter() {
               </h4>
               <ul className="flex flex-col mb-5">
                 <li className="mt-2">
-                  <a className="text-white text-[0.875rem]" href="/">
+                  <a className="text-white text-[0.875rem]" href="">
                     หน้าแรก
                   </a>
                 </li>
                 <li className="mt-2">
-                  <a className="text-white text-[0.875rem]" href="/Catalog">
+                  <a className="text-white text-[0.875rem]" href="">
                     CatalogProduct
                   </a>
                 </li>
                 <li className="mt-2">
-                  <a className="text-white text-[0.875rem]" href="/AllProduct">
+                  <a className="text-white text-[0.875rem]" href="">
                     รายละเอียดสินค้า
                   </a>
                 </li>
                 <li className="mt-2">
-                  <a className="text-white text-[0.875rem]" href="/contact">
+                  <a className="text-white text-[0.875rem]" href="">
                     ติดต่อเรา
                   </a>
                 </li>
@@ -139,6 +139,7 @@ function MainFooter() {
 }
 
 export default MainFooter;
+
 
 
 
