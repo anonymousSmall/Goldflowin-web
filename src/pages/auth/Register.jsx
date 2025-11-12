@@ -65,11 +65,11 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4">
+    <div className="min-h-screen flex items-center justify-center  bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 px-4">
       {/* Toast Container */}
       <ToastContainer position="top-center" autoClose={2500} />
 
-      <div className="w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
         <div className="p-8 md:p-10">
           <h1 className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-6">
             Register
@@ -191,3 +191,4 @@ const Register = () => {
 };
 
 export default Register;
+
