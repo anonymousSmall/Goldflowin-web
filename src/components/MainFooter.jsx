@@ -70,7 +70,7 @@ function MainFooter() {
                   </a>
                 </li>
                 <li className="mt-2">
-                  <a className="text-white text-[0.875rem]" href="/AllProduct"">
+                  <a className="text-white text-[0.875rem]" href="/AllProduct">
                     รายละเอียดสินค้า
                   </a>
                 </li>
@@ -139,6 +139,7 @@ function MainFooter() {
 }
 
 export default MainFooter;
+
 
 
 
