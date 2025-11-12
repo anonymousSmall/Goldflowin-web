@@ -34,6 +34,7 @@ import Article from "../pages/admin/Article";
 import News1 from "../pages/article/News1";
 import StateContainer from "../components/admin/StateContainer";
 import CatalogProduct from "../pages/CatalogProduct";
+import ForgotPassword from "../pages/auth/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
       { path: "AllProduct", element: <AllProduct /> },
       { path: "Article1", element: <News1 /> },
       { path: "Catalog", element: <CatalogProduct /> },
-
+      { path: "ForgotPassword", element: <ForgotPassword /> },
       ,
     ],
   },
@@ -94,3 +95,4 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
+
