@@ -7,7 +7,6 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import logo2 from "../assets/image/logo2.jpg";
-import logo3 from "../assets/image/Logo3.png";
 
 function MainFooter() {
   return (
@@ -16,8 +15,8 @@ function MainFooter() {
         <div className="grid grid-cols-1 m-10 md:m-0 md:grid-cols-2">
           <div>
             <img
-              src={logo3}
-              className="h-16 rounded-2xl shadow-slate-100"
+              src={logo2}
+              className="h-10 rounded-2xl shadow-slate-100"
               alt=""
             />
             <p className="my-10 text-white">
@@ -139,8 +138,3 @@ function MainFooter() {
 }
 
 export default MainFooter;
-
-
-
-
-
