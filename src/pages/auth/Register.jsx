@@ -1,18 +1,17 @@
 // rafce
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 
-// ✅ Zod Validation Schema
 const registerSchema = z
   .object({
-    email: z.string().email({ message: "Invalid email!!!" }),
+    email: z.string().email({ message: "Invalid email format!" }),
     password: z.string().min(8, { message: "Password ต้องมากกว่า 8 ตัวอักษร" }),
     confirmPassword: z.string(),
   })
@@ -23,6 +22,9 @@ const registerSchema = z
 
 const Register = () => {
   const [passwordScore, setPasswordScore] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -34,157 +36,155 @@ const Register = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const validatePassword = () => {
-    let password = watch().password;
-    return zxcvbn(password ? password : "").score;
-  };
-
   useEffect(() => {
-    setPasswordScore(validatePassword());
-  }, [watch().password]);
+    const password = watch("password");
+    setPasswordScore(zxcvbn(password || "").score);
+  }, [watch("password")]);
 
-  // ✅ Submit Form
   const onSubmit = async (data) => {
-    const passwordScore = zxcvbn(data.password).score;
-    if (passwordScore < 3) {
-      toast.warning("รหัสผ่านไม่แข็งแรงพอ! 🚨");
-      return;
-    }
-
     try {
+      setLoading(true);
       const res = await axios.post(
         "https://goldflowin-api.vercel.app/api/register",
         data
       );
-      toast.success("สมัครสมาชิกสำเร็จ ✅");
+      toast.success("✅ สมัครสมาชิกสำเร็จ!");
       reset();
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      const errMsg = err.response?.data?.message || "เกิดข้อผิดพลาด!";
+      const errMsg = err.response?.data?.message || "เกิดข้อผิดพลาดในการสมัคร!";
       toast.error(errMsg);
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 px-4">
-      {/* Toast Container */}
-      <ToastContainer position="top-center" autoClose={2500} />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 px-4">
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-10 transition-all">
+        <h1 className="text-4xl font-bold text-center text-blue-600 dark:text-white mb-6">
+          Register
+        </h1>
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
-        <div className="p-8 md:p-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-6">
-            Register
-          </h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          {/* Email */}
+          <div>
+            <label className="block mb-2 text-gray-700 dark:text-gray-200">
+              Email :
+            </label>
+            <input
+              {...register("email")}
+              type="email"
+              placeholder="Enter your email"
+              className={`w-full p-3 rounded-lg border ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              } focus:ring-2 focus:ring-blue-400 focus:scale-[1.02] transition-all`}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block mb-1 text-gray-700 font-medium"
-              >
-                Email
-              </label>
-              <input
-                {...register("email")}
-                type="email"
-                placeholder="example@email.com"
-                className={`w-full border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:scale-[1.02] transition-transform duration-200 ${
-                  errors.email ? "border-red-500" : "border-gray-300"
-                }`}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            {/* Password */}
-            <div>
-              <label
-                htmlFor="password"
-                className="block mb-1 text-gray-700 font-medium"
-              >
-                Password
-              </label>
+          {/* Password */}
+          <div>
+            <label className="block mb-2 text-gray-700 dark:text-gray-200">
+              Password :
+            </label>
+            <div className="relative">
               <input
                 {...register("password")}
-                type="password"
-                placeholder="Enter your password"
-                className={`w-full border border-gray-300 rounded-lg p-3 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:scale-[1.02] transition-transform duration-200 ${
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter password"
+                className={`w-full p-3 rounded-lg border ${
                   errors.password ? "border-red-500" : "border-gray-300"
-                }`}
+                } focus:ring-2 focus:ring-purple-400 focus:scale-[1.02] transition-all`}
               />
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.password.message}
-                </p>
-              )}
-
-              {/* Password Strength Bar */}
-              {watch().password?.length > 0 && (
-                <div className="flex mt-2 space-x-1">
-                  {Array.from(Array(5).keys()).map((i) => (
-                    <div
-                      key={i}
-                      className={`h-2 w-1/5 rounded ${
-                        i <= passwordScore
-                          ? passwordScore <= 2
-                            ? "bg-red-500"
-                            : passwordScore < 4
-                            ? "bg-yellow-400"
-                            : "bg-green-500"
-                          : "bg-gray-200 dark:bg-gray-600"
-                      }`}
-                    ></div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Confirm Password */}
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block mb-1 text-gray-700 font-medium"
-                
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
               >
-                Confirm Password
-              </label>
-              <input
-                {...register("confirmPassword")}
-                type="password"
-                placeholder="ยืนยันรหัสผ่านอีกครั้ง"
-                className={`w-full flex justify-center items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:scale-[1.03] hover:shadow-lg transition-all duration-300 ${
-                  errors.confirmPassword ? "border-red-500" : "border-gray-300"
-                }`}
-              />
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.confirmPassword.message}
-                </p>
-              )}
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
             </div>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-blue-500 transform hover:scale-[1.02] transition duration-300 shadow-md"
-            >
-              สมัครสมาชิก
-            </button>
-          </form>
+            {/* Password Strength Bar */}
+            {watch("password")?.length > 0 && (
+              <div className="flex mt-2 gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-2 w-full rounded ${
+                      i <= passwordScore
+                        ? passwordScore <= 2
+                          ? "bg-red-500"
+                          : passwordScore < 4
+                          ? "bg-yellow-400"
+                          : "bg-green-500"
+                        : "bg-gray-200"
+                    }`}
+                  ></div>
+                ))}
+              </div>
+            )}
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
+          </div>
 
-          {/* Login Redirect */}
-          <p className="text-center mt-6 text-sm text-gray-600 dark:text-gray-300">
-            มีบัญชีอยู่แล้ว?{" "}
-            <NavLink
-              to="/login"
-              className="text-blue-500 hover:text-purple-600 transition duration-300"
-            >
-              เข้าสู่ระบบ
-            </NavLink>
-          </p>
+          {/* Confirm Password */}
+          <div>
+            <label className="block mb-2 text-gray-700 dark:text-gray-200">
+              Confirm Password :
+            </label>
+            <input
+              {...register("confirmPassword")}
+              type="password"
+              placeholder="Confirm password"
+              className={`w-full p-3 rounded-lg border ${
+                errors.confirmPassword ? "border-red-500" : "border-gray-300"
+              } focus:ring-2 focus:ring-blue-400 focus:scale-[1.02] transition-all`}
+            />
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirmPassword.message}
+              </p>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full flex justify-center items-center bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg font-semibold hover:scale-[1.03] transition-all duration-300 ${
+              loading && "opacity-70 cursor-not-allowed"
+            }`}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin mr-2" size={20} />
+                Registering...
+              </>
+            ) : (
+              "Register"
+            )}
+          </button>
+        </form>
+
+        {/* Login link */}
+        <div className="text-center mt-6 text-gray-600 dark:text-gray-300">
+          <span>Already have an account?</span>{" "}
+          <NavLink
+            to="/login"
+            className="text-blue-500 hover:text-blue-700 font-medium transition-all"
+          >
+            Log In
+          </NavLink>
         </div>
       </div>
     </div>
@@ -192,6 +192,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-
