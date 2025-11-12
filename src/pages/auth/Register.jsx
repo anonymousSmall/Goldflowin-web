@@ -80,7 +80,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block mb-1 text-gray-700 dark:text-gray-200 font-medium"
+                className="block mb-1 text-gray-700 font-medium"
               >
                 Email
               </label>
@@ -88,7 +88,7 @@ const Register = () => {
                 {...register("email")}
                 type="email"
                 placeholder="example@email.com"
-                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white ${
+                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 dark:border-gray-700 dark:text-white ${
                   errors.email ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -103,7 +103,7 @@ const Register = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block mb-1 text-gray-700 dark:text-gray-200 font-medium"
+                className="block mb-1 text-gray-700 font-medium"
               >
                 Password
               </label>
@@ -111,7 +111,7 @@ const Register = () => {
                 {...register("password")}
                 type="password"
                 placeholder="••••••••"
-                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-purple-400 transition duration-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white ${
+                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-purple-400 transition duration-300 dark:border-gray-700 dark:text-white ${
                   errors.password ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -146,7 +146,8 @@ const Register = () => {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block mb-1 text-gray-700 dark:text-gray-200 font-medium"
+                className="block mb-1 text-gray-700 font-medium"
+                
               >
                 Confirm Password
               </label>
@@ -154,7 +155,7 @@ const Register = () => {
                 {...register("confirmPassword")}
                 type="password"
                 placeholder="ยืนยันรหัสผ่านอีกครั้ง"
-                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 dark:bg-gray-800 dark:border-gray-700 dark:text-white ${
+                className={`w-full border rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 dark:border-gray-700 dark:text-white ${
                   errors.confirmPassword ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -191,4 +192,5 @@ const Register = () => {
 };
 
 export default Register;
+
 
