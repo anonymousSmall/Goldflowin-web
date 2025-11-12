@@ -10,13 +10,11 @@ const Login = () => {
   const actionLogin = useEcomStore((state) => state.actionLogin);
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -25,8 +23,13 @@ const Login = () => {
     try {
       const res = await actionLogin(form);
       const role = res.data.payload.role;
-      roleRedirect(role);
       toast.success("🎉 Welcome Back!", { position: "top-center" });
+      if (rememberMe) {
+        localStorage.setItem("userEmail", form.email);
+      } else {
+        localStorage.removeItem("userEmail");
+      }
+      roleRedirect(role);
     } catch (err) {
       console.log(err);
       const errMsg = err.response?.data?.message || "Login failed!";
@@ -40,6 +43,14 @@ const Login = () => {
     if (role === "admin") navigate("/admin");
     else navigate("/");
   };
+
+  React.useEffect(() => {
+    const savedEmail = localStorage.getItem("userEmail");
+    if (savedEmail) {
+      setForm((prev) => ({ ...prev, email: savedEmail }));
+      setRememberMe(true);
+    }
+  }, []);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 px-4">
@@ -61,6 +72,7 @@ const Login = () => {
               type="email"
               name="email"
               placeholder="Enter your email"
+              value={form.email}
               onChange={handleOnChange}
               className="w-full border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:scale-[1.02] transition-transform duration-200"
               required
@@ -92,6 +104,25 @@ const Login = () => {
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
+          </div>
+
+          {/* Remember Me & Forgot Password */}
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center space-x-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <span className="text-gray-700">Remember me</span>
+            </label>
+            <NavLink
+              to="/forgot-password"
+              className="text-blue-500 hover:text-blue-700 transition-colors"
+            >
+              Forgot password?
+            </NavLink>
           </div>
 
           {/* Login Button */}
