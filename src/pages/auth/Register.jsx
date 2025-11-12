@@ -24,6 +24,12 @@ const registerSchema = z
 const Register = () => {
   // Javascript
   const [passwordScore, setPasswordScore] = useState(0);
+  
+  const [formData, setFormData] = useState({
+    email: "",
+    Password: "",
+    confirmPassword: "",
+  });
 
   const {
     register,
@@ -41,7 +47,7 @@ const Register = () => {
   useEffect(() => {
     setPasswordScore(validatePassword());
   }, [watch().password]);
-
+  
   const onSubmit = async (data) => {
     // const passwordScore = zxcvbn(data.password).score;
     // console.log(passwordScore);
@@ -51,9 +57,9 @@ const Register = () => {
     // }
     // console.log("ok ลูกพี่");
     // Send to Back
+    setFormData({ name: "", email: "", message: "" });
     try {
       const res = await axios.post("https://goldflowin-api.vercel.app/api/register", data);
-
       console.log(res.data);
       toast.success(res.data);
     } catch (err) {
@@ -213,5 +219,6 @@ const Register = () => {
 };
 
 export default Register;
+
 
 
