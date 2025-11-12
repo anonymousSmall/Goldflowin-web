@@ -26,6 +26,7 @@ import tboss from "../assets/image/logo/t-boss.png";
 import tanita from "../assets/image/logo/tanita.png";
 import vertex from "../assets/image/logo/vertex.png";
 import morewright from "../assets/image/logo/more&wright.png";
+import mikrosize from "../assets/image/logo/mikrosize.png";
 
 const brands = [
   accretech,
@@ -40,6 +41,7 @@ const brands = [
   gin,
   hexagon,
   imada,
+  mikrosize,
   insize,
   jadever,
   mahr,
