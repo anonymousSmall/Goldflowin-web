@@ -141,7 +141,19 @@
     transform: translateY(0);
   }
 }
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
+.animate-scroll {
+  display: flex;
+  animation: scroll 30s linear infinite;
+}
 .animate-fadeSlide {
   animation: fadeSlide 0.8s ease-out forwards;
 }
@@ -152,5 +164,6 @@ html{
 /* body {
   background-color: #000300;
 } */
+
 
 
