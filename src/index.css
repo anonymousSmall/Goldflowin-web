@@ -152,7 +152,7 @@
 
 .animate-scroll {
   display: flex;
-  animation: scroll 0.8s linear infinite;
+  animation: scroll 10s linear infinite;
 }
 .animate-fadeSlide {
   animation: fadeSlide 0.8s ease-out forwards;
@@ -164,6 +164,7 @@ html{
 /* body {
   background-color: #000300;
 } */
+
 
 
 
