@@ -63,14 +63,14 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 px-4">
       <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-10 transition-all">
-        <h1 className="text-4xl font-bold text-center text-blue-600 dark:text-white mb-6">
+        <h1 className="text-4xl font-bold text-center text-blue-700 mb-6">
           Register
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Email */}
           <div>
-            <label className="block mb-2 text-gray-700 dark:text-gray-200">
+            <label className="block mb-2 text-gray-700">
               Email :
             </label>
             <input
@@ -90,7 +90,7 @@ const Register = () => {
 
           {/* Password */}
           <div>
-            <label className="block mb-2 text-gray-700 dark:text-gray-200">
+            <label className="block mb-2 text-gray-700">
               Password :
             </label>
             <div className="relative">
@@ -139,7 +139,7 @@ const Register = () => {
 
           {/* Confirm Password */}
           <div>
-            <label className="block mb-2 text-gray-700 dark:text-gray-200">
+            <label className="block mb-2 text-gray-700">
               Confirm Password :
             </label>
             <input
@@ -177,7 +177,7 @@ const Register = () => {
         </form>
 
         {/* Login link */}
-        <div className="text-center mt-6 text-gray-600 dark:text-gray-300">
+        <div className="text-center mt-6 text-gray-600">
           <span>Already have an account?</span>{" "}
           <NavLink
             to="/login"
@@ -192,3 +192,4 @@ const Register = () => {
 };
 
 export default Register;
+
