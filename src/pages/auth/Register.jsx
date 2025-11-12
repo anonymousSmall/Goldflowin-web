@@ -18,11 +18,8 @@ const registerSchema = z
     message: "Password ไม่ตรงกัน",
     path: ["confirmPassword"],
   });
-const [formData, setFormData] = useState({
-    email: "",
-    Password: "",
-    confirmPassword: "",
-  });
+
+
 
 const Register = () => {
   // Javascript
@@ -59,7 +56,6 @@ const Register = () => {
 
       console.log(res.data);
       toast.success(res.data);
-      setFormData({ email: "", Password: "", confirmPassword: "" });
     } catch (err) {
       const errMsg = err.response?.data?.message;
       toast.error(errMsg);
@@ -217,4 +213,5 @@ const Register = () => {
 };
 
 export default Register;
+
 
