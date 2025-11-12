@@ -118,7 +118,7 @@ const Login = () => {
               <span className="text-gray-700">Remember me</span>
             </label>
             <NavLink
-              to="/forgot-password"
+              to="/ForgotPassword"
               className="text-blue-500 hover:text-blue-700 transition-colors"
             >
               Forgot password?
