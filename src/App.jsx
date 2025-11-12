@@ -20,7 +20,7 @@ const App = () => {
   // });
   return (
     <>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       {/* <div className="bg-red-400"> */}
       <AppRoutes />
       {/* <Header/> */}
@@ -31,3 +31,4 @@ const App = () => {
 };
 
 export default App;
+
