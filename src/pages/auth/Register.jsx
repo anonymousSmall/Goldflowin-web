@@ -8,28 +8,20 @@ import zxcvbn from "zxcvbn";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 
+// ✅ Schema Validation
 const registerSchema = z
   .object({
-    email: z.string().email({ message: "Invalid email!!!" }),
-    password: z.string().min(8, { message: "Password ต้องมากกว่า 8 ตัวอักษร" }),
+    email: z.string().email({ message: "กรุณากรอกอีเมลให้ถูกต้อง" }),
+    password: z.string().min(8, { message: "รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร" }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Password ไม่ตรงกัน",
+    message: "รหัสผ่านไม่ตรงกัน",
     path: ["confirmPassword"],
   });
 
-
-
 const Register = () => {
-  // Javascript
   const [passwordScore, setPasswordScore] = useState(0);
-  
-  const [formData, setFormData] = useState({
-    email: "",
-    Password: "",
-    confirmPassword: "",
-  });
 
   const {
     register,
@@ -40,185 +32,127 @@ const Register = () => {
     resolver: zodResolver(registerSchema),
   });
 
+  // ✅ ตรวจสอบความแข็งแรงของรหัสผ่าน
   const validatePassword = () => {
-    let password = watch().password;
-    return zxcvbn(password ? password : "").score;
+    const password = watch("password") || "";
+    return zxcvbn(password).score;
   };
+
   useEffect(() => {
     setPasswordScore(validatePassword());
-  }, [watch().password]);
-  
+  }, [watch("password")]);
+
+  // ✅ ฟังก์ชันส่งข้อมูลสมัครสมาชิก
   const onSubmit = async (data) => {
-    // const passwordScore = zxcvbn(data.password).score;
-    // console.log(passwordScore);
-    // if (passwordScore < 3) {
-    //   toast.warning("Password บ่ Strong!!!!!");
-    //   return;
-    // }
-    // console.log("ok ลูกพี่");
-    // Send to Back
-    setFormData({ name: "", email: "", message: "" });
     try {
       const res = await axios.post("https://goldflowin-api.vercel.app/api/register", data);
-      console.log(res.data);
       toast.success(res.data);
     } catch (err) {
-      const errMsg = err.response?.data?.message;
+      const errMsg = err.response?.data?.message || "เกิดข้อผิดพลาด กรุณาลองใหม่";
       toast.error(errMsg);
-      console.log(err);
     }
   };
 
-  // const tam = Array.from(Array(5))
-  // console.log(tam)
-  console.log(passwordScore);
+  // ✅ สีบาร์บอกความแข็งแรงของรหัสผ่าน
+  const getPasswordColor = () => {
+    if (passwordScore <= 1) return "bg-red-500";
+    if (passwordScore === 2) return "bg-yellow-400";
+    if (passwordScore === 3) return "bg-green-400";
+    return "bg-green-600";
+  };
+
   return (
-    <div className="h-screen w-screen flex justify-center items-center drak:bg-gray-900">
-      <div className="grid gap-8">
-        <div
-          id="back-div"
-          className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-[26px] m-4 "
-        >
-          <div className="border-[20px] border-transparent rounded-[20px] dark:bg-white bg-white shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2">
-            <h1 className="pt-8 pb-6 font-bold text-5xl dark:text-black text-center cursor-default">
-              Register
-            </h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <label for="email" className="mb-2 dark:text-black text-lg">
-                  Email :
-                </label>
-                <input
-                  {...register("email")}
-                  placeholder="Email"
-                  className={`border dark:bg-transparent dark:text-black dark:border-gray-700 p-3 shadow-md placeholder:text-base border-gray-300 rounded-lg w-full focus:scale-105 ease-in-out duration-300
-            ${errors.email && "border-red-500"}
-            `}
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm">{errors.email.message}</p>
-                )}
-              </div>
-              <div>
-                <label for="password" className="mb-2 dark:text-black text-lg">
-                  Password :
-                </label>
-                <input
-                  {...register("password")}
-                  placeholder="Password"
-                  className={`border dark:bg-transparent dark:text-black dark:border-gray-700 p-3 shadow-md placeholder:text-base border-gray-300 rounded-lg w-full focus:scale-105 ease-in-out duration-300
-            ${errors.password && "border-red-500"}
-            `}
-                />
-                {errors.password && (
-                  <p className="text-red-500 text-sm">
-                    {errors.password.message}
-                  </p>
-                )}
-                {watch().password?.length > 0 && (
-                  <div className="flex mt-2">
-                    {Array.from(Array(5).keys()).map((item, index) => (
-                      <span className="w-1/5 px-1" key={index}>
-                        <div
-                          className={`rounded h-2 ${
-                            passwordScore <= 2
-                              ? "bg-red-500"
-                              : passwordScore < 4
-                              ? "bg-yellow-500"
-                              : "bg-green-500"
-                          }
-              `}
-                        ></div>
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div>
-                <label for="password" className="mb-2 dark:text-black text-lg">
-                  Confirm Password :
-                </label>
-                <input
-                  {...register("confirmPassword")}
-                  type="password"
-                  placeholder="Confirm Password"
-                  className={`border dark:bg-transparent dark:text-black dark:border-gray-700 p-3 shadow-md placeholder:text-base border-gray-300 rounded-lg w-full focus:scale-105 ease-in-out duration-300
-                ${errors.confirmPassword && "border-red-500"}
-                `}
-                />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 px-4">
+      <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-2xl shadow-2xl p-8 md:p-10 transition-all duration-300">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-6">
+          สมัครสมาชิก
+        </h1>
 
-                {errors.confirmPassword && (
-                  <p className="text-red-500 text-sm">
-                    {errors.confirmPassword.message}
-                  </p>
-                )}
-              </div>
-              <button
-                className="bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out"
-                type="submit"
-              >
-                Register
-              </button>
-            </form>
-            <div className="flex flex-col mt-4 items-center justify-center text-sm">
-              <h3>
-                <span className="cursor-default dark:text-gray-300">
-                  Have an account?
-                </span>
-                <a
-                  className="group text-blue-400 transition-all duration-100 ease-in-out"
-                  href="#"
-                >
-                  <span className="bg-left-bottom ml-1 bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
-                    <NavLink
-                      classNameName={({ isActive }) =>
-                        isActive
-                          ? "px-3 py-2 rounded-md text-sm font-medium"
-                          : "px-3 py-2 rounded-md text-sm font-medium"
-                      }
-                      to={"/login"}
-                    >
-                      Log In
-                    </NavLink>
-                  </span>
-                </a>
-              </h3>
-            </div>
-
-            {/* <!-- Third Party Authentication Options --> */}
-            {/* <div
-              id="third-party-auth"
-              className="flex items-center justify-center mt-5 flex-wrap"
-            >
-              <button
-                href="#"
-                className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
-              >
-                <img
-                  className="max-w-[25px]"
-                  src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/"
-                  alt="Google"
-                />
-              </button>
-              <button
-                href="#"
-                className="hover:scale-105 ease-in-out duration-300 shadow-lg p-2 rounded-lg m-1"
-              >
-                <img
-                  className="max-w-[25px]"
-                  src="https://ucarecdn.com/6f56c0f1-c9c0-4d72-b44d-51a79ff38ea9/"
-                  alt="Facebook"
-                />
-              </button>
-            </div> */}
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          {/* Email */}
+          <div>
+            <label className="block text-gray-700 dark:text-gray-200 mb-2 text-sm font-semibold">
+              อีเมล
+            </label>
+            <input
+              {...register("email")}
+              type="email"
+              placeholder="example@email.com"
+              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none transition-all dark:bg-gray-800 dark:text-white ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
           </div>
-        </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-gray-700 dark:text-gray-200 mb-2 text-sm font-semibold">
+              รหัสผ่าน
+            </label>
+            <input
+              {...register("password")}
+              type="password"
+              placeholder="••••••••"
+              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none transition-all dark:bg-gray-800 dark:text-white ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+            )}
+
+            {/* Password strength bar */}
+            {watch("password")?.length > 0 && (
+              <div className="flex mt-3 space-x-1">
+                {Array.from(Array(5)).map((_, i) => (
+                  <span key={i} className={`flex-1 h-2 rounded ${i <= passwordScore ? getPasswordColor() : "bg-gray-200"}`}></span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-gray-700 dark:text-gray-200 mb-2 text-sm font-semibold">
+              ยืนยันรหัสผ่าน
+            </label>
+            <input
+              {...register("confirmPassword")}
+              type="password"
+              placeholder="ยืนยันรหัสผ่านอีกครั้ง"
+              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none transition-all dark:bg-gray-800 dark:text-white ${
+                errors.confirmPassword ? "border-red-500" : "border-gray-300"
+              }`}
+            />
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
+            )}
+          </div>
+
+          {/* Submit button */}
+          <button
+            type="submit"
+            className="w-full py-3 mt-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-semibold shadow-lg hover:from-purple-500 hover:to-blue-500 transition-transform transform hover:scale-[1.02]"
+          >
+            สมัครสมาชิก
+          </button>
+        </form>
+
+        {/* Login link */}
+        <p className="text-center text-gray-600 dark:text-gray-300 mt-6 text-sm">
+          มีบัญชีอยู่แล้ว?{" "}
+          <NavLink
+            to="/login"
+            className="text-blue-500 font-medium hover:underline hover:text-blue-600 transition"
+          >
+            เข้าสู่ระบบ
+          </NavLink>
+        </p>
       </div>
     </div>
   );
 };
 
 export default Register;
-
-
-
