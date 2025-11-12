@@ -141,7 +141,7 @@ function MainNavbar() {
               <li className="my-2 md:mx-4">
                 <a
                   className="inline-flex justify-center items-center py-2 px-4  bg-[#4CAF4F] text-white rounded-md"
-                  href="#"
+                  href="/register"
                 >
                   Sign up
                 </a>
@@ -185,6 +185,7 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
 
 
