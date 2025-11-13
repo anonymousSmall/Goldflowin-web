@@ -27,18 +27,26 @@ import {
   Legend,
 } from "recharts";
 
+// ✅ Error Boundary
+export const DashboardErrorBoundary = ({ error }) => (
+  <div className="p-10 text-center text-red-600">
+    <h1 className="text-2xl font-bold mb-4">Something went wrong 😢</h1>
+    <p>{error?.message || "Unknown error"}</p>
+  </div>
+);
+
 const DashboardAdmin = () => {
   const navigate = useNavigate();
 
-  // ✅ Default empty arrays เพื่อป้องกัน undefined
-  const { users = [], products = [], categories = [], orders = [] } = useEcomStore(
-    (state) => ({
-      users: state.users,
-      products: state.products,
-      categories: state.categories,
-      orders: state.orders,
-    })
-  );
+  // ✅ Fallback default empty arrays
+  const data = useEcomStore((state) => ({
+    users: state.users ?? [],
+    products: state.products ?? [],
+    categories: state.categories ?? [],
+    orders: state.orders ?? [],
+  }));
+
+  const { users, products, categories, orders } = data;
 
   const stats = {
     users: users.length,
@@ -49,21 +57,22 @@ const DashboardAdmin = () => {
 
   // ✅ Sales data
   const salesData = useMemo(() => {
-    if (!orders.length) return [];
+    if (!orders || !orders.length) return [];
     const grouped = {};
     orders.forEach((o) => {
+      if (!o.createdAt || !o.total) return; // skip invalid data
       const month = new Date(o.createdAt).toLocaleString("en-US", { month: "short" });
-      grouped[month] = (grouped[month] || 0) + (o.total || 0);
+      grouped[month] = (grouped[month] || 0) + o.total;
     });
     return Object.entries(grouped).map(([month, sales]) => ({ month, sales }));
   }, [orders]);
 
   // ✅ Category data
   const categoryData = useMemo(() => {
-    if (!products.length) return [];
+    if (!products || !products.length) return [];
     const grouped = {};
     products.forEach((p) => {
-      const cat = p.category?.name || "อื่น ๆ";
+      const cat = p?.category?.name || "อื่น ๆ";
       grouped[cat] = (grouped[cat] || 0) + 1;
     });
     return Object.entries(grouped).map(([name, value]) => ({ name, value }));
