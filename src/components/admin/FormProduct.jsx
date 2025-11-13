@@ -157,77 +157,82 @@ const FormProduct = () => {
         </button>
 
         {/* ตารางสินค้า */}
-        <div className="mt-8 overflow-x-auto rounded-lg shadow-md">
-          <table className="min-w-full divide-y divide-gray-200 bg-white dark:bg-gray-800">
-            <thead className="bg-gradient-to-r from-blue-200 to-purple-200">
-              <tr>
-                {[
-                  "No.",
-                  "รูปภาพ",
-                  "ชื่อสินค้า",
-                  "รายละเอียด",
-                  "ราคา",
-                  "จำนวน",
-                  "จำนวนที่ขายได้",
-                  "วันที่อัปเดต",
-                  "จัดการ",
-                ].map((th, i) => (
-                  <th
-                    key={i}
-                    className="p-3 text-left text-gray-700 font-semibold uppercase text-sm"
-                  >
-                    {th}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {products.map((item, index) => (
-                <tr
-                  key={item.id}
-                  className="hover:bg-blue-50 transition-colors duration-200"
-                >
-                  <td className="p-2">{index + 1}</td>
-                  <td className="p-2">
-                    {item.images.length > 0 ? (
-                      <img
-                        src={item.images[0].url}
-                        className="w-20 h-20 object-cover rounded-md"
-                      />
-                    ) : (
-                      <div className="w-20 h-20 bg-gray-200 flex items-center justify-center rounded-md">
-                        No Image
-                      </div>
-                    )}
-                  </td>
-                  <td className="p-2">{item.title}</td>
-                  <td className="p-2 truncate max-w-xs">{item.description}</td>
-                  <td className="p-2">{numberFormat(item.price)}</td>
-                  <td className="p-2">{item.quantity}</td>
-                  <td className="p-2">{item.sold}</td>
-                  <td className="p-2">{dateFormat(item.updatedAt)}</td>
-                  <td className="p-2 flex gap-2">
-                    <Link
-                      to={`/admin/product/${item.id}`}
-                      className="bg-yellow-400 hover:bg-yellow-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
+          <div className="mt-8 overflow-x-auto rounded-lg shadow-md">
+            <table className="min-w-full divide-y divide-gray-200 bg-white">
+              {/* Header */}
+              <thead className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-100">
+                <tr>
+                  {[
+                    "No.",
+                    "รูปภาพ",
+                    "ชื่อสินค้า",
+                    "รายละเอียด",
+                    "ราคา",
+                    "จำนวน",
+                    "จำนวนที่ขายได้",
+                    "วันที่อัปเดต",
+                    "จัดการ",
+                  ].map((th, i) => (
+                    <th
+                      key={i}
+                      className="p-3 text-left text-blue-800 font-semibold uppercase text-sm"
                     >
-                      <Pencil />
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(item.id)}
-                      className="bg-red-400 hover:bg-red-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
-                    >
-                      <Trash />
-                    </button>
-                  </td>
+                      {th}
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+          
+              {/* Body */}
+              <tbody className="divide-y divide-gray-200">
+                {products.map((item, index) => (
+                  <tr
+                    key={item.id}
+                    className="hover:bg-blue-50 transition-colors duration-200"
+                    style={{ backgroundColor: index % 2 === 0 ? "#f0f4ff" : "#f7f0ff" }} // สลับฟ้า-ม่วงอ่อน
+                  >
+                    <td className="p-2">{index + 1}</td>
+                    <td className="p-2">
+                      {item.images.length > 0 ? (
+                        <img
+                          src={item.images[0].url}
+                          className="w-20 h-20 object-cover rounded-md"
+                        />
+                      ) : (
+                        <div className="w-20 h-20 bg-gray-200 flex items-center justify-center rounded-md">
+                          No Image
+                        </div>
+                      )}
+                    </td>
+                    <td className="p-2">{item.title}</td>
+                    <td className="p-2 truncate max-w-xs">{item.description}</td>
+                    <td className="p-2">{numberFormat(item.price)}</td>
+                    <td className="p-2">{item.quantity}</td>
+                    <td className="p-2">{item.sold}</td>
+                    <td className="p-2">{dateFormat(item.updatedAt)}</td>
+                    <td className="p-2 flex gap-2">
+                      <Link
+                        to={`/admin/product/${item.id}`}
+                        className="bg-yellow-400 hover:bg-yellow-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
+                      >
+                        <Pencil />
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="bg-red-400 hover:bg-red-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
+                      >
+                        <Trash />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
       </form>
     </div>
   );
 };
 
 export default FormProduct;
+
