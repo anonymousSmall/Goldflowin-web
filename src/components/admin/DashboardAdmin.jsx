@@ -1,4 +1,3 @@
-// src/pages/admin/DashboardAdmin.jsx
 import React, { useMemo } from "react";
 import {
   Users,
@@ -30,14 +29,17 @@ import {
 
 const DashboardAdmin = () => {
   const navigate = useNavigate();
-  const { users, products, categories, orders } = useEcomStore((state) => ({
-    users: state.users || [],
-    products: state.products || [],
-    categories: state.categories || [],
-    orders: state.orders || [],
-  }));
 
-  // ✅ Summary Data
+  // ✅ Default empty arrays เพื่อป้องกัน undefined
+  const { users = [], products = [], categories = [], orders = [] } = useEcomStore(
+    (state) => ({
+      users: state.users,
+      products: state.products,
+      categories: state.categories,
+      orders: state.orders,
+    })
+  );
+
   const stats = {
     users: users.length,
     products: products.length,
@@ -45,33 +47,27 @@ const DashboardAdmin = () => {
     orders: orders.length,
   };
 
-  // ✅ Orders per month
+  // ✅ Sales data
   const salesData = useMemo(() => {
-    if (!orders || orders.length === 0)
-      return [
-        { month: "Jan", sales: 0 },
-        { month: "Feb", sales: 0 },
-      ];
+    if (!orders.length) return [];
     const grouped = {};
     orders.forEach((o) => {
-      const month = new Date(o.createdAt).toLocaleString("en-US", {
-        month: "short",
-      });
+      const month = new Date(o.createdAt).toLocaleString("en-US", { month: "short" });
       grouped[month] = (grouped[month] || 0) + (o.total || 0);
     });
     return Object.entries(grouped).map(([month, sales]) => ({ month, sales }));
   }, [orders]);
 
-  // ✅ Category Pie
+  // ✅ Category data
   const categoryData = useMemo(() => {
-    if (!products || !categories) return [];
+    if (!products.length) return [];
     const grouped = {};
     products.forEach((p) => {
       const cat = p.category?.name || "อื่น ๆ";
       grouped[cat] = (grouped[cat] || 0) + 1;
     });
     return Object.entries(grouped).map(([name, value]) => ({ name, value }));
-  }, [products, categories]);
+  }, [products]);
 
   const COLORS = ["#818cf8", "#a78bfa", "#c084fc", "#e879f9", "#93c5fd"];
 
@@ -86,7 +82,7 @@ const DashboardAdmin = () => {
         Dashboard Overview
       </motion.h1>
 
-      {/* ✅ Stat Cards */}
+      {/* Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <ClickableStatCard
           title="Users"
@@ -116,7 +112,7 @@ const DashboardAdmin = () => {
         />
       </div>
 
-      {/* ✅ Charts Section */}
+      {/* Charts */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-10">
         {/* Sales Chart */}
         <motion.div
@@ -129,15 +125,19 @@ const DashboardAdmin = () => {
             <TrendingUp size={20} /> Monthly Sales
           </h2>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={salesData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="sales" fill="#818cf8" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            {salesData.length ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={salesData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="sales" fill="#818cf8" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <p className="text-gray-400 text-center mt-8">No sales data available</p>
+            )}
           </div>
         </motion.div>
 
@@ -152,37 +152,39 @@ const DashboardAdmin = () => {
             <PieChartIcon size={20} /> Top Categories
           </h2>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={categoryData}
-                  dataKey="value"
-                  nameKey="name"
-                  outerRadius={80}
-                  label
-                >
-                  {categoryData.map((entry, index) => (
-                    <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
+            {categoryData.length ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={categoryData}
+                    dataKey="value"
+                    nameKey="name"
+                    outerRadius={80}
+                    label
+                  >
+                    {categoryData.map((entry, index) => (
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <p className="text-gray-400 text-center mt-8">No category data</p>
+            )}
           </div>
         </motion.div>
       </div>
 
-      {/* ✅ Quick Actions */}
+      {/* Quick Actions */}
       <motion.div
         className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-md border border-purple-100 p-6 mb-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9 }}
       >
-        <h2 className="text-xl font-semibold text-indigo-900 mb-4">
-          Quick Actions
-        </h2>
+        <h2 className="text-xl font-semibold text-indigo-900 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <ActionButton
             label="เพิ่มสินค้าใหม่"
@@ -204,36 +206,11 @@ const DashboardAdmin = () => {
           />
         </div>
       </motion.div>
-
-      {/* ✅ Recent Activity */}
-      <motion.div
-        className="bg-white/70 backdrop-blur-md rounded-2xl shadow-md p-6 border border-blue-100"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <h2 className="text-xl font-semibold text-indigo-900 mb-4">
-          Recent Activity
-        </h2>
-        <ul className="space-y-3 text-gray-700 text-sm md:text-base">
-          {products.slice(0, 4).map((p, i) => (
-            <li key={i}>
-              🛒 เพิ่มสินค้าใหม่ <strong>{p.title}</strong>{" "}
-              เมื่อ{" "}
-              {new Date(p.createdAt).toLocaleDateString("th-TH", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              })}
-            </li>
-          ))}
-        </ul>
-      </motion.div>
     </div>
   );
 };
 
-/* ✅ คลิกได้ (Stat Cards with Navigation) */
+// ✅ Clickable Stat Card
 const ClickableStatCard = ({ title, value, icon, color, onClick }) => (
   <motion.div
     onClick={onClick}
@@ -248,7 +225,7 @@ const ClickableStatCard = ({ title, value, icon, color, onClick }) => (
   </motion.div>
 );
 
-/* ✅ Static Stat Card */
+// ✅ Static Stat Card
 const StatCard = ({ title, value, icon, color }) => (
   <motion.div
     className={`rounded-2xl shadow-md bg-gradient-to-br ${color} p-6 text-white flex items-center justify-between hover:shadow-lg transition-all hover:scale-[1.03] duration-300`}
@@ -261,15 +238,14 @@ const StatCard = ({ title, value, icon, color }) => (
   </motion.div>
 );
 
-/* ✅ Quick Action Button */
+// ✅ Quick Action Button
 const ActionButton = ({ label, icon, color, onClick }) => (
   <motion.button
     onClick={onClick}
     className={`flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-br ${color} text-white font-medium shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300`}
     whileTap={{ scale: 0.97 }}
   >
-    {icon}
-    {label}
+    {icon} {label}
   </motion.button>
 );
 
