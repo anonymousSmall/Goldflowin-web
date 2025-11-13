@@ -66,14 +66,14 @@ const TableUsers = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="bg-gradient-to-br from-white via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-lg rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+      <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 shadow-md rounded-2xl border border-blue-100">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center p-5 border-b border-gray-200 dark:border-gray-700 gap-3">
+        <div className="flex flex-col md:flex-row justify-between items-center p-5 border-b border-blue-100 gap-3">
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+            <h2 className="text-2xl font-semibold text-indigo-700">
               👥 จัดการผู้ใช้งาน
             </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-indigo-400">
               ตรวจสอบสิทธิ์และสถานะของผู้ใช้ทั้งหมดในระบบ
             </p>
           </div>
@@ -85,39 +85,36 @@ const TableUsers = () => {
               placeholder="🔍 ค้นหาอีเมลผู้ใช้..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/80 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 
-              rounded-lg py-2 pl-10 pr-4 text-sm text-gray-700 dark:text-gray-200 
-              focus:ring-2 focus:ring-indigo-400 focus:outline-none shadow-sm"
+              className="w-full bg-white/70 border border-indigo-100 rounded-lg py-2 pl-10 pr-4 text-sm text-gray-700 
+              focus:ring-2 focus:ring-indigo-300 focus:outline-none shadow-sm placeholder-indigo-300"
             />
-            <Search className="absolute left-3 top-2.5 text-gray-400 dark:text-gray-500 w-4 h-4" />
+            <Search className="absolute left-3 top-2.5 text-indigo-300 w-4 h-4" />
           </div>
         </div>
 
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
-            <thead className="bg-gradient-to-r from-indigo-500 via-blue-500 to-sky-400 text-white">
-              <tr>
-                <th className="py-3 px-4 text-sm md:text-base">#</th>
-                <th className="py-3 px-4 text-sm md:text-base">Email</th>
-                <th className="py-3 px-4 text-sm md:text-base">สิทธิ์</th>
-                <th className="py-3 px-4 text-sm md:text-base">สถานะ</th>
-                <th className="py-3 px-4 text-sm md:text-base text-center">
-                  จัดการ
-                </th>
+            <thead className="bg-gradient-to-r from-indigo-200 via-blue-200 to-sky-200 text-indigo-800">
+              <tr className="text-sm md:text-base">
+                <th className="py-3 px-4">#</th>
+                <th className="py-3 px-4">Email</th>
+                <th className="py-3 px-4">สิทธิ์</th>
+                <th className="py-3 px-4">สถานะ</th>
+                <th className="py-3 px-4 text-center">จัดการ</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="divide-y divide-indigo-100">
               {currentUsers.length > 0 ? (
                 currentUsers.map((el, i) => (
                   <tr
                     key={el.id}
-                    className="hover:bg-indigo-50 dark:hover:bg-gray-800 transition-all duration-150"
+                    className="hover:bg-indigo-50/70 transition-all duration-200"
                   >
-                    <td className="py-3 px-4 text-gray-700 dark:text-gray-300 text-sm">
+                    <td className="py-3 px-4 text-gray-700 text-sm">
                       {indexOfFirstUser + i + 1}
                     </td>
-                    <td className="py-3 px-4 text-gray-700 dark:text-gray-200 break-words text-sm">
+                    <td className="py-3 px-4 text-gray-700 break-words text-sm">
                       {el.email}
                     </td>
                     <td className="py-3 px-4">
@@ -126,8 +123,7 @@ const TableUsers = () => {
                           handleChangeUserRole(el.id, e.target.value)
                         }
                         value={el.role}
-                        className="border border-gray-300 dark:border-gray-600 rounded-md px-2 py-1 text-sm 
-                        focus:ring-2 focus:ring-indigo-400 bg-white/80 dark:bg-gray-700 dark:text-gray-100"
+                        className="border border-indigo-100 rounded-md px-2 py-1 text-sm focus:ring-2 focus:ring-indigo-200 bg-white/80 text-gray-700"
                       >
                         <option value="user">user</option>
                         <option value="admin">admin</option>
@@ -137,8 +133,8 @@ const TableUsers = () => {
                       <span
                         className={`px-3 py-1 rounded-full font-medium ${
                           el.enabled
-                            ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-700 dark:text-emerald-100"
-                            : "bg-rose-100 text-rose-700 dark:bg-rose-700 dark:text-rose-100"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-rose-100 text-rose-700"
                         }`}
                       >
                         {el.enabled ? "Active" : "Inactive"}
@@ -146,11 +142,11 @@ const TableUsers = () => {
                     </td>
                     <td className="py-3 px-4 text-center">
                       <button
-                        className={`px-3 py-1.5 rounded-md text-white text-sm shadow-md font-medium transition-all 
+                        className={`px-3 py-1.5 rounded-md text-white text-sm font-medium transition-all shadow-sm 
                         ${
                           el.enabled
-                            ? "bg-amber-400 hover:bg-amber-500"
-                            : "bg-sky-500 hover:bg-sky-600"
+                            ? "bg-gradient-to-r from-rose-300 to-rose-400 hover:from-rose-400 hover:to-rose-500"
+                            : "bg-gradient-to-r from-sky-300 to-indigo-400 hover:from-sky-400 hover:to-indigo-500"
                         }`}
                         onClick={() =>
                           handleChangeUserStatus(el.id, el.enabled)
@@ -165,7 +161,7 @@ const TableUsers = () => {
                 <tr>
                   <td
                     colSpan="5"
-                    className="text-center py-6 text-gray-500 dark:text-gray-400"
+                    className="text-center py-6 text-indigo-400 text-sm"
                   >
                     ไม่มีข้อมูลผู้ใช้ในระบบ
                   </td>
@@ -175,9 +171,9 @@ const TableUsers = () => {
           </table>
         </div>
 
-        {/* Pagination + Selector */}
-        <div className="flex flex-col md:flex-row justify-between items-center p-5 gap-4 bg-white/70 dark:bg-gray-900/70 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 text-sm">
+        {/* Pagination */}
+        <div className="flex flex-col md:flex-row justify-between items-center p-5 gap-4 bg-gradient-to-r from-white via-blue-50 to-indigo-50 border-t border-indigo-100">
+          <div className="flex items-center gap-2 text-indigo-500 text-sm">
             <span>แสดงต่อหน้า:</span>
             <select
               value={usersPerPage}
@@ -185,7 +181,7 @@ const TableUsers = () => {
                 setUsersPerPage(Number(e.target.value));
                 setCurrentPage(1);
               }}
-              className="border border-gray-300 dark:border-gray-600 rounded-md px-2 py-1 bg-white/80 dark:bg-gray-800 dark:text-gray-100"
+              className="border border-indigo-100 rounded-md px-2 py-1 bg-white/80 text-indigo-600 focus:ring-2 focus:ring-indigo-200"
             >
               <option value="5">5</option>
               <option value="10">10</option>
@@ -199,7 +195,7 @@ const TableUsers = () => {
               <button
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage((prev) => prev - 1)}
-                className="px-3 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 disabled:opacity-40"
+                className="px-3 py-1 rounded-md bg-white border border-indigo-100 text-indigo-500 hover:bg-indigo-50 disabled:opacity-40"
               >
                 ⬅ ก่อนหน้า
               </button>
@@ -210,8 +206,8 @@ const TableUsers = () => {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`px-3 py-1 rounded-md font-medium transition-all ${
                     currentPage === i + 1
-                      ? "bg-indigo-500 text-white shadow-sm"
-                      : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200"
+                      ? "bg-indigo-300 text-white shadow-sm"
+                      : "bg-white border border-indigo-100 text-indigo-500 hover:bg-indigo-50"
                   }`}
                 >
                   {i + 1}
@@ -221,7 +217,7 @@ const TableUsers = () => {
               <button
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage((prev) => prev + 1)}
-                className="px-3 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 disabled:opacity-40"
+                className="px-3 py-1 rounded-md bg-white border border-indigo-100 text-indigo-500 hover:bg-indigo-50 disabled:opacity-40"
               >
                 ถัดไป ➡
               </button>
