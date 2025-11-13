@@ -14,7 +14,7 @@ const LoadingToRedirect = () => {
         }
         return currentCount - 1;
       });
-    }, 3000);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
   if (redirect) {
@@ -28,3 +28,4 @@ const LoadingToRedirect = () => {
 };
 
 export default LoadingToRedirect;
+
