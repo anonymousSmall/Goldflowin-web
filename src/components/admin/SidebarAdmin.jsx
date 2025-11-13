@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   UserCog,
@@ -29,12 +29,12 @@ const SidebarAdmin = () => {
 
   return (
     <>
-      {/* Mobile top bar */}
-      <div className="md:hidden bg-gradient-to-r from-gray-900 to-gray-800 text-white flex justify-between items-center px-4 py-3 shadow-lg fixed w-full z-50">
-        <h1 className="text-xl font-semibold">Admin Panel</h1>
+      {/* Top bar (mobile only) */}
+      <div className="md:hidden bg-gradient-to-r from-blue-600 to-blue-800 text-white flex justify-between items-center px-4 py-3 shadow-md fixed w-full z-50">
+        <h1 className="text-lg font-semibold tracking-wide">Admin Panel</h1>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-gray-200 hover:text-white transition"
+          className="text-gray-100 hover:text-white transition"
         >
           {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -42,24 +42,27 @@ const SidebarAdmin = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed md:static top-0 left-0 h-full md:h-screen w-64 bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100 transform transition-transform duration-300 ease-in-out z-40 ${
-          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        className={`fixed md:static top-0 left-0 h-full md:h-screen w-64 
+        bg-gradient-to-b from-blue-700 to-gray-900 text-gray-100 
+        shadow-xl transform transition-transform duration-300 ease-in-out 
+        z-40 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
-        <div className="hidden md:flex h-24 bg-gray-900 items-center justify-center text-2xl font-bold border-b border-gray-700">
+        {/* Header */}
+        <div className="hidden md:flex h-24 bg-blue-800 items-center justify-center text-2xl font-bold border-b border-blue-600 shadow-md">
           Admin Panel
         </div>
 
+        {/* Nav Menu */}
         <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
           {menuItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                `flex items-center px-4 py-2 rounded-lg text-base font-medium transition-all duration-200 ${
                   isActive
-                    ? "bg-blue-600 text-white shadow-lg"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-300 hover:bg-blue-600/70 hover:text-white"
                 }`
               }
               onClick={() => setIsOpen(false)}
@@ -70,13 +73,14 @@ const SidebarAdmin = () => {
           ))}
         </nav>
 
-        <div className="px-4 pb-6 border-t border-gray-700">
+        {/* Logout */}
+        <div className="px-4 pb-6 border-t border-blue-600">
           <button
             onClick={() => {
               logout();
               setIsOpen(false);
             }}
-            className="flex w-full items-center px-4 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-600 hover:text-white transition-colors duration-200"
+            className="flex w-full items-center px-4 py-2 rounded-lg text-base font-medium text-gray-300 hover:bg-red-600 hover:text-white transition-all duration-200"
           >
             <LogOut className="mr-2" />
             Logout
@@ -84,10 +88,10 @@ const SidebarAdmin = () => {
         </div>
       </div>
 
-      {/* Overlay for mobile when sidebar open */}
+      {/* Overlay (mobile only) */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-30 md:hidden"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
