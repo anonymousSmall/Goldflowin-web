@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import useEcomStore from "../../store/ecom-store";
 import { readProduct, updateProduct } from "../../api/product";
 import { toast } from "react-toastify";
@@ -25,7 +25,7 @@ const FormEditProduct = () => {
   const [form, setForm] = useState(initialState);
   const [fadeIn, setFadeIn] = useState(false);
   const descriptionRef = useRef(null);
-  const [textareaHeight, setTextareaHeight] = useState(80); // initial height
+  const [textareaHeight, setTextareaHeight] = useState(80);
 
   useEffect(() => {
     getCategory();
@@ -34,7 +34,6 @@ const FormEditProduct = () => {
   }, []);
 
   useEffect(() => {
-    // Auto-expand with smooth height
     if (descriptionRef.current) {
       descriptionRef.current.style.height = "auto";
       setTextareaHeight(descriptionRef.current.scrollHeight);
@@ -74,6 +73,15 @@ const FormEditProduct = () => {
     { name: "quantity", placeholder: "จำนวน", type: "number", value: form.quantity },
   ];
 
+  const inputClasses =
+    "border border-gray-300 rounded-lg p-2 w-full transform transition-all duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white text-gray-800 hover:scale-105 hover:shadow-[0_0_15px_#a78bfa]";
+
+  const selectClasses =
+    "border border-gray-300 rounded-lg p-2 w-full transform transition-all duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white text-gray-800 hover:scale-105 hover:shadow-[0_0_15px_#a78bfa]";
+
+  const buttonClasses =
+    "w-full bg-gradient-to-r from-purple-400 to-blue-400 hover:from-blue-400 hover:to-purple-400 text-white font-semibold py-3 rounded-lg shadow-md transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_25px_#a78bfa]";
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-purple-50 to-blue-50 flex items-center justify-center p-4">
       <form
@@ -98,21 +106,21 @@ const FormEditProduct = () => {
               value={field.value}
               placeholder={field.placeholder}
               onChange={handleOnChange}
+              className={inputClasses}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: fadeIn ? 1 : 0, y: fadeIn ? 0 : -10 }}
               transition={{ delay: index * 0.15 }}
-              className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full transform transition hover:scale-105"
             />
           ))}
 
-          {/* Description textarea with framer-motion smooth height */}
+          {/* Description textarea with smooth spring height and glow */}
           <motion.textarea
             ref={descriptionRef}
             name="description"
             value={form.description}
             placeholder="คำอธิบายสินค้า"
             onChange={handleOnChange}
-            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full col-span-1 md:col-span-2 resize-none transform transition hover:scale-105 overflow-hidden"
+            className={inputClasses + " col-span-1 md:col-span-2 resize-none overflow-hidden"}
             style={{ minHeight: 80 }}
             animate={{ height: textareaHeight }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -120,7 +128,7 @@ const FormEditProduct = () => {
 
           {/* Category select */}
           <motion.select
-            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full col-span-1 md:col-span-2 transform transition hover:scale-105"
+            className={selectClasses + " col-span-1 md:col-span-2"}
             name="categoryId"
             onChange={handleOnChange}
             required
@@ -152,7 +160,7 @@ const FormEditProduct = () => {
         {/* Submit button */}
         <motion.button
           type="submit"
-          className="w-full bg-gradient-to-r from-purple-400 to-blue-400 hover:from-blue-400 hover:to-purple-400 text-white font-semibold py-3 rounded-lg shadow-md transition transform hover:scale-105"
+          className={buttonClasses}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: fadeIn ? 1 : 0, y: fadeIn ? 0 : -10 }}
           transition={{ delay: (fields.length + 3) * 0.15 }}
