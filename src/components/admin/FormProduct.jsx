@@ -51,7 +51,7 @@ const FormProduct = () => {
   const handleDelete = async (id) => {
     if (window.confirm("จะลบจริงๆ หรอ")) {
       try {
-        const res = await deleteProduct(token, id);
+        await deleteProduct(token, id);
         toast.success("Deleted สินค้าเรียบร้อยแล้ว");
         getProduct();
       } catch (err) {
@@ -70,6 +70,7 @@ const FormProduct = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
+        {/* Form */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
           {/* ชื่อสินค้า */}
           <label className="flex flex-col">
@@ -147,92 +148,96 @@ const FormProduct = () => {
           </label>
         </div>
 
+        {/* Upload File */}
         <Uploadfile form={form} setForm={setForm} />
 
+        {/* Gradient Glow Button */}
         <button
           type="submit"
-          className="mt-4 flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+          className="mt-4 flex items-center gap-2 text-white font-semibold py-2 px-4 rounded-lg shadow-lg 
+                     bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-[length:200%_200%] 
+                     animate-gradient-x hover:scale-105 transition-transform duration-300"
         >
           <CirclePlusIcon /> เพิ่มสินค้า
         </button>
 
-        {/* ตารางสินค้า */}
-          <div className="mt-8 overflow-x-auto rounded-lg shadow-md">
-            <table className="min-w-full divide-y divide-gray-200 bg-white">
-              {/* Header */}
-              <thead className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-100">
-                <tr>
-                  {[
-                    "No.",
-                    "รูปภาพ",
-                    "ชื่อสินค้า",
-                    "รายละเอียด",
-                    "ราคา",
-                    "จำนวน",
-                    "จำนวนที่ขายได้",
-                    "วันที่อัปเดต",
-                    "จัดการ",
-                  ].map((th, i) => (
-                    <th
-                      key={i}
-                      className="p-3 text-left text-blue-800 font-semibold uppercase text-sm"
-                    >
-                      {th}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-          
-              {/* Body */}
-              <tbody className="divide-y divide-gray-200">
-                {products.map((item, index) => (
-                  <tr
-                    key={item.id}
-                    className="hover:bg-blue-50 transition-colors duration-200"
-                    style={{ backgroundColor: index % 2 === 0 ? "#f0f4ff" : "#f7f0ff" }} // สลับฟ้า-ม่วงอ่อน
+        {/* Table */}
+        <div className="mt-8 overflow-x-auto rounded-lg shadow-md">
+          <table className="min-w-full divide-y divide-gray-200 bg-white">
+            <thead className="bg-gradient-to-r from-blue-100 via-purple-100 to-blue-100">
+              <tr>
+                {[
+                  "No.",
+                  "รูปภาพ",
+                  "ชื่อสินค้า",
+                  "รายละเอียด",
+                  "ราคา",
+                  "จำนวน",
+                  "จำนวนที่ขายได้",
+                  "วันที่อัปเดต",
+                  "จัดการ",
+                ].map((th, i) => (
+                  <th
+                    key={i}
+                    className="p-3 text-left text-blue-800 font-semibold uppercase text-sm"
                   >
-                    <td className="p-2">{index + 1}</td>
-                    <td className="p-2">
-                      {item.images.length > 0 ? (
-                        <img
-                          src={item.images[0].url}
-                          className="w-20 h-20 object-cover rounded-md"
-                        />
-                      ) : (
-                        <div className="w-20 h-20 bg-gray-200 flex items-center justify-center rounded-md">
-                          No Image
-                        </div>
-                      )}
-                    </td>
-                    <td className="p-2">{item.title}</td>
-                    <td className="p-2 truncate max-w-xs">{item.description}</td>
-                    <td className="p-2">{numberFormat(item.price)}</td>
-                    <td className="p-2">{item.quantity}</td>
-                    <td className="p-2">{item.sold}</td>
-                    <td className="p-2">{dateFormat(item.updatedAt)}</td>
-                    <td className="p-2 flex gap-2">
-                      <Link
-                        to={`/admin/product/${item.id}`}
-                        className="bg-yellow-400 hover:bg-yellow-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
-                      >
-                        <Pencil />
-                      </Link>
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        className="bg-red-400 hover:bg-red-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
-                      >
-                        <Trash />
-                      </button>
-                    </td>
-                  </tr>
+                    {th}
+                  </th>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </tr>
+            </thead>
+
+            <tbody className="divide-y divide-gray-200">
+              {products.map((item, index) => (
+                <tr
+                  key={item.id}
+                  className="hover:bg-blue-50 transition-colors duration-200 animate-fade-in-slow"
+                  style={{
+                    backgroundColor: index % 2 === 0 ? "#f0f4ff" : "#f7f0ff",
+                    animationDelay: `${index * 0.05}s`,
+                  }}
+                >
+                  <td className="p-2">{index + 1}</td>
+                  <td className="p-2">
+                    {item.images.length > 0 ? (
+                      <img
+                        src={item.images[0].url}
+                        className="w-20 h-20 object-cover rounded-md"
+                      />
+                    ) : (
+                      <div className="w-20 h-20 bg-gray-200 flex items-center justify-center rounded-md">
+                        No Image
+                      </div>
+                    )}
+                  </td>
+                  <td className="p-2">{item.title}</td>
+                  <td className="p-2 truncate max-w-xs">{item.description}</td>
+                  <td className="p-2">{numberFormat(item.price)}</td>
+                  <td className="p-2">{item.quantity}</td>
+                  <td className="p-2">{item.sold}</td>
+                  <td className="p-2">{dateFormat(item.updatedAt)}</td>
+                  <td className="p-2 flex gap-2">
+                    <Link
+                      to={`/admin/product/${item.id}`}
+                      className="bg-yellow-400 hover:bg-yellow-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
+                    >
+                      <Pencil />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="bg-red-400 hover:bg-red-500 p-1 rounded-md shadow-sm transition-transform transform hover:scale-105"
+                    >
+                      <Trash />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </form>
     </div>
   );
 };
 
 export default FormProduct;
-
