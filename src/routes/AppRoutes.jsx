@@ -33,6 +33,7 @@ import AllProduct from "../pages/product/AllProduct";
 import Article from "../pages/admin/Article";
 import News1 from "../pages/article/News1";
 import StateContainer from "../components/admin/StateContainer";
+import DashboardAdmin from "../../components/admin/DashboardAdmin";
 import CatalogProduct from "../pages/CatalogProduct";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 
@@ -72,7 +73,8 @@ const router = createBrowserRouter([
       { path: "brand", element: <Brand /> },
       { path: "brand/:id", element: <EditBrand /> },
       { path: "article", element: <Article /> },
-      { path: "dashboard", element: <StateContainer /> },
+      // { path: "dashboard", element: <StateContainer /> },
+      { path: "dashboard", element: <DashboardAdmin /> },
     ],
   },
   {
@@ -95,4 +97,5 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
+
 
