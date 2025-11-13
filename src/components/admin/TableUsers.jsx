@@ -109,7 +109,7 @@ const TableUsers = () => {
                 currentUsers.map((el, i) => (
                   <tr
                     key={el.id}
-                    className="hover:bg-indigo-50/70 transition-all duration-200"
+                    className="transition-all duration-200 hover:shadow-lg hover:shadow-indigo-100/50 hover:scale-[1.01] rounded-lg"
                   >
                     <td className="py-3 px-4 text-gray-700 text-sm">
                       {indexOfFirstUser + i + 1}
@@ -131,10 +131,10 @@ const TableUsers = () => {
                     </td>
                     <td className="py-3 px-4 text-sm">
                       <span
-                        className={`px-3 py-1 rounded-full font-medium ${
+                        className={`px-3 py-1 rounded-full font-medium transition-all duration-200 ${
                           el.enabled
-                            ? "bg-green-100 text-green-700"
-                            : "bg-rose-100 text-rose-700"
+                            ? "bg-green-100 text-green-700 hover:bg-green-200"
+                            : "bg-rose-100 text-rose-700 hover:bg-rose-200"
                         }`}
                       >
                         {el.enabled ? "Active" : "Inactive"}
@@ -143,7 +143,7 @@ const TableUsers = () => {
                     <td className="py-3 px-4 text-center">
                       <button
                         className={`px-3 py-1.5 rounded-md text-white text-sm font-medium transition-all shadow-sm 
-                        ${
+                        hover:shadow-lg hover:scale-105 ${
                           el.enabled
                             ? "bg-gradient-to-r from-rose-300 to-rose-400 hover:from-rose-400 hover:to-rose-500"
                             : "bg-gradient-to-r from-sky-300 to-indigo-400 hover:from-sky-400 hover:to-indigo-500"
@@ -206,7 +206,7 @@ const TableUsers = () => {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`px-3 py-1 rounded-md font-medium transition-all ${
                     currentPage === i + 1
-                      ? "bg-indigo-300 text-white shadow-sm"
+                      ? "bg-indigo-300 text-white shadow-sm hover:shadow-md hover:scale-105"
                       : "bg-white border border-indigo-100 text-indigo-500 hover:bg-indigo-50"
                   }`}
                 >
