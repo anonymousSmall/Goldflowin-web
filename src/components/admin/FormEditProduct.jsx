@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import useEcomStore from "../../store/ecom-store";
 import { readProduct, updateProduct } from "../../api/product";
 import { toast } from "react-toastify";
@@ -24,6 +25,7 @@ const FormEditProduct = () => {
   const [form, setForm] = useState(initialState);
   const [fadeIn, setFadeIn] = useState(false);
   const descriptionRef = useRef(null);
+  const [textareaHeight, setTextareaHeight] = useState(80); // initial height
 
   useEffect(() => {
     getCategory();
@@ -32,10 +34,10 @@ const FormEditProduct = () => {
   }, []);
 
   useEffect(() => {
-    // Auto-expand textarea when form.description changes
+    // Auto-expand with smooth height
     if (descriptionRef.current) {
-      descriptionRef.current.style.height = "auto"; // Reset
-      descriptionRef.current.style.height = `${descriptionRef.current.scrollHeight}px`;
+      descriptionRef.current.style.height = "auto";
+      setTextareaHeight(descriptionRef.current.scrollHeight);
     }
   }, [form.description]);
 
@@ -66,7 +68,6 @@ const FormEditProduct = () => {
     }
   };
 
-  // Input fields config
   const fields = [
     { name: "title", placeholder: "ชื่อสินค้า", type: "text", value: form.title },
     { name: "price", placeholder: "ราคา", type: "number", value: form.price },
@@ -74,58 +75,59 @@ const FormEditProduct = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-50 to-blue-50 flex items-center justify-center p-4 transition-opacity duration-700 ease-in-out">
+    <div className="min-h-screen bg-gradient-to-r from-purple-50 to-blue-50 flex items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
-        className={`w-full max-w-3xl bg-white p-6 rounded-xl shadow-lg space-y-4 transform transition-all duration-700 ease-in-out`}
+        className="w-full max-w-3xl bg-white p-6 rounded-xl shadow-lg space-y-4 transform transition-all duration-700 ease-in-out"
       >
-        <h1
-          className={`text-2xl md:text-3xl font-bold text-purple-700 text-center mb-4 transition-all duration-700 ease-in-out ${
-            fadeIn ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
-          }`}
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: fadeIn ? 1 : 0, y: fadeIn ? 0 : -20 }}
+          transition={{ duration: 0.6 }}
+          className="text-2xl md:text-3xl font-bold text-purple-700 text-center mb-4"
         >
           แก้ไขสินค้า
-        </h1>
+        </motion.h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {fields.map((field, index) => (
-            <input
+            <motion.input
               key={index}
               type={field.type}
               name={field.name}
               value={field.value}
               placeholder={field.placeholder}
               onChange={handleOnChange}
-              className={`border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full transform transition duration-500 ease-in-out hover:scale-105
-                ${fadeIn ? `opacity-100 translate-y-0` : "opacity-0 -translate-y-6"}
-              `}
-              style={{ transitionDelay: `${index * 150}ms` }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: fadeIn ? 1 : 0, y: fadeIn ? 0 : -10 }}
+              transition={{ delay: index * 0.15 }}
+              className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full transform transition hover:scale-105"
             />
           ))}
 
-          {/* Description textarea auto-expand */}
-          <textarea
+          {/* Description textarea with framer-motion smooth height */}
+          <motion.textarea
             ref={descriptionRef}
             name="description"
             value={form.description}
             placeholder="คำอธิบายสินค้า"
             onChange={handleOnChange}
-            className={`border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full col-span-1 md:col-span-2 resize-none transform transition duration-500 ease-in-out hover:scale-105
-              ${fadeIn ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}
-            `}
-            style={{ transitionDelay: `${fields.length * 150}ms`, minHeight: "80px" }}
+            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full col-span-1 md:col-span-2 resize-none transform transition hover:scale-105 overflow-hidden"
+            style={{ minHeight: 80 }}
+            animate={{ height: textareaHeight }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
           />
 
           {/* Category select */}
-          <select
-            className={`border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full col-span-1 md:col-span-2 transform transition duration-500 ease-in-out hover:scale-105
-              ${fadeIn ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}
-            `}
+          <motion.select
+            className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-purple-300 w-full col-span-1 md:col-span-2 transform transition hover:scale-105"
             name="categoryId"
             onChange={handleOnChange}
             required
             value={form.categoryId}
-            style={{ transitionDelay: `${(fields.length + 1) * 150}ms` }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: fadeIn ? 1 : 0, y: fadeIn ? 0 : -10 }}
+            transition={{ delay: (fields.length + 1) * 0.15 }}
           >
             <option value="" disabled>
               กรุณาเลือกหมวดหมู่
@@ -135,29 +137,28 @@ const FormEditProduct = () => {
                 {item.name}
               </option>
             ))}
-          </select>
+          </motion.select>
         </div>
 
         {/* Upload file */}
-        <div
-          className={`transition-all duration-500 ease-in-out transform ${
-            fadeIn ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
-          }`}
-          style={{ transitionDelay: `${(fields.length + 2) * 150}ms` }}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: fadeIn ? 1 : 0, y: fadeIn ? 0 : -10 }}
+          transition={{ delay: (fields.length + 2) * 0.15 }}
         >
           <Uploadfile form={form} setForm={setForm} />
-        </div>
+        </motion.div>
 
         {/* Submit button */}
-        <button
+        <motion.button
           type="submit"
-          className={`w-full bg-gradient-to-r from-purple-400 to-blue-400 hover:from-blue-400 hover:to-purple-400 text-white font-semibold py-3 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105
-            ${fadeIn ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}
-          `}
-          style={{ transitionDelay: `${(fields.length + 3) * 150}ms` }}
+          className="w-full bg-gradient-to-r from-purple-400 to-blue-400 hover:from-blue-400 hover:to-purple-400 text-white font-semibold py-3 rounded-lg shadow-md transition transform hover:scale-105"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: fadeIn ? 1 : 0, y: fadeIn ? 0 : -10 }}
+          transition={{ delay: (fields.length + 3) * 0.15 }}
         >
           แก้ไขสินค้า
-        </button>
+        </motion.button>
       </form>
     </div>
   );
