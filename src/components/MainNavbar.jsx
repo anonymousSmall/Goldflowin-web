@@ -56,7 +56,7 @@ function MainNavbar() {
        {/* Desktop Menu */}
         <ul className={`${
             !toggle ? "hidden" : "flex"
-          } flex flex-col my-5 md:flex md:flex-row gap-6 items-center`}
+          } flex flex-col my-5 lg:flex lg:flex-row gap-6 items-center`}
         >
           {navItems.map((item) => (
             <NavLink
@@ -185,6 +185,7 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
 
 
