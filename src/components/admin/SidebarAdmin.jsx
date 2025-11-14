@@ -77,27 +77,27 @@ const SidebarAdmin = () => {
         </nav>
 
         {/* Logout */}
-<div className="px-4 pb-6 border-t border-gray-200">
-  <button
-    onClick={() => {
-      logout();          
-      setIsOpen(false);  
-
-      toast.success("ออกจากระบบสำเร็จ!", {
-        position: "top-right",
-        autoClose: 1200,
-      });
-
-      setTimeout(() => {
-        navigate("/");   // Redirect ไปหน้า Home
-      }, 1200);          // ดีเลย์ให้ Toast แสดงก่อน
-    }}
-    className="flex w-full items-center px-4 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200"
-  >
-    <LogOut className="mr-2" />
-    Logout
-  </button>
-</div>
+        <div className="px-4 pb-6 border-t border-gray-200">
+          <button
+            onClick={() => {
+              logout();          
+              setIsOpen(false);  
+        
+              toast.success("ออกจากระบบสำเร็จ!", {
+                position: "top-right",
+                autoClose: 1200,
+              });
+        
+              setTimeout(() => {
+                navigate("/");   // Redirect ไปหน้า Home
+              }, 1200);          // ดีเลย์ให้ Toast แสดงก่อน
+            }}
+            className="flex w-full items-center px-4 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200"
+          >
+            <LogOut className="mr-2" />
+            Logout
+          </button>
+        </div>
 
 
 
@@ -108,7 +108,7 @@ const SidebarAdmin = () => {
           onClick={() => setIsOpen(false)}
         ></div>
       )}
-      </d>
+      </div>
   );
 };
 
