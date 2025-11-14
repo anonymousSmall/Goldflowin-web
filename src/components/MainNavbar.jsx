@@ -1,178 +1,69 @@
-import React, { useEffect, useState } from "react";
-import logo3 from "../assets/image/Logo3.png";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
-import useEcomStore from "../store/ecom-store";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { motion, AnimatePresence } from "framer-motion";
 
-function MainNavbar() {
-  const user = useEcomStore((s) => s.user);
-  const logout = useEcomStore((s) => s.logout);
-  const getCategory = useEcomStore((state) => state.getCategory);
-  const getProduct = useEcomStore((state) => state.getProduct);
-
-  useEffect(() => {
-    getCategory();
-    getProduct();
-  }, []);
-
-  const navItems = [
-    { name: "หน้าแรก", to: "/" },
-    { name: "CatalogProduct", to: "/Catalog" },
-    { name: "รายละเอียดสินค้า", to: "/AllProduct" },
-    { name: "ติดต่อเรา", to: "/contact" },
-  ];
-
+export default function Navbar() {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className="backdrop-blur-xl bg-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.05)] border-b border-white/30 sticky top-0 z-50">
-      <div className="container mx-auto max-w-[1320px] flex items-center justify-between py-4 px-6 lg:h-[80px]">
-
+    <nav className="w-full bg-white/40 backdrop-blur-lg shadow-md fixed top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        
         {/* Logo */}
-        <Link to={"/"}>
-          <img src={logo3} className="h-10 drop-shadow-sm transition-all hover:scale-[1.03]" alt="logo" />
-        </Link>
-
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex gap-8 items-center">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `px-4 py-2 rounded-xl text-[17px] transition-all duration-300 font-medium tracking-wide ${
-                  isActive
-                    ? "text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-lg shadow-blue-500/30"
-                    : "text-gray-100 hover:text-white hover:bg-white/10 backdrop-blur-md shadow-sm"
-                }`
-              }
-            >
-              {item.name}
-            </NavLink>
-          ))}
-        </ul>
-
-        {/* Profile (Desktop) */}
-        <div className="hidden lg:flex">
-          {user ? (
-            <Menu as="div" className="relative ml-4">
-              <MenuButton className="flex items-center rounded-full bg-white/30 p-1 backdrop-blur-md shadow-md hover:bg-white/50 transition-all">
-                <img
-                  alt=""
-                  src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
-                  className="size-9 rounded-full shadow-sm"
-                />
-              </MenuButton>
-
-              <MenuItems className="absolute right-0 mt-3 w-52 bg-white/80 backdrop-blur-lg shadow-xl rounded-xl py-2 border border-white/40">
-                <MenuItem>
-                  <Link
-                    to={"/user/history"}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg transition-all"
-                  >
-                    History
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <button
-                    onClick={() => logout()}
-                    className="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg transition-all"
-                  >
-                    Sign out
-                  </button>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
-          ) : (
-            <div className="flex gap-3">
-              <Link
-                to="/login"
-                className="px-4 py-2 bg-white/20 text-white rounded-xl shadow-md backdrop-blur-lg hover:bg-white/30 transition-all"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl shadow-lg hover:shadow-blue-400/40 transition-all"
-              >
-                Sign up
-              </Link>
-            </div>
-          )}
+        <div className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-sky-400 bg-clip-text text-transparent">
+          PremiumShop
         </div>
 
-        {/* Hamburger (iPad & Mobile) */}
+        {/* Hamburger (แสดงบน iPad + Mobile) */}
         <FaBars
           onClick={() => setToggle(!toggle)}
-          className="text-3xl text-white cursor-pointer lg:hidden drop-shadow-md active:scale-90 transition-all"
+          className="text-2xl text-indigo-500 cursor-pointer lg:hidden hover:scale-110 transition"
         />
+
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex gap-8 text-lg font-medium text-indigo-600">
+          <li className="hover:text-indigo-800 transition cursor-pointer">
+            หน้าแรก
+          </li>
+          <li className="hover:text-indigo-800 transition cursor-pointer">
+            สินค้า
+          </li>
+          <li className="hover:text-indigo-800 transition cursor-pointer">
+            เกี่ยวกับเรา
+          </li>
+          <li className="hover:text-indigo-800 transition cursor-pointer">
+            ติดต่อ
+          </li>
+        </ul>
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${
-          toggle ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <ul className="flex flex-col gap-1 px-6 pb-6 bg-white/20 backdrop-blur-xl shadow-inner rounded-b-2xl">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              onClick={() => setToggle(false)}
-              className="text-white text-lg py-3 px-2 rounded-xl hover:bg-white/20 transition-all tracking-wide"
-            >
-              {item.name}
-            </NavLink>
-          ))}
-
-          {/* Auth Mobile */}
-          <div className="mt-4 flex flex-col gap-3">
-            {user ? (
-              <>
-                <Link
-                  to="/user/history"
-                  onClick={() => setToggle(false)}
-                  className="text-white text-lg py-3 px-2 rounded-xl bg-white/10 hover:bg-white/20"
-                >
-                  History
-                </Link>
-
-                <button
-                  onClick={() => {
-                    logout();
-                    setToggle(false);
-                  }}
-                  className="text-white text-lg py-3 px-2 rounded-xl bg-red-500/20 hover:bg-red-500/30"
-                >
-                  Sign out
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  onClick={() => setToggle(false)}
-                  className="text-white text-lg py-3 px-2 rounded-xl bg-white/10 hover:bg-white/20"
-                >
-                  Login
-                </Link>
-
-                <Link
-                  to="/register"
-                  onClick={() => setToggle(false)}
-                  className="text-lg text-white py-3 px-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 shadow-md hover:shadow-blue-500/40"
-                >
-                  Sign up
-                </Link>
-              </>
-            )}
-          </div>
-        </ul>
-      </div>
+      <AnimatePresence>
+        {toggle && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden w-full bg-white/70 backdrop-blur-xl shadow-lg rounded-b-2xl"
+          >
+            <ul className="flex flex-col gap-4 py-5 px-6 text-indigo-700 font-medium">
+              <li className="py-2 px-3 rounded-xl hover:bg-indigo-100/60 hover:shadow-md transition cursor-pointer">
+                หน้าแรก
+              </li>
+              <li className="py-2 px-3 rounded-xl hover:bg-indigo-100/60 hover:shadow-md transition cursor-pointer">
+                สินค้า
+              </li>
+              <li className="py-2 px-3 rounded-xl hover:bg-indigo-100/60 hover:shadow-md transition cursor-pointer">
+                เกี่ยวกับเรา
+              </li>
+              <li className="py-2 px-3 rounded-xl hover:bg-indigo-100/60 hover:shadow-md transition cursor-pointer">
+                ติดต่อ
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
-
-export default MainNavbar;
