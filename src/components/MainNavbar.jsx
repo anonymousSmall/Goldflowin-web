@@ -48,7 +48,7 @@ function MainNavbar() {
                 `px-4 py-2 rounded-xl text-white font-medium transition-all duration-300 text-[17px] tracking-wide
                 ${
                   isActive
-                    ? "bg-gradient-to-r from-[#1e40af] to-[#3b82f6] shadow-lg shadow-blue-700/50"
+                    ? "bg-gradient-to-r from-[#1e40af] to-[#3b82f6] shadow-lg shadow-blue-700/50 scale-105"
                     : "hover:bg-white/10 hover:shadow-lg hover:scale-[1.02]"
                 }`
               }
@@ -117,7 +117,7 @@ function MainNavbar() {
       {/* Mobile Menu */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${
-          toggle ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          toggle ? "max-h-[500px] opacity-100 scale-100" : "max-h-0 opacity-0 scale-95"
         }`}
       >
         <ul className="flex flex-col items-start gap-3 bg-[#1e3a8a]/90 backdrop-blur-md px-6 pb-5 rounded-b-xl shadow-inner transition-all">
