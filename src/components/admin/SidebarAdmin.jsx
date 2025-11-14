@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   UserCog,
@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import useEcomStore from "../../store/ecom-store";
 import "../../assets/brandproduct/Slide.css";
-import { useNavigate } from "react-router-dom";
 
 const SidebarAdmin = () => {
   const user = useEcomStore((s) => s.user);
@@ -77,11 +76,12 @@ const SidebarAdmin = () => {
         </nav>
 
         {/* Logout */}
-        {/* <div className="px-4 pb-6 border-t border-gray-200">
+        <div className="px-4 pb-6 border-t border-gray-200">
           <button
             onClick={() => {
               logout();
               setIsOpen(false);
+              navigate("/");
             }}
             className="flex w-full items-center px-4 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200"
           >
@@ -89,21 +89,7 @@ const SidebarAdmin = () => {
             Logout
           </button>
         </div>
-      </div> */}
-        {/* Logout */}
-        <div className="px-4 pb-6 border-t border-gray-200">
-          <button
-            onClick={() => {
-              logout();          // ลบ token หรือข้อมูลผู้ใช้
-              setIsOpen(false);  // ปิดเมนู
-              navigate("/");     // <--- Redirect ไปหน้า Home
-            }}
-            className="flex w-full items-center px-4 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200"
-          >
-            <LogOut className="mr-2" />
-            Logout
-          </button>
-        </div>
+      </div>
 
 
       {/* Overlay (Mobile Only) */}
@@ -118,4 +104,5 @@ const SidebarAdmin = () => {
 };
 
 export default SidebarAdmin;
+
 
