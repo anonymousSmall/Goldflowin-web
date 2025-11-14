@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   UserCog,
@@ -12,15 +12,12 @@ import {
 } from "lucide-react";
 import useEcomStore from "../../store/ecom-store";
 import "../../assets/brandproduct/Slide.css";
-import { toast } from "react-toastify";
 
 const SidebarAdmin = () => {
   const user = useEcomStore((s) => s.user);
   const logout = useEcomStore((s) => s.logout);
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
-  
   const menuItems = [
     { to: "dashboard", icon: <LayoutDashboard className="mr-2" />, label: "Dashboard" },
     { to: "manage", icon: <UserCog className="mr-2" />, label: "Manage" },
@@ -31,7 +28,7 @@ const SidebarAdmin = () => {
   ];
 
   return (
-    <d>
+    <>
       {/* Top Bar (Mobile) */}
       <div className="md:hidden bg-gradient-to-r from-blue-500 to-blue-600 text-white flex justify-between items-center px-4 py-3 shadow-md fixed w-full z-50">
         <h1 className="text-lg font-semibold tracking-wide">Admin Panel</h1>
@@ -80,17 +77,8 @@ const SidebarAdmin = () => {
         <div className="px-4 pb-6 border-t border-gray-200">
           <button
             onClick={() => {
-              logout();          
-              setIsOpen(false);  
-        
-              toast.success("ออกจากระบบสำเร็จ!", {
-                position: "top-right",
-                autoClose: 1200,
-              });
-        
-              setTimeout(() => {
-                navigate("/");   // Redirect ไปหน้า Home
-              }, 1200);          // ดีเลย์ให้ Toast แสดงก่อน
+              logout();
+              setIsOpen(false);
             }}
             className="flex w-full items-center px-4 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200"
           >
@@ -98,8 +86,7 @@ const SidebarAdmin = () => {
             Logout
           </button>
         </div>
-
-
+      </div>
 
       {/* Overlay (Mobile Only) */}
       {isOpen && (
@@ -108,18 +95,8 @@ const SidebarAdmin = () => {
           onClick={() => setIsOpen(false)}
         ></div>
       )}
-      </div>
+    </>
   );
 };
 
 export default SidebarAdmin;
-
-
-
-
-
-
-
-
-
-
