@@ -27,7 +27,6 @@ function MainNavbar() {
 
   return (
     <nav className="sticky top-0 z-50">
-      {/* Glassmorphic Navbar */}
       <div className="backdrop-blur-md bg-[#1e3a8a]/70 border-b border-[#1e3a8a]/40 shadow-xl transition-all">
         <div className="container mx-auto max-w-[1320px] flex items-center justify-between py-4 px-6 lg:h-[80px]">
 
@@ -41,21 +40,20 @@ function MainNavbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="hidden lg:flex gap-6 items-center">
+          <ul className="hidden lg:flex gap-8 items-center">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-xl text-white font-medium transition-all duration-300 text-[17px] tracking-wide
-                  ${
-                    isActive
-                      ? "bg-gradient-to-r from-[#1e40af] to-[#2563eb] shadow-lg shadow-blue-700/50 scale-105"
-                      : "hover:bg-gradient-to-r hover:from-[#1e40af]/30 hover:to-[#2563eb]/30 hover:shadow-md hover:shadow-blue-500/30 hover:scale-[1.02]"
-                  }`
+                  `relative px-4 py-2 text-white font-medium transition-all duration-300 text-[17px] tracking-wide
+                  ${isActive ? "font-semibold" : ""}
+                  `
                 }
               >
                 {item.name}
+                {/* Underline animation */}
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-[#1e40af] to-[#2563eb] transition-all duration-300 group-hover:w-full"></span>
               </NavLink>
             ))}
           </ul>
