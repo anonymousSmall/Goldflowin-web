@@ -49,7 +49,7 @@ function MainNavbar() {
                 ${
                   isActive
                     ? "bg-gradient-to-r from-[#1e40af] to-[#3b82f6] shadow-lg shadow-blue-700/50 scale-105"
-                    : "hover:bg-white/10 hover:shadow-lg hover:scale-[1.02]"
+                    : "hover:bg-gradient-to-r hover:from-[#1e40af]/30 hover:to-[#3b82f6]/30 hover:shadow-lg hover:scale-[1.02]"
                 }`
               }
             >
@@ -93,7 +93,7 @@ function MainNavbar() {
             <div className="flex gap-4">
               <Link
                 to="/login"
-                className="px-4 py-2 bg-white/20 text-white rounded-xl shadow-md backdrop-blur-md hover:bg-white/30 hover:shadow-lg transition-all hover:scale-[1.02]"
+                className="px-4 py-2 bg-white/20 text-white rounded-xl shadow-md backdrop-blur-md hover:bg-white/30 hover:shadow-lg hover:scale-[1.02] transition-all"
               >
                 Login
               </Link>
@@ -126,7 +126,7 @@ function MainNavbar() {
               key={item.to}
               to={item.to}
               onClick={() => setToggle(false)}
-              className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all hover:shadow-md hover:scale-[1.02]"
+              className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 transition-all hover:shadow-md hover:scale-[1.02]"
             >
               {item.name}
             </NavLink>
@@ -138,7 +138,7 @@ function MainNavbar() {
               <Link
                 to={"/user/history"}
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all hover:shadow-md hover:scale-[1.02]"
+                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 transition-all hover:shadow-md hover:scale-[1.02]"
               >
                 History
               </Link>
@@ -157,7 +157,7 @@ function MainNavbar() {
               <Link
                 to="/login"
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all hover:shadow-md hover:scale-[1.02]"
+                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 transition-all hover:shadow-md hover:scale-[1.02]"
               >
                 Login
               </Link>
