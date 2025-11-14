@@ -31,7 +31,7 @@ const SidebarAdmin = () => {
   ];
 
   return (
-    <>
+    <div>
       {/* Top Bar (Mobile) */}
       <div className="md:hidden bg-gradient-to-r from-blue-500 to-blue-600 text-white flex justify-between items-center px-4 py-3 shadow-md fixed w-full z-50">
         <h1 className="text-lg font-semibold tracking-wide">Admin Panel</h1>
@@ -108,11 +108,12 @@ const SidebarAdmin = () => {
           onClick={() => setIsOpen(false)}
         ></div>
       )}
-    </>
+    <div/>
   );
 };
 
 export default SidebarAdmin;
+
 
 
 
