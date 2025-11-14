@@ -26,7 +26,7 @@ function MainNavbar() {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className="bg-[#1e3a8a]/95 backdrop-blur-md shadow-xl border-b border-[#1e3a8a]/50 sticky top-0 z-50">
+    <nav className="bg-[#1e3a8a]/75 backdrop-blur-md shadow-xl border-b border-[#1e3a8a]/40 sticky top-0 z-50 transition-colors">
       <div className="container mx-auto max-w-[1320px] flex items-center justify-between py-4 px-6 lg:h-[80px]">
 
         {/* Logo */}
@@ -48,8 +48,8 @@ function MainNavbar() {
                 `px-4 py-2 rounded-xl text-white font-medium transition-all duration-300 text-[17px] tracking-wide
                 ${
                   isActive
-                    ? "bg-gradient-to-r from-[#1e40af] to-[#3b82f6] shadow-lg shadow-blue-700/50 scale-105"
-                    : "hover:bg-gradient-to-r hover:from-[#1e40af]/50 hover:to-[#3b82f6]/50 hover:shadow-lg hover:scale-[1.02]"
+                    ? "bg-gradient-to-r from-[#1e40af] to-[#2563eb] shadow-lg shadow-blue-700/50 scale-105"
+                    : "hover:bg-gradient-to-r hover:from-[#1e40af]/40 hover:to-[#2563eb]/40 hover:shadow-md hover:scale-[1.02]"
                 }`
               }
             >
@@ -70,11 +70,11 @@ function MainNavbar() {
                 />
               </MenuButton>
 
-              <MenuItems className="absolute right-0 mt-3 w-52 bg-white/90 backdrop-blur-md shadow-xl rounded-xl py-2 border border-white/40 transition-all duration-300">
+              <MenuItems className="absolute right-0 mt-3 w-52 bg-white/70 backdrop-blur-md shadow-xl rounded-xl py-2 border border-white/30 transition-all duration-300">
                 <MenuItem>
                   <Link
                     to={"/user/history"}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 rounded-lg transition-all hover:shadow-md hover:scale-[1.02]"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#2563eb]/20 rounded-lg transition-all hover:shadow-md hover:scale-[1.02]"
                   >
                     History
                   </Link>
@@ -93,13 +93,13 @@ function MainNavbar() {
             <div className="flex gap-4">
               <Link
                 to="/login"
-                className="px-4 py-2 bg-white/20 text-white rounded-xl shadow-md backdrop-blur-md hover:bg-white/30 hover:shadow-lg hover:scale-[1.02] transition-all"
+                className="px-4 py-2 bg-white/25 text-white rounded-xl shadow-md backdrop-blur-md hover:bg-white/35 hover:shadow-lg hover:scale-[1.02] transition-all"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="px-4 py-2 bg-gradient-to-r from-[#1e40af] to-[#3b82f6] text-white rounded-xl shadow-lg hover:shadow-blue-700/50 transition-all hover:scale-[1.03] animate-glow"
+                className="px-4 py-2 bg-gradient-to-r from-[#1e40af] to-[#2563eb] text-white rounded-xl shadow-lg hover:shadow-blue-700/50 transition-all hover:scale-[1.03]"
               >
                 Sign up
               </Link>
@@ -120,13 +120,13 @@ function MainNavbar() {
           toggle ? "max-h-[500px] opacity-100 scale-100" : "max-h-0 opacity-0 scale-95"
         }`}
       >
-        <ul className="flex flex-col items-start gap-3 bg-[#1e3a8a]/90 backdrop-blur-md px-6 pb-5 rounded-b-xl shadow-inner transition-all">
+        <ul className="flex flex-col items-start gap-3 bg-[#1e3a8a]/70 backdrop-blur-md px-6 pb-5 rounded-b-xl shadow-inner transition-all">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               onClick={() => setToggle(false)}
-              className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 transition-all hover:shadow-md hover:scale-[1.02]"
+              className="text-white text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/30 hover:to-[#2563eb]/30 transition-all hover:shadow-md hover:scale-[1.02]"
             >
               {item.name}
             </NavLink>
@@ -138,7 +138,7 @@ function MainNavbar() {
               <Link
                 to={"/user/history"}
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 transition-all hover:shadow-md hover:scale-[1.02]"
+                className="text-white text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/30 hover:to-[#2563eb]/30 transition-all hover:shadow-md hover:scale-[1.02]"
               >
                 History
               </Link>
@@ -147,7 +147,7 @@ function MainNavbar() {
                   logout();
                   setToggle(false);
                 }}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-red-500/30 transition-all hover:shadow-md hover:scale-[1.02]"
+                className="text-white text-lg py-2 px-3 rounded-lg hover:bg-red-500/30 transition-all hover:shadow-md hover:scale-[1.02]"
               >
                 Sign out
               </button>
@@ -157,14 +157,14 @@ function MainNavbar() {
               <Link
                 to="/login"
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 transition-all hover:shadow-md hover:scale-[1.02]"
+                className="text-white text-lg py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-[#1e40af]/30 hover:to-[#2563eb]/30 transition-all hover:shadow-md hover:scale-[1.02]"
               >
                 Login
               </Link>
               <Link
                 to="/register"
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg bg-gradient-to-r from-[#1e40af] to-[#3b82f6] shadow-md hover:shadow-blue-700/50 transition-all hover:scale-[1.03] animate-glow"
+                className="text-white text-lg py-2 px-3 rounded-lg bg-gradient-to-r from-[#1e40af] to-[#2563eb] shadow-md hover:shadow-blue-700/50 transition-all hover:scale-[1.03]"
               >
                 Sign up
               </Link>
