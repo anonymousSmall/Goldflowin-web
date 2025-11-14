@@ -126,7 +126,7 @@ function MainNavbar() {
             <ul
               className={`${
                 !toggle ? "hidden" : "flex"
-              } flex flex-col my-5 md:flex md:flex-row`}
+              } flex flex-col my-5 lg:flex lg:flex-row`}
             >
               <NavLink
                 className={({ isActive }) =>
@@ -185,6 +185,7 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
 
 
