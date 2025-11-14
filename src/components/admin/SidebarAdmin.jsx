@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import useEcomStore from "../../store/ecom-store";
 import "../../assets/brandproduct/Slide.css";
+import { toast } from "react-toastify";
 
 const SidebarAdmin = () => {
   const user = useEcomStore((s) => s.user);
@@ -81,9 +82,14 @@ const SidebarAdmin = () => {
             onClick={() => {
                 logout();          // ลบ token หรือข้อมูลผู้ใช้
                 setIsOpen(false);  // ปิดเมนู
-                navigate("/");     // <--- Redirect ไปหน้า Home
-                window.location.reload()
-            }}
+                toast.success("ออกจากระบบสำเร็จ!", {
+                      position: "top-right",
+                      autoClose: 1200,
+                });
+               setTimeout(() => {
+        navigate("/");   // Redirect ไปหน้า Home
+      }, 1200);          // ดีเลย์ให้ Toast แสดงก่อน
+    }}
             className="flex w-full items-center px-4 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200"
           >
             <LogOut className="mr-2" />
@@ -105,6 +111,7 @@ const SidebarAdmin = () => {
 };
 
 export default SidebarAdmin;
+
 
 
 
