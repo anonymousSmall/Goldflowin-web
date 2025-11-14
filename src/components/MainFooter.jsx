@@ -9,6 +9,7 @@ import {
 import logo2 from "../assets/image/logo2.jpg";
 import logo3 from "../assets/image/Logo3.png";
 
+
 function MainFooter() {
   return (
     <div className="bg-[#253238] py-20">
@@ -139,5 +140,6 @@ function MainFooter() {
 }
 
 export default MainFooter;
+
 
 
