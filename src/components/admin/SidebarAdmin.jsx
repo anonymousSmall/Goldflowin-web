@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import useEcomStore from "../../store/ecom-store";
 import "../../assets/brandproduct/Slide.css";
-import { toast } from "react-toastify";
 
 const SidebarAdmin = () => {
   const user = useEcomStore((s) => s.user);
@@ -80,9 +79,10 @@ const SidebarAdmin = () => {
         <div className="px-4 pb-6 border-t border-gray-200">
           <button
             onClick={() => {
-              logout();
-              setIsOpen(false);
-              navigate("/");       // ดีเลย์ให้ Toast แสดงก่อน
+                logout();          // ลบ token หรือข้อมูลผู้ใช้
+                setIsOpen(false);  // ปิดเมนู
+                navigate("/");     // <--- Redirect ไปหน้า Home
+                window.location.reload()
             }}
             }}
             className="flex w-full items-center px-4 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200"
@@ -106,6 +106,7 @@ const SidebarAdmin = () => {
 };
 
 export default SidebarAdmin;
+
 
 
 
