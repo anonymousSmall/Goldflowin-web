@@ -49,7 +49,7 @@ function MainNavbar() {
                 ${
                   isActive
                     ? "bg-gradient-to-r from-[#1e40af] to-[#3b82f6] shadow-lg shadow-blue-700/50 scale-105"
-                    : "hover:bg-gradient-to-r hover:from-[#1e40af]/30 hover:to-[#3b82f6]/30 hover:shadow-lg hover:scale-[1.02]"
+                    : "hover:bg-gradient-to-r hover:from-[#1e40af]/50 hover:to-[#3b82f6]/50 hover:shadow-lg hover:scale-[1.02]"
                 }`
               }
             >
@@ -74,7 +74,7 @@ function MainNavbar() {
                 <MenuItem>
                   <Link
                     to={"/user/history"}
-                    className="block px-4 py-2 text-gray-800 hover:bg-blue-100/40 rounded-lg transition-all hover:shadow-md hover:scale-[1.02]"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gradient-to-r hover:from-[#1e40af]/20 hover:to-[#3b82f6]/20 rounded-lg transition-all hover:shadow-md hover:scale-[1.02]"
                   >
                     History
                   </Link>
