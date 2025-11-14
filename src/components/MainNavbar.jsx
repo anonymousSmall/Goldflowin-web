@@ -13,7 +13,6 @@ import {
   MenuButton,
   MenuItem,
   MenuItems,
-  
 } from "@headlessui/react";
 
 function MainNavbar() {
@@ -186,6 +185,7 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
 
 
