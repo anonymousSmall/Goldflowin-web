@@ -17,7 +17,7 @@ function MainFooter() {
           <div>
             <img
               src={logo3}
-              className="h-16 rounded-2xl shadow-slate-100"
+              className="h-16 shadow-slate-100"
               alt=""
             />
             <p className="my-10 text-white">
@@ -139,4 +139,5 @@ function MainFooter() {
 }
 
 export default MainFooter;
+
 
