@@ -1,198 +1,141 @@
-import React, { useEffect, useState } from "react";
-import logo2 from "../assets/image/logo2.jpg";
-import logo3 from "../assets/image/Logo3.png";
-import { FaBars } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
-import useEcomStore from "../store/ecom-store";
-import { ChevronDownIcon, Headset, LogIn, Mail, UserPen } from "lucide-react";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
+<nav className="bg-[#3b74f0]">
+  <div className="container mx-auto max-w-[1320px] relative p-6 flex justify-between items-center">
 
-function MainNavbar() {
-  const carts = useEcomStore((s) => s.carts);
-  const user = useEcomStore((s) => s.user);
-  const logout = useEcomStore((s) => s.logout);
-  const getCategory = useEcomStore((state) => state.getCategory);
-  const getProduct = useEcomStore((state) => state.getProduct);
-  const [categorySelected, setCategorySelected] = useState([]);
+    {/* Logo */}
+    <div>
+      <Link to="/">
+        <img src={logo3} className="h-10" alt="logo" />
+      </Link>
+    </div>
 
-  useEffect(() => {
-    getCategory();
-    getProduct();
-  }, []);
+    {/* Desktop Menu */}
+    <ul className="hidden md:flex gap-6 items-center">
+      {navItems.map((item) => (
+        <NavLink
+          key={item.to}
+          to={item.to}
+          className={({ isActive }) =>
+            isActive
+              ? "text-white bg-blue-900 px-4 py-2 rounded-lg font-medium"
+              : "text-white/90 hover:text-white hover:bg-blue-800/60 px-4 py-2 rounded-lg"
+          }
+        >
+          {item.name}
+        </NavLink>
+      ))}
+    </ul>
 
-    const navItems = [
-    { name: "หน้าแรก", to: "/" },
-    { name: "CatalogProduct", to: "/Catalog" },
-    { name: "รายละเอียดสินค้า", to: "/AllProduct" },
-    { name: "ติดต่อเรา", to: "/contact" },
-  ];
-
-  
-  const [toggle, setToggle] = useState(false);
-  const updateToggle = () => {
-    setToggle(!toggle);
-  };
-
-  return (
-    <nav className="bg-[#3b74f0]">
-      <div className="container mx-auto max-w-[1320px] relative h-auto p-10 flex flex-col md:flex-row md:justify-between md:items-center md:h-[80px]">
-        <div>
-          <a href="#">
+    {/* User Profile (Desktop + Mobile) */}
+    <Menu as="div" className="relative hidden md:block">
+      {user ? (
+        <>
+          <MenuButton className="flex rounded-full bg-gray-800 focus:ring-2 focus:ring-white">
             <img
-              src={logo3}
-              className="h-10  shadow-slate-100"
               alt=""
+              src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
+              className="size-8 rounded-full"
             />
-          </a>
-        </div>
-       {/* Desktop Menu */}
-        <ul className={`${
-            !toggle ? "hidden" : "flex"
-          } flex flex-col my-5 md:flex md:flex-row gap-6 items-center`}
-        >
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-white bg-blue-900 px-4 py-2 rounded-lg font-medium shadow-sm transition-all"
-                  : "text-white/90 hover:text-white hover:bg-blue-800/60 px-4 py-2 rounded-lg transition-all"
-              }
-            >
-              {item.name}
-            </NavLink>
-          ))}
-        </ul>
+          </MenuButton>
 
-        {/* -----------------Start Profile dropdown---------------------- */}
-        <Menu as="div" className="relative ml-3">
-          {user ? (
-            <div>
-              <MenuButton className="relative flex rounded-full bg-gray-800 text-base focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">Open user menu</span>
-                <img
-                  alt=""
-                  src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
-                  className="size-8 rounded-full"
-                />
-              </MenuButton>
-              <MenuItems
-                transition
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+          <MenuItems
+            transition
+            className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
+          >
+            <MenuItem>
+              <Link
+                to="/user/history"
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
               >
-                <MenuItem>
-                  {/* <a
-                    href="#"
-                    className="block px-4 py-2 text-base text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Your Profile
-                  </a> */}
-                  <Link
-                    to={"/user/history"}
-                    className="block px-4 py-2 text-base text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    History
-                  </Link>
-                </MenuItem>
-                {/* <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-base text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Settings
-                  </a>
-                </MenuItem> */}
-                <MenuItem>
-                  <Link
-                    onClick={() => logout()}
-                    className="block px-4 py-2 text-base text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                  >
-                    Sign out
-                  </Link>
-                </MenuItem>
-              </MenuItems>
-            </div>
-          ) : (
-            <ul
-              className={`${
-                !toggle ? "hidden" : "flex"
-              } flex flex-col my-5 md:flex md:flex-row`}
-            >
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#717171] text-white px-3 py-2 my-2 md:mx-4 rounded-md text-base font-medium"
-                    : "hover:bg-slate-200 px-3 py-2 my-2 md:mx-4 rounded-md text-base font-medium "
-                }
-                to={"/login"}
+                History
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <button
+                onClick={logout}
+                className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
               >
-                Login
-              </NavLink>
-              <li className="my-2 md:mx-4">
-                <a
-                  className="inline-flex justify-center items-center py-2 px-4  bg-[#4CAF4F] text-white rounded-md"
-                  href="/register"
-                >
-                  Sign up
-                </a>
-              </li>
-            </ul>
-          )}
-        </Menu>
-        {/* -----------------End Profile dropdown--------------------- */}
-        {/* <ul
-          className={`${
-            !toggle ? "hidden" : "flex"
-          } flex flex-col my-5 md:flex md:flex-row`}
-        >
+                Sign out
+              </button>
+            </MenuItem>
+          </MenuItems>
+        </>
+      ) : (
+        <div className="hidden md:flex gap-4 items-center">
           <NavLink
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#717171] text-white px-3 py-2 my-2 md:mx-4 rounded-md text-base font-medium"
-                : "hover:bg-slate-200 px-3 py-2 my-2 md:mx-4 rounded-md text-base font-medium "
-            }
-            to={"/login"}
+            to="/login"
+            className="px-4 py-2 bg-white rounded-md text-gray-700 hover:bg-slate-200"
           >
             Login
           </NavLink>
-          <li className="my-2 md:mx-4">
-            <a
-              className="inline-flex justify-center items-center py-2 px-4  bg-[#4CAF4F] text-white rounded-md"
-              href="#"
+          <Link
+            to="/register"
+            className="py-2 px-4 bg-[#4CAF4F] text-white rounded-md"
+          >
+            Sign up
+          </Link>
+        </div>
+      )}
+    </Menu>
+
+    {/* Mobile Hamburger */}
+    <FaBars
+      onClick={() => setToggle(!toggle)}
+      className="text-white text-2xl md:hidden cursor-pointer"
+    />
+  </div>
+
+  {/* Mobile Menu */}
+  {toggle && (
+    <div className="md:hidden bg-[#3b74f0] px-6 pb-4">
+      <ul className="flex flex-col gap-3">
+        {navItems.map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            onClick={() => setToggle(false)}
+            className="text-white py-2 px-3 rounded-lg hover:bg-blue-800/60"
+          >
+            {item.name}
+          </NavLink>
+        ))}
+
+        {user ? (
+          <>
+            <Link
+              to="/user/history"
+              className="text-white py-2 px-3 rounded-lg hover:bg-blue-800/60"
+              onClick={() => setToggle(false)}
+            >
+              History
+            </Link>
+            <button
+              onClick={() => {
+                logout();
+                setToggle(false);
+              }}
+              className="text-white py-2 px-3 rounded-lg hover:bg-blue-800/60 text-left"
+            >
+              Sign out
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink
+              to="/login"
+              onClick={() => setToggle(false)}
+              className="text-white py-2 px-3 rounded-lg hover:bg-blue-800/60"
+            >
+              Login
+            </NavLink>
+            <Link
+              to="/register"
+              className="py-2 px-4 bg-[#4CAF4F] text-white rounded-md w-fit"
             >
               Sign up
-            </a>
-          </li>
-        </ul> */}
-        {/* Hamberger Icon */}
-        <FaBars
-          onClick={updateToggle}
-          className="absolute right-5 cursor-pointer text-xl md:hidden"
-        />
-      </div>
-    </nav>
-  );
-}
-
-export default MainNavbar;
-
-
-
-
-
-
-
-
-
-
-
+            </Link>
+          </>
+        )}
+      </ul>
+    </div>
+  )}
+</nav>
