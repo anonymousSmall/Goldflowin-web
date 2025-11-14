@@ -26,7 +26,7 @@ function MainNavbar() {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className="bg-[#1e40af]/80 backdrop-blur-md shadow-xl border-b border-[#1e40af]/50 sticky top-0 z-50">
+    <nav className="bg-[#1e40af]/90 backdrop-blur-md shadow-xl border-b border-[#1e40af]/50 sticky top-0 z-50">
       <div className="container mx-auto max-w-[1320px] flex items-center justify-between py-4 px-6 lg:h-[80px]">
 
         {/* Logo */}
@@ -48,7 +48,7 @@ function MainNavbar() {
                 `px-4 py-2 rounded-xl text-white font-medium transition-all duration-300 text-[17px] tracking-wide
                 ${
                   isActive
-                    ? "bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] shadow-lg shadow-blue-700/30"
+                    ? "bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] shadow-lg shadow-blue-700/40"
                     : "hover:bg-white/10 backdrop-blur-sm hover:shadow-md"
                 }`
               }
@@ -62,7 +62,7 @@ function MainNavbar() {
         <div className="hidden lg:flex">
           {user ? (
             <Menu as="div" className="relative ml-4">
-              <MenuButton className="flex items-center rounded-full bg-white/20 p-1 backdrop-blur-md shadow-md hover:bg-white/30 transition-all">
+              <MenuButton className="flex items-center rounded-full bg-white/20 p-1 backdrop-blur-md shadow-md hover:bg-white/30 transition-all hover:shadow-lg">
                 <img
                   alt=""
                   src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-icon-download-in-svg-png-gif-file-formats--user-professor-avatars-flat-icons-pack-people-456317.png?f=webp&w=256"
@@ -74,7 +74,7 @@ function MainNavbar() {
                 <MenuItem>
                   <Link
                     to={"/user/history"}
-                    className="block px-4 py-2 text-gray-800 hover:bg-blue-100/50 rounded-lg transition-all"
+                    className="block px-4 py-2 text-gray-800 hover:bg-blue-100/40 rounded-lg transition-all hover:shadow-md"
                   >
                     History
                   </Link>
@@ -82,7 +82,7 @@ function MainNavbar() {
                 <MenuItem>
                   <button
                     onClick={() => logout()}
-                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-red-100/50 rounded-lg transition-all"
+                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-red-100/40 rounded-lg transition-all hover:shadow-md"
                   >
                     Sign out
                   </button>
@@ -93,13 +93,13 @@ function MainNavbar() {
             <div className="flex gap-4">
               <Link
                 to="/login"
-                className="px-4 py-2 bg-white/20 text-white rounded-xl shadow-md backdrop-blur-md hover:bg-white/30 transition-all"
+                className="px-4 py-2 bg-white/20 text-white rounded-xl shadow-md backdrop-blur-md hover:bg-white/30 hover:shadow-lg transition-all"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="px-4 py-2 bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] text-white rounded-xl shadow-lg hover:shadow-blue-700/40 transition-all"
+                className="px-4 py-2 bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] text-white rounded-xl shadow-lg hover:shadow-blue-700/50 transition-all"
               >
                 Sign up
               </Link>
@@ -120,13 +120,13 @@ function MainNavbar() {
           toggle ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <ul className="flex flex-col items-start gap-3 bg-[#1e40af]/80 backdrop-blur-md px-6 pb-5 rounded-b-xl shadow-inner">
+        <ul className="flex flex-col items-start gap-3 bg-[#1e40af]/90 backdrop-blur-md px-6 pb-5 rounded-b-xl shadow-inner">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               onClick={() => setToggle(false)}
-              className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all"
+              className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all hover:shadow-md"
             >
               {item.name}
             </NavLink>
@@ -138,7 +138,7 @@ function MainNavbar() {
               <Link
                 to={"/user/history"}
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all"
+                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all hover:shadow-md"
               >
                 History
               </Link>
@@ -147,7 +147,7 @@ function MainNavbar() {
                   logout();
                   setToggle(false);
                 }}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-red-500/30 transition-all"
+                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-red-500/30 transition-all hover:shadow-md"
               >
                 Sign out
               </button>
@@ -157,14 +157,14 @@ function MainNavbar() {
               <Link
                 to="/login"
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all"
+                className="text-white/95 text-lg py-2 px-3 rounded-lg hover:bg-white/10 transition-all hover:shadow-md"
               >
                 Login
               </Link>
               <Link
                 to="/register"
                 onClick={() => setToggle(false)}
-                className="text-white/95 text-lg py-2 px-3 rounded-lg bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] shadow-md hover:shadow-blue-700/40 transition-all"
+                className="text-white/95 text-lg py-2 px-3 rounded-lg bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] shadow-md hover:shadow-blue-700/50 transition-all"
               >
                 Sign up
               </Link>
