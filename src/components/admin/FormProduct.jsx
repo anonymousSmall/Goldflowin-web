@@ -81,6 +81,7 @@ const FormProduct = () => {
               onChange={handleOnChange}
               placeholder="Title"
               name="title"
+              maxLength={20}
             />
           </label>
 
@@ -241,3 +242,4 @@ const FormProduct = () => {
 };
 
 export default FormProduct;
+
