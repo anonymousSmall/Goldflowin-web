@@ -24,12 +24,7 @@ const HomeCarousel = () => {
       infiniteLoop={true}
     >
       <div>
-        <img src={slide1} alt="" size="" {
-  max-width: 100%; /* ภาพจะย่อลงให้พอดีกับขนาดคอนเทนเนอร์ */
-  height: auto;    /* รักษาอัตราส่วนภาพ */
-  display: block;  /* ช่วยจัดการช่องว่างด้านล่าง */
-  width: 100%;     /* กำหนดความกว้างเริ่มต้น (ใช้ร่วมกับ max-width) */
-} />
+        <img src={slide1} alt="" width="500" />
       </div>
       <div>
         <img src={slide2} alt="" width="500" />
@@ -66,6 +61,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
