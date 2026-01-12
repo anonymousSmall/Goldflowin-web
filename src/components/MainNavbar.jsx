@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo3 from "../assets/image/Logo3.png";
-import logo from "../assets/image/GF.png";
+import logo from "../assets/image/GF-1.png";
 import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import useEcomStore from "../store/ecom-store";
@@ -181,6 +181,7 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
 
 
