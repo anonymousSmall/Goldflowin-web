@@ -1,6 +1,7 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+
 import slide1 from "../../assets/image/photoslide/3.png";
 import slide2 from "../../assets/image/photoslide/4.png";
 import slide3 from "../../assets/image/photoslide/5.png";
@@ -13,49 +14,36 @@ import slide9 from "../../assets/image/photoslide/11.png";
 import slide10 from "../../assets/image/photoslide/12.png";
 import slide11 from "../../assets/image/photoslide/13.png";
 
+const images = [
+  slide1, slide2, slide3, slide4, slide5,
+  slide6, slide7, slide8, slide9, slide10, slide11,
+];
+
 const HomeCarousel = () => {
   return (
     <Carousel
-      autoPlay={true}
+      autoPlay
+      infiniteLoop
+      interval={3000}
       showThumbs={false}
       showArrows={false}
       showStatus={false}
-      interval={2000}
-      infiniteLoop={true}
+      swipeable
+      emulateTouch
     >
-      <div>
-        <img src={slide1} alt="" className="w-250" />
-      </div>
-      {/* <div>
-        <img src={slide2} alt="" />
-      </div>
-      <div>
-        <img src={slide3} alt="" />
-      </div>
-      <div>
-        <img src={slide4} alt="" />
-      </div>
-      <div>
-        <img src={slide5} alt="" />
-      </div>
-      <div>
-        <img src={slide6} alt="" />
-      </div>
-      <div>
-        <img src={slide7} alt="" />
-      </div>
-      <div>
-        <img src={slide8} alt="" />
-      </div>
-      <div>
-        <img src={slide9} alt="" />
-      </div>
-      <div>
-        <img src={slide10} alt="" />
-      </div>
-      <div>
-        <img src={slide11} alt="" />
-      </div> */}
+      {images.map((img, index) => (
+        <div key={index} className="w-full">
+          <img
+            src={img}
+            alt={`slide-${index}`}
+            className="
+              w-full
+              h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px]
+              object-cover
+            "
+          />
+        </div>
+      ))}
     </Carousel>
   );
 };
