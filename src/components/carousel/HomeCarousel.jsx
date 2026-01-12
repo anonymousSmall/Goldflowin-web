@@ -13,7 +13,7 @@ import slide9 from "../../assets/image/photoslide/11.png";
 import slide10 from "../../assets/image/photoslide/12.png";
 import slide11 from "../../assets/image/photoslide/13.png";
 
-import testsvg from "../../assets/image/Viewmore.svg";
+import testsvg from "../../assets/image/photoslide/Viewmore.svg";
 
 const HomeCarousel = () => {
   return (
@@ -66,6 +66,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
