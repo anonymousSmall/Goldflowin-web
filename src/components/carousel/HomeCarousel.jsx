@@ -1,18 +1,18 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import slide1 from "../../assets/image/2.png";
-import slide2 from "../../assets/image/3.png";
-import slide3 from "../../assets/image/4.png";
-import slide4 from "../../assets/image/5.png";
-import slide5 from "../../assets/image/6.png";
-import slide6 from "../../assets/image/7.png";
-import slide7 from "../../assets/image/8.png";
-import slide8 from "../../assets/image/9.png";
-import slide9 from "../../assets/image/10.png";
-import slide10 from "../../assets/image/11.png";
-import slide11 from "../../assets/image/12.png";
-import slide12 from "../../assets/image/13.png";
+import slide1 from "../../assets/image/photoslide/2.png";
+import slide2 from "../../assets/image/photoslide/3.png";
+import slide3 from "../../assets/image/photoslide/4.png";
+import slide4 from "../../assets/image/photoslide/5.png";
+import slide5 from "../../assets/image/photoslide/6.png";
+import slide6 from "../../assets/image/photoslide/7.png";
+import slide7 from "../../assets/image/photoslide/8.png";
+import slide8 from "../../assets/image/photoslide/9.png";
+import slide9 from "../../assets/image/photoslide/10.png";
+import slide10 from "../../assets/image/photoslide/11.png";
+import slide11 from "../../assets/image/photoslide/12.png";
+import slide12 from "../../assets/image/photoslide/13.png";
 
 const HomeCarousel = () => {
   return (
@@ -65,5 +65,6 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
