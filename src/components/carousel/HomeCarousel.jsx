@@ -24,13 +24,13 @@ const HomeCarousel = () => {
       infiniteLoop={true}
     >
       <div>
-        <img src={slide1} alt="" width="350px" />
+        <img src={slide1} alt="" />
       </div>
       <div>
-        <img src={slide2} alt="" width="350px" />
+        <img src={slide2} alt="" />
       </div>
       <div>
-        <img src={slide3} alt="" width="350px" />
+        <img src={slide3} alt="" />
       </div>
       <div>
         <img src={slide4} alt="" />
@@ -61,6 +61,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
