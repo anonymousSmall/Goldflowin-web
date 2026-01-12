@@ -36,11 +36,7 @@ const HomeCarousel = () => {
           <img
             src={img}
             alt={`slide-${index}`}
-            className="
-              w-full
-              h-auto sm:h-[300px] md:h-[400px] lg:h-[500px]
-              object-cover
-            "
+            className="w-full h-auto object-contain"
           />
         </div>
       ))}
@@ -49,6 +45,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
