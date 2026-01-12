@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo3 from "../assets/image/Logo3.png";
+import logo from "../assets/image/GF.png";
 import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import useEcomStore from "../store/ecom-store";
@@ -34,7 +35,7 @@ function MainNavbar() {
           {/* Logo */}
           <Link to={"/"}>
             <img
-              src={logo3}
+              src={logo}
               className="h-10 drop-shadow-md transition-transform hover:scale-105"
               alt="logo"
             />
@@ -180,3 +181,4 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
