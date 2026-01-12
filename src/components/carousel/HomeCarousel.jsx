@@ -1,10 +1,6 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-// import slide1 from "../../assets/image/slide-1.png";
-// import slide2 from "../../assets/image/slide-2-new.png";
-// import slide3 from "../../assets/image/slide-3.png";
-// import slide4 from "../../assets/image/slide-4.png";
 import slide1 from "../../assets/image/2.png";
 import slide2 from "../../assets/image/3.png";
 import slide3 from "../../assets/image/4.png";
@@ -69,4 +65,5 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
