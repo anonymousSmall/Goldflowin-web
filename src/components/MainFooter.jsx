@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa6";
 import logo2 from "../assets/image/logo2.jpg";
 import logo3 from "../assets/image/Logo3.png";
+import logo from "../assets/image/logo.png";
 
 
 function MainFooter() {
@@ -17,7 +18,7 @@ function MainFooter() {
         <div className="grid grid-cols-1 m-10 md:m-0 md:grid-cols-2">
           <div>
             <img
-              src={logo3}
+              src={logo}
               className="h-16 shadow-slate-100"
               alt=""
             />
@@ -140,6 +141,7 @@ function MainFooter() {
 }
 
 export default MainFooter;
+
 
 
 
