@@ -24,7 +24,7 @@ const HomeCarousel = () => {
       infiniteLoop={true}
     >
       <div>
-        <img src={slide1} alt="" className="img-fluid" />
+        <img src={slide1} alt="" className="w-250" />
       </div>
       {/* <div>
         <img src={slide2} alt="" />
@@ -61,6 +61,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
