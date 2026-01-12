@@ -19,7 +19,7 @@ import photo1 from "../assets/image/photo1.jpg"
 const Home = () => {
   return (
     <div>
-      <HomeCarousel />
+      <HomeCarousel className="max-w-7xl mx-auto" />
       <div className="shadow-2xl rounded-md mt-1">
         <img src={review} alt=""/>
       </div>
@@ -31,5 +31,6 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
