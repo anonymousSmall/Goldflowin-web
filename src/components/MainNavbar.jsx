@@ -36,7 +36,7 @@ function MainNavbar() {
           <Link to={"/"}>
             <img
               src={logo}
-              className="h-10 drop-shadow-md transition-transform hover:scale-105"
+              className="h-20 drop-shadow-md transition-transform hover:scale-105"
               alt="logo"
             />
           </Link>
@@ -181,5 +181,6 @@ function MainNavbar() {
 }
 
 export default MainNavbar;
+
 
 
