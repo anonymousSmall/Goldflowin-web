@@ -21,7 +21,7 @@ const Home = () => {
     <div>
       <HomeCarousel />
       <div className="shadow-2xl rounded-md mt-1">
-        <img src={review} alt="" />
+        <img src={review} alt="" width="50px" />
       </div>
       <Header/>
       <Community/>
@@ -31,3 +31,4 @@ const Home = () => {
 };
 
 export default Home;
+
