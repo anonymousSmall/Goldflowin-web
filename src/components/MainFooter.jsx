@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa6";
 import logo2 from "../assets/image/logo2.jpg";
 import logo3 from "../assets/image/Logo3.png";
-import logo from "../assets/image/logo.png";
+import logo from "../assets/image/GF.png";
 
 
 function MainFooter() {
@@ -141,6 +141,7 @@ function MainFooter() {
 }
 
 export default MainFooter;
+
 
 
 
