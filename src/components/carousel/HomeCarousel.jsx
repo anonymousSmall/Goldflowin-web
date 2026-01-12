@@ -13,6 +13,8 @@ import slide9 from "../../assets/image/photoslide/11.png";
 import slide10 from "../../assets/image/photoslide/12.png";
 import slide11 from "../../assets/image/photoslide/13.png";
 
+import testsvg from "../../assets/image/Viewmore.svg";
+
 const HomeCarousel = () => {
   return (
     <Carousel
@@ -23,6 +25,9 @@ const HomeCarousel = () => {
       interval={2000}
       infiniteLoop={true}
     >
+      <div>
+        <img src={testsvg} alt="" />
+      </div>
       <div>
         <img src={slide1} alt="" />
       </div>
@@ -61,6 +66,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
