@@ -25,14 +25,15 @@ const Home = () => {
         <img src={review} alt=""/>
       </div>
       <Header/>
-      {/* <Community/> */}
-      <Article/>
+      <Community/>
+      {/* <Article/> */}
       <Client/>
     </div>
   );
 };
 
 export default Home;
+
 
 
 
