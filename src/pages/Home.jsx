@@ -15,6 +15,7 @@ import Header from "../components/Header";
 import Client from "../components/Client";
 import Community from "../components/Community";
 import photo1 from "../assets/image/photo1.jpg"
+import Article from "../components/Article";
 
 const Home = () => {
   return (
@@ -24,13 +25,15 @@ const Home = () => {
         <img src={review} alt=""/>
       </div>
       <Header/>
-      <Community/>
+      {/* <Community/> */}
+      <Article/>
       <Client/>
     </div>
   );
 };
 
 export default Home;
+
 
 
 
