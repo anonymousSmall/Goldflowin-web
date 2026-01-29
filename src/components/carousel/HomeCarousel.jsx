@@ -32,7 +32,7 @@ const HomeCarousel = () => {
       emulateTouch
     >
       {images.map((img, index) => (
-        <div key={index} className="max-w-[1320px]">
+        <div key={index} className="container mx-auto max-w-[1320px] p-10 flex flex-col md:flex-row md:justify-between md:items-center md:p-0">
           <img
             src={img}
             alt={`slide-${index}`}
@@ -45,6 +45,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
