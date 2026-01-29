@@ -32,11 +32,11 @@ const HomeCarousel = () => {
       emulateTouch
     >
       {images.map((img, index) => (
-        <div key={index} className="w-full">
+        <div key={index} className="">
           <img
             src={img}
             alt={`slide-${index}`}
-            className="w-full h-auto object-contain"
+            className="h-auto object-contain"
           />
         </div>
       ))}
@@ -45,6 +45,7 @@ const HomeCarousel = () => {
 };
 
 export default HomeCarousel;
+
 
 
 
