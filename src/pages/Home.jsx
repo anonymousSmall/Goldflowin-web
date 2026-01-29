@@ -24,7 +24,7 @@ const Home = () => {
       <div className="shadow-2xl rounded-md mt-1">
         <img src={review} alt=""/>
       </div>
-      <Header/>
+      {/* <Header/> */}
       <Community/>
       {/* <Article/> */}
       <Client/>
@@ -33,6 +33,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 
