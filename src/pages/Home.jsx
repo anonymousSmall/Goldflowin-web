@@ -21,9 +21,9 @@ const Home = () => {
   return (
     <div>
       <HomeCarousel className="max-w-7xl mx-auto" />
-      <div className="shadow-2xl rounded-md mt-1">
+      {/* <div className="shadow-2xl rounded-md mt-1">
         <img src={review} alt=""/>
-      </div>
+      </div> */}
       <Header/>
       <Community/>
       {/* <Article/> */}
@@ -33,6 +33,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 
