@@ -36,6 +36,7 @@ import StateContainer from "../components/admin/StateContainer";
 import DashboardAdmin from "../components/admin/DashboardAdmin";
 import CatalogProduct from "../pages/CatalogProduct";
 import ForgotPassword from "../pages/auth/ForgotPassword";
+import Workandservice from "../pages/Workandservice";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,8 @@ const router = createBrowserRouter([
       { path: "Article1", element: <News1 /> },
       { path: "Catalog", element: <CatalogProduct /> },
       { path: "ForgotPassword", element: <ForgotPassword /> },
+      { path: "Workandservice", element: <Workandservice /> },
+      
       ,
     ],
   },
@@ -97,6 +100,7 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
+
 
 
 
