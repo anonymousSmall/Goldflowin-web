@@ -16,6 +16,7 @@ import Client from "../components/Client";
 import Community from "../components/Community";
 import photo1 from "../assets/image/photo1.jpg"
 import Article from "../components/Article";
+import Services from "../components/Services";
 
 const Home = () => {
   return (
@@ -28,11 +29,13 @@ const Home = () => {
       <Community/>
       {/* <Article/> */}
       <Client/>
+      <Services/>
     </div>
   );
 };
 
 export default Home;
+
 
 
 
