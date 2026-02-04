@@ -38,6 +38,8 @@ import ojiyas from "../assets/image/logo/ojiyas.png";
 import peacock from "../assets/image/logo/peacock.png";
 import shahe from "../assets/image/logo/shahe.png";
 import shimadzu from "../assets/image/logo/shimadzu.png";
+
+
 import zepper from "../assets/image/logo/zepper.png";
 import tboss from "../assets/image/logo/t-boss.png";
 import tanita from "../assets/image/logo/tanita.png";
@@ -65,7 +67,11 @@ function Client() {
       <ul className='flex flex-col items-center my-10 md:flex-row md:justify-between'>
         {clientsImgLogo.map((client, index) => (
            <li key={index}>
-               <img src={client} alt="" />
+               <img 
+                 src={client} 
+                 alt=""
+                 className="h-10 sm:h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
            </li>
         ))}
       </ul>
@@ -74,4 +80,5 @@ function Client() {
 }
 
 export default Client;
+
 
