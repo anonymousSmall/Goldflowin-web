@@ -22,20 +22,21 @@ const Home = () => {
   return (
     <div>
       <HomeCarousel className="max-w-7xl mx-auto" />
-      <Client/>
+      {/* <Client/> */}
       {/* <div className="shadow-2xl rounded-md mt-1">
         <img src={review} alt=""/>
       </div> */}
       <Header/>
       <Community/>
       {/* <Article/> */}
-      {/* <Client/> */}
+      <Client/>
       {/* <Services/> */}
     </div>
   );
 };
 
 export default Home;
+
 
 
 
