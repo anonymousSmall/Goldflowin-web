@@ -16,6 +16,7 @@ import clientImgLogo14 from "../assets/image/img-logo3.png";
 import HomeCarouselBrand from "./carousel/HomeCarouselBrand";
 import BrandSlider from "./BrandSlider";
 
+
 const clientsTmgLogo = [
   //   clientImgLogo01,
   //   clientImgLogo02,
@@ -56,3 +57,4 @@ function Client() {
 }
 
 export default Client;
+
