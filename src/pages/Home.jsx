@@ -29,12 +29,13 @@ const Home = () => {
       <Community/>
       {/* <Article/> */}
       <Client/>
-      <Services/>
+      {/* <Services/> */}
     </div>
   );
 };
 
 export default Home;
+
 
 
 
