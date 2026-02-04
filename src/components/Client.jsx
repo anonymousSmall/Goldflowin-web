@@ -16,22 +16,26 @@ import clientImgLogo14 from "../assets/image/img-logo3.png";
 import HomeCarouselBrand from "./carousel/HomeCarouselBrand";
 import BrandSlider from "./BrandSlider";
 
-const clientsImgLogo = [
-  accretech,
-  accud,
-  aikoh,
-  carmar,
-  carton,
-  chuer,
-  digicon,
-  eisen,
-  fluk,
-  gin,
+const clientsTmgLogo = [
+  //   clientImgLogo01,
+  //   clientImgLogo02,
+  //   clientImgLogo03,
+  //   clientImgLogo04,
+  //   clientImgLogo05,
+  //   clientImgLogo06,
+  //   clientImgLogo07,
+  //   clientImgLogo08,
+  //   clientImgLogo09,
+  //   clientImgLogo10,
+  clientImgLogo11,
+  //   clientImgLogo12,
+  //   clientImgLogo13,
+  //   clientImgLogo14,
 ];
 
 function Client() {
   return (
-<div className="container mx-auto max-w-[1320px] py-10 text-center">
+    <div className="container mx-auto max-w-[1320px] py-10 text-center">
       <h2 className="text-[2.25rem] font-semibold text-blue-900">
         แบรนด์ที่จัดจำหน่าย
       </h2>
@@ -52,9 +56,3 @@ function Client() {
 }
 
 export default Client;
-
-
-
-
-
-
