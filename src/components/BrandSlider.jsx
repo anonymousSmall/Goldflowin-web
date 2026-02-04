@@ -59,7 +59,7 @@ const brands = [
 
 export default function BrandSlider() {
   return (
-    <div className="overflow-x-hidden py-8 bg-white w-full">
+    {/*<div className="overflow-x-hidden py-8 bg-white w-full">
       <div className="relative flex animate-scroll gap-8 px-8 max-w-full">
         {[...brands, ...brands].map((logo, index) => (
           <div
@@ -74,6 +74,31 @@ export default function BrandSlider() {
           </div>
         ))}
       </div>
-    </div>
+    </div>*/}
+    <div className="relative w-full overflow-hidden">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          {[...brands, ...brands].map((logo, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center px-10"
+            >
+              <img
+                src={logo}
+                alt={`brand-${index}`}
+                className="
+                  h-12
+                  sm:h-14
+                  lg:h-16
+                  w-auto
+                  object-contain
+                  grayscale
+                  hover:grayscale-0
+                  transition duration-300
+                "
+              />
+            </div>
+          ))}
+        </div>
+      </div>
   );
 }
