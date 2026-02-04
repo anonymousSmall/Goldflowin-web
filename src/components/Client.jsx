@@ -62,7 +62,7 @@ const clientsImgLogo = [
 
 function Client() {
   return (
-   <div className='container mx-auto max-w-[1320px] py-10 text-center'>
+    {/*<div className='container mx-auto max-w-[1320px] py-10 text-center'>
       <h2 className='text-[2.25rem] font-semibold text-[#1E3A8A]'>แบรนด์ที่จัดจำหน่าย</h2>
       <ul className='flex flex-col items-center my-10 md:flex-row md:justify-between'>
         {clientsImgLogo.map((client, index) => (
@@ -75,10 +75,14 @@ function Client() {
            </li>
         ))}
       </ul>
-   </div>
+   </div>*/}
+    <div>
+    <BrandSlider/>
+    </div>
   );
 }
 
 export default Client;
+
 
 
