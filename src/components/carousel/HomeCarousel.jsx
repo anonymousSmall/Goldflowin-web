@@ -21,54 +21,43 @@ const images = [
 
 const HomeCarousel = () => {
   return (
-    <Carousel
-      autoPlay
-      infiniteLoop
-      interval={3000}
-      showThumbs={false}
-      showArrows={false}
-      showStatus={false}
-      swipeable
-      emulateTouch
-    >
-      {images.map((img, index) => (
-        <div key={index} className="container mx-auto w-auto h-auto p-10 flex flex-col md:flex-row md:justify-between md:items-center md:p-0">
-          <img
-            src={img}
-            alt={`slide-${index}`}
-            className="h-auto object-contain"
-          />
-        </div>
-      ))}
-    </Carousel>
+    <section className="w-full bg-white">
+      <Carousel
+        autoPlay
+        infiniteLoop
+        interval={4000}
+        showThumbs={false}
+        showArrows={false}
+        showStatus={false}
+        swipeable
+        emulateTouch
+        stopOnHover={false}
+      >
+        {images.map((img, index) => (
+          <div
+            key={index}
+            className="
+              flex items-center justify-center
+              h-[70vh]
+              sm:h-[75vh]
+              lg:h-[85vh]
+              px-6
+            "
+          >
+            <img
+              src={img}
+              alt={`hero-slide-${index}`}
+              className="
+                max-h-full
+                max-w-full
+                object-contain
+              "
+            />
+          </div>
+        ))}
+      </Carousel>
+    </section>
   );
 };
 
 export default HomeCarousel;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
