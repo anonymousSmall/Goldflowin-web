@@ -72,7 +72,7 @@ export default function BrandSlider() {
               className="h-10 sm:h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
             />
           </div>
-        )}
+        ))}
       </div>
     </div>
   );
