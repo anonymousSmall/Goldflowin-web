@@ -46,7 +46,12 @@ export default {
     animation: {
       fadeIn: "fadeIn 0.6s ease-out forwards",
       scroll: "scroll 50s linear infinite",
+      'slide-up': 'slideUp 6s linear infinite',
     },
+    slideUp: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
     keyframes: {
       fadeIn: {
         '0%': { opacity: 0, transform: 'translateY(10px)' },
