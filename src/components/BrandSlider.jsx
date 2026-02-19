@@ -67,7 +67,7 @@ export default function BrandSlider() {
             className="flex items-center justify-center min-w-[100px] sm:min-w-[120px]"
           >
             <img
-              src={logo}
+              src={brands}
               alt={`Brand ${index + 1}`}
               axis="vertical"
               className="h-10 sm:h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 animate-slide-up"
