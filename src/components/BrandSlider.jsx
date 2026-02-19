@@ -61,7 +61,7 @@ export default function BrandSlider() {
   return (
     <div className="overflow-x-hidden py-8 bg-white w-full">
       <div className="relative flex animate-scroll gap-8 px-8 max-w-full">
-        {[...brands, ...brands].map((logo, index) => (
+        {[...brands, ...brands].map((brands, index) => (
           <div
             key={index}
             className="flex items-center justify-center min-w-[100px] sm:min-w-[120px]"
