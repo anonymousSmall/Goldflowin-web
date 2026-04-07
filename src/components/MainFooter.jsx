@@ -4,6 +4,7 @@ import logoWhite from '../assets/img/logo-white.png'
 import Logo from '../assets/image/new/01logo.png'
 import { Link, NavLink } from "react-router-dom";
 
+
 function MainFooter() {
   return (
     <div className="bg-[#263238] py-16">
