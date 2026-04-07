@@ -161,6 +161,18 @@
 html{
   font-family: "Inter", serif;
 }
+.clip-left {
+  clip-path: polygon(0 0, 92% 0, 100% 100%, 0% 100%);
+}
+.overlay-diagonal {
+  width: 58%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 60, 102, 0.97),
+    rgba(11, 60, 102, 0.97)
+  );
+}
 /* body {
   background-color: #000300;
 } */
